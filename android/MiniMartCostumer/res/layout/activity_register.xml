@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dimens_5dp"
+    android:paddingRight="@dimen/dimens_5dp" >
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1.2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.8"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/tvNamaDepan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dimens_5dp"
+                android:layout_weight="1"
+                android:background="#55ffffff"
+                android:ems="10"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="Nama Depan"
+                android:imeOptions="actionNext"
+                android:padding="@dimen/dimens_10dp"                
+            	android:singleLine="true" >
+
+                <requestFocus />
+            </EditText>
+
+            <EditText
+                android:id="@+id/tvNamaBelakang"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#55ffffff"
+                android:ems="10"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="Nama Belakang"
+                android:imeOptions="actionNext"
+                android:padding="@dimen/dimens_10dp"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/tvEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_10dp"
+            android:background="#55ffffff"
+            android:ems="10"
+            android:fontFamily="sans-serif-condensed"
+            android:hint="Email"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/dimens_10dp"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/tvPassword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_10dp"
+            android:background="#55ffffff"
+            android:ems="10"
+            android:fontFamily="sans-serif-condensed"
+            android:hint="Password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:padding="@dimen/dimens_10dp"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/btnDaftar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_10dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Register" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Dengan daftar ke Minimart, saya menerima Syarat dan Ketentuan, serta Kebijakan Privasi Minimart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_12sp" />
+    </LinearLayout>
+
+</LinearLayout>
