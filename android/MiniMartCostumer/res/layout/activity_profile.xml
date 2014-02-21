@@ -1,0 +1,140 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/gray" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/frameProfile"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/background"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/ivUser"
+                android:layout_width="@dimen/dimens_100dp"
+                android:layout_height="@dimen/dimens_100dp"
+                android:background="@drawable/rounded_corner_imageview"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/user" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dimens_5dp"
+            android:background="@color/main_background_end" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/dimens_5dp"
+            android:background="@drawable/rounded_cell"
+            android:orientation="vertical"
+            android:padding="@dimen/dimens_10dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimens_5dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dimens_5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/tvProfileUsername"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="#55ffffff"
+                            android:ems="10"
+                            android:fontFamily="sans-serif-condensed"
+                            android:hint="Username"
+                            android:singleLine="true"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <EditText
+                            android:id="@+id/etProfileUsername"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Costumer Name"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/tvProfilePassword"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="#55ffffff"
+                            android:ems="10"
+                            android:fontFamily="sans-serif-condensed"
+                            android:hint="Password"
+                            android:singleLine="true"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <EditText
+                            android:id="@+id/etProfilePassword"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="textPassword"
+                            android:text="Password"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dimens_5dp" >
+
+                <Button
+                    android:id="@+id/btnHomeProfile"
+                    style="@style/ShadowText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimens_30dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/button_background_states"
+                    android:padding="@dimen/dimens_5dp"
+                    android:text="Edit Profile"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/white" >
+                </Button>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

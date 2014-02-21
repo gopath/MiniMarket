@@ -8,14 +8,14 @@ package com.android.widget;
 
 public final class R {
 	public static final class id {
-		public static final int top_line = 0x7f060040;
-		public static final int pull_to_refresh_progress = 0x7f060043;
-		public static final int pull_to_refresh_image = 0x7f060044;
-		public static final int load_more_progressBar = 0x7f060041;
-		public static final int load_more_footer = 0x7f06003f;
-		public static final int pull_to_refresh_updated_at = 0x7f060046;
-		public static final int pull_to_refresh_text = 0x7f060045;
-		public static final int pull_to_refresh_header = 0x7f060042;
+		public static final int top_line = 0x7f060060;
+		public static final int pull_to_refresh_progress = 0x7f060066;
+		public static final int pull_to_refresh_image = 0x7f060067;
+		public static final int load_more_progressBar = 0x7f060061;
+		public static final int load_more_footer = 0x7f06005f;
+		public static final int pull_to_refresh_updated_at = 0x7f060069;
+		public static final int pull_to_refresh_text = 0x7f060068;
+		public static final int pull_to_refresh_header = 0x7f060065;
 	}
 	public static final class color {
 		public static final int white = 0x7f08000a;
@@ -33,12 +33,12 @@ public final class R {
 		public static final int pull_to_refresh_pull_label = 0x7f0b000f;
 	}
 	public static final class layout {
-		public static final int pull_to_refresh_header = 0x7f03001a;
-		public static final int load_more_footer = 0x7f030019;
+		public static final int pull_to_refresh_header = 0x7f030026;
+		public static final int load_more_footer = 0x7f030022;
 	}
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f02008a;
-		public static final int costum_progress_bar = 0x7f020082;
-		public static final int ic_pulltorefresh_arrow = 0x7f02008c;
+		public static final int ic_launcher = 0x7f02008b;
+		public static final int costum_progress_bar = 0x7f020083;
+		public static final int ic_pulltorefresh_arrow = 0x7f02008d;
 	}
 }

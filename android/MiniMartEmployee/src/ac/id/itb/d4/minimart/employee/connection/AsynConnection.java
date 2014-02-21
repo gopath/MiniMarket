@@ -1,6 +1,11 @@
 package ac.id.itb.d4.minimart.employee.connection;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+
+import org.apache.http.entity.StringEntity;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -19,7 +24,7 @@ public class AsynConnection extends AsyncHttpResponseHandler {
 	private RequestParams rParams;
 	
 	public enum RequestType{
-		GET, POST
+		GET, POST, JSON
 	};
 	
 	public AsynConnection(ConnectionInterface connectionInterface, String url, int type,
@@ -43,6 +48,20 @@ public class AsynConnection extends AsyncHttpResponseHandler {
 			client.get(urlToConnect, this);
 		} else if(request == RequestType.POST){
 			client.post(urlToConnect, rParams, this);
+		} else if(request == RequestType.JSON){
+			JSONObject jsonParams = new JSONObject();
+	        try {
+				jsonParams.put("notes", "Test api support");
+				StringEntity entity = new StringEntity(jsonParams.toString());
+//				client.post(context, urlToConnect, entity, "application/json", this);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+	        
 		}
 	}
 		

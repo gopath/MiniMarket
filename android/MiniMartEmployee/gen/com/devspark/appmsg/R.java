@@ -13,6 +13,6 @@ public final class R {
 		public static final int info = 0x7f08000d;
 	}
 	public static final class layout {
-		public static final int app_msg = 0x7f030018;
+		public static final int app_msg = 0x7f03001d;
 	}
 }

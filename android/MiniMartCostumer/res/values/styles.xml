@@ -16,5 +16,69 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+    
+    <style name="SignInEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:autoText">false</item>
+        <item name="android:capitalize">none</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/table_text</item>
+<!--         <item name="android:textCursorDrawable">@drawable/edit_text_cursor</item> -->
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">@drawable/edit_text_background</item>
+    </style>
 
+    <style name="ShadowText">
+        <item name="android:shadowColor">@color/text_shadow</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+    
+    <style name="textSlidingMenu">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawablePadding">@dimen/dimens_5dp</item>
+        <item name="android:background">@drawable/selector_bg_text</item>
+        <item name="android:padding">@dimen/dimens_10dp</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+    
+    <!--  Transparent dialog -->
+    <style name="TransparentProgressDialog" parent="@android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <!-- Grid Card -->
+    <style name="Birth.card.content_outer_layout" parent="@style/card.content_outer_layout">
+        <!--Style for Content View-->
+        <item name="android:minHeight">60dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginTop">@dimen/card_content_outer_view_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/card_content_outer_view_margin_bottom</item>
+        <item name="android:layout_marginLeft">@dimen/card_content_outer_view_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/card_content_outer_view_margin_right</item>
+    </style>
+    <style name="card_main_inner_ratingbar"  >
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/ratingbar_small_holo_dark</item>
+        <item name="android:indeterminateDrawable">@drawable/ratingbar_small_holo_dark</item>
+        <item name="android:minHeight">12dip</item>
+        <item name="android:maxHeight">12dip</item>
+        <item name="android:thumb">@null</item>
+        <item name="android:isIndicator">true</item>
+    </style>
 </resources>

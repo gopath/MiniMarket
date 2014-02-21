@@ -24,7 +24,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/tvEmail"
+            android:id="@+id/etLoginUsername"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimens_10dp"
@@ -37,7 +37,7 @@
             android:padding="@dimen/dimens_10dp"/>
 
         <EditText
-            android:id="@+id/tvPassword"
+            android:id="@+id/etLoginPassword"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimens_10dp"
@@ -63,21 +63,14 @@
             android:layout_marginTop="@dimen/dimens_15dp" >
 
             <TextView
-                android:id="@+id/tvForgetPassword"
+                android:id="@+id/tvLoginNewAccount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-condensed"
-                android:text="Forgot Password?"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/tvNewAccount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
                 android:text="Create New Account"
                 android:textColor="@color/black" />
+
         </LinearLayout>
     </LinearLayout>
 

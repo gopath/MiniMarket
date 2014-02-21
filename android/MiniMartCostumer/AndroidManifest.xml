@@ -34,7 +34,17 @@
         </activity>
         <activity
             android:name="ac.id.itb.d4.minimart.costumer.view.MiniMartCostumerMainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:logo="@drawable/logo_text_long">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ac.id.itb.d4.minimart.costumer.view.SettingURLActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -61,6 +71,33 @@
         </activity>
         <activity
             android:name="ac.id.itb.d4.minimart.costumer.view.LoginActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ac.id.itb.d4.minimart.costumer.view.GoodsActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ac.id.itb.d4.minimart.costumer.view.CartActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ac.id.itb.d4.minimart.costumer.view.ProfileActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

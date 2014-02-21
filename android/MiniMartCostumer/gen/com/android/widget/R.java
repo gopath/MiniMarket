@@ -8,37 +8,37 @@ package com.android.widget;
 
 public final class R {
 	public static final class id {
-		public static final int top_line = 0x7f040048;
-		public static final int pull_to_refresh_progress = 0x7f04004b;
-		public static final int pull_to_refresh_image = 0x7f04004c;
-		public static final int load_more_progressBar = 0x7f040049;
-		public static final int load_more_footer = 0x7f040047;
-		public static final int pull_to_refresh_updated_at = 0x7f04004e;
-		public static final int pull_to_refresh_text = 0x7f04004d;
-		public static final int pull_to_refresh_header = 0x7f04004a;
+		public static final int top_line = 0x7f0b007b;
+		public static final int pull_to_refresh_progress = 0x7f0b007e;
+		public static final int pull_to_refresh_image = 0x7f0b007f;
+		public static final int load_more_progressBar = 0x7f0b007c;
+		public static final int load_more_footer = 0x7f0b007a;
+		public static final int pull_to_refresh_updated_at = 0x7f0b0081;
+		public static final int pull_to_refresh_text = 0x7f0b0080;
+		public static final int pull_to_refresh_header = 0x7f0b007d;
 	}
 	public static final class color {
-		public static final int white = 0x7f06000a;
-		public static final int gray_1 = 0x7f060008;
-		public static final int dark_slate_gray = 0x7f060006;
-		public static final int gray_2 = 0x7f060007;
-		public static final int black = 0x7f060009;
+		public static final int white = 0x7f050011;
+		public static final int gray_1 = 0x7f05000f;
+		public static final int dark_slate_gray = 0x7f05000d;
+		public static final int gray_2 = 0x7f05000e;
+		public static final int black = 0x7f050010;
 	}
 	public static final class string {
-		public static final int hello = 0x7f09000d;
-		public static final int pull_to_refresh_refreshing_label = 0x7f090011;
-		public static final int pull_to_refresh_release_label = 0x7f090010;
-		public static final int pull_to_refresh_tap_label = 0x7f090012;
-		public static final int app_name = 0x7f09000e;
-		public static final int pull_to_refresh_pull_label = 0x7f09000f;
+		public static final int hello = 0x7f08000f;
+		public static final int pull_to_refresh_refreshing_label = 0x7f080012;
+		public static final int pull_to_refresh_release_label = 0x7f080011;
+		public static final int pull_to_refresh_tap_label = 0x7f080013;
+		public static final int app_name = 0x7f080000;
+		public static final int pull_to_refresh_pull_label = 0x7f080010;
 	}
 	public static final class layout {
-		public static final int pull_to_refresh_header = 0x7f03001c;
-		public static final int load_more_footer = 0x7f03001b;
+		public static final int pull_to_refresh_header = 0x7f030033;
+		public static final int load_more_footer = 0x7f030032;
 	}
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f020088;
-		public static final int costum_progress_bar = 0x7f020083;
-		public static final int ic_pulltorefresh_arrow = 0x7f020089;
+		public static final int ic_launcher = 0x7f020094;
+		public static final int costum_progress_bar = 0x7f02008c;
+		public static final int ic_pulltorefresh_arrow = 0x7f02009b;
 	}
 }
