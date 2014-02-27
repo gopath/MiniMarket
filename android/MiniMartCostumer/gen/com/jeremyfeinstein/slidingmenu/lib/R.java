@@ -8,15 +8,15 @@ package com.jeremyfeinstein.slidingmenu.lib;
 
 public final class R {
 	public static final class id {
-		public static final int fullscreen = 0x7f0b0013;
-		public static final int slidingmenumain = 0x7f0b0082;
-		public static final int selected_view = 0x7f0b0014;
-		public static final int left = 0x7f0b0010;
-		public static final int margin = 0x7f0b0012;
-		public static final int right = 0x7f0b0011;
+		public static final int fullscreen = 0x7f08001d;
+		public static final int slidingmenumain = 0x7f0800c3;
+		public static final int selected_view = 0x7f08001e;
+		public static final int left = 0x7f08001a;
+		public static final int margin = 0x7f08001c;
+		public static final int right = 0x7f08001b;
 	}
 	public static final class layout {
-		public static final int slidingmenumain = 0x7f030036;
+		public static final int slidingmenumain = 0x7f030045;
 	}
 	public static final class styleable {
 		public static final int SlidingMenu_mode = 0;

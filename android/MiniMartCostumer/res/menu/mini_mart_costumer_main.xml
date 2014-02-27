@@ -13,6 +13,12 @@
         android:title="@string/action_cart"/>
     
     <item
+        android:id="@+id/action_barcode"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_barcode"/>
+    
+    <item
         android:id="@+id/action_new"
         android:orderInCategory="100"
         android:showAsAction="never"

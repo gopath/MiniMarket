@@ -10,7 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" >
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,10 +34,7 @@
                     android:hint="First Name"
                     android:imeOptions="actionNext"
                     android:padding="@dimen/dimens_10dp"
-                    android:singleLine="true" >
-
-                    <requestFocus />
-                </EditText>
+                    android:singleLine="true"/>                                        
 
                 <EditText
                     android:id="@+id/etRegisterLastName"
@@ -63,34 +60,38 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:padding="@dimen/dimens_10dp"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
+                    android:padding="@dimen/dimens_10dp"
                     android:text="Gender"
-                    android:textAppearance="?android:attr/textAppearanceMedium"                
-                    android:textColor="@color/black" />
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black"
+                    android:singleLine="true" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal" 
+                    android:singleLine="true">
 
                     <RadioButton
                         android:id="@+id/radioMale"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:textAppearance="?android:attr/textAppearanceMedium"                                    
-                        android:text="Male" />
+                        android:text="Male"
+                        android:textAppearance="?android:attr/textAppearanceMedium" 
+                        android:singleLine="true"/>
 
                     <RadioButton
                         android:id="@+id/radioFemale"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"                                    
-                        android:text="Female" />
+                        android:text="Female"
+                        android:textAppearance="?android:attr/textAppearanceMedium" 
+                        android:singleLine="true"/>
                 </RadioGroup>
             </LinearLayout>
 
@@ -111,17 +112,16 @@
                     android:hint="Birth Day"
                     android:imeOptions="actionNext"
                     android:padding="@dimen/dimens_10dp"
-                    android:singleLine="true" >
-
-                    <requestFocus />
-                </EditText>
+                    android:singleLine="true"
+                    android:enabled="false"/>
 
                 <Button
                     android:id="@+id/btnRegisterDatePicker"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Set Date" />
+                    android:text="Set Date" 
+                    android:singleLine="true"/>
             </LinearLayout>
 
             <EditText
@@ -148,7 +148,7 @@
                 android:fontFamily="sans-serif-condensed"
                 android:hint="Phone"
                 android:imeOptions="actionNext"
-                android:inputType="text"
+                android:inputType="number"
                 android:padding="@dimen/dimens_10dp"
                 android:singleLine="true" />
 
@@ -162,7 +162,7 @@
                 android:fontFamily="sans-serif-condensed"
                 android:hint="Homephone"
                 android:imeOptions="actionNext"
-                android:inputType="text"
+                android:inputType="number"
                 android:padding="@dimen/dimens_10dp"
                 android:singleLine="true" />
 
@@ -189,7 +189,7 @@
                 android:ems="10"
                 android:fontFamily="sans-serif-condensed"
                 android:hint="Address"
-                android:imeOptions="actionNext"
+                android:imeOptions="actionDone"
                 android:inputType="text"
                 android:padding="@dimen/dimens_10dp"
                 android:singleLine="true" />
@@ -202,14 +202,26 @@
                 android:fontFamily="sans-serif-condensed"
                 android:text="Register" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Dengan daftar ke Minimart, saya menerima Syarat dan Ketentuan, serta Kebijakan Privasi Minimart"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_12sp" />
+                android:layout_marginTop="@dimen/dimens_10dp"
+                android:orientation="horizontal" >
+
+                <CheckBox
+                    android:id="@+id/cbAccept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="I accept the Terms Conditions and Privacy Policy of MiniMart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_12sp" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

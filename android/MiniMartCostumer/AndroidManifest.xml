@@ -8,6 +8,9 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
 
+    <uses-permission android:name="android.permission.CAMERA"/>
+	<uses-permission android:name="android.permission.VIBRATE"/>
+	<uses-permission android:name="android.permission.FLASHLIGHT"/>	
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -33,9 +36,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="ac.id.itb.d4.minimart.costumer.view.MiniMartCostumerMainActivity"
-            android:label="@string/app_name" 
-            android:logo="@drawable/logo_text_long">
+            android:name="ac.id.itb.d4.minimart.costumer.view.HomeTabActivity"
+            android:logo="@drawable/logo_text_long"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -52,7 +55,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="ac.id.itb.d4.minimart.costumer.view.CheckLoginActivity"
+            android:name="ac.id.itb.d4.minimart.costumer.view.WelcomeScreenActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -62,6 +65,7 @@
         </activity>
         <activity
             android:name="ac.id.itb.d4.minimart.costumer.view.RegisterActivity"
+            android:configChanges="keyboardHidden"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -71,6 +75,7 @@
         </activity>
         <activity
             android:name="ac.id.itb.d4.minimart.costumer.view.LoginActivity"
+            android:configChanges="keyboardHidden"            
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -98,11 +103,55 @@
         </activity>
         <activity
             android:name="ac.id.itb.d4.minimart.costumer.view.ProfileActivity"
+            android:configChanges="keyboardHidden"            
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ac.id.itb.d4.minimart.costumer.view.EditProfileActivity"
+            android:configChanges="keyboardHidden"            
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ac.id.itb.d4.minimart.costumer.view.AboutActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+         <activity
+            android:name="ac.id.itb.d4.minimart.costumer.view.BarcodeActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.google.zxing.client.android.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.zxing.client.android.SCAN" />                
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

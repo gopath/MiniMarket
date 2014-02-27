@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.devspark.appmsg.AppMsg;
 
 import ac.id.itb.d4.minimart.costumer.R;
@@ -54,7 +55,7 @@ public class LoginActivity extends SherlockActivity implements ConnectionInterfa
 		
 		// Activate Action Bar
 		mActionBar = getSupportActionBar();
-		mActionBar.setDisplayHomeAsUpEnabled(false);
+		mActionBar.setDisplayHomeAsUpEnabled(true);
 		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		mActionBar.setDisplayShowTitleEnabled(true);
 		mActionBar.setTitle("Login");
@@ -77,31 +78,27 @@ public class LoginActivity extends SherlockActivity implements ConnectionInterfa
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(self, RegisterActivity.class);
 				startActivity(intent);
+				self.finish();
 			}
 		});
-	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
-		// TODO Auto-generated method stub
-		MenuInflater menuInflater = getSupportMenuInflater();				
-		menuInflater.inflate(R.menu.menu_login, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
+	}	
 		
 	@Override
-	public boolean onOptionsItemSelected(
-			com.actionbarsherlock.view.MenuItem item) {
+	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
-		case R.id.action_login_settings:
-			Intent intent = new Intent(self, SettingURLActivity.class);
+		case android.R.id.home:
+			Intent intent = new Intent(self, WelcomeScreenActivity.class);
 			startActivity(intent);
-			return true;
+			self.finish();
+			break;
+
 		default:
-			return false;
-		}		
-	}
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}	
+	
 
 	@Override
 	public void callBackOnSuccess(final Object value, int responseCode, final int type) {
@@ -128,7 +125,7 @@ public class LoginActivity extends SherlockActivity implements ConnectionInterfa
 							edit.putBoolean("isLogin", true);
 							edit.commit();
 							
-							Intent intent = new Intent(self, MiniMartCostumerMainActivity.class);
+							Intent intent = new Intent(self, HomeTabActivity.class);
 							startActivity(intent);
 							self.finish();
 						} else {
@@ -189,7 +186,7 @@ public class LoginActivity extends SherlockActivity implements ConnectionInterfa
 					edit.putBoolean("isLogin", true);
 					edit.commit();
 					
-					Intent intent = new Intent(self, MiniMartCostumerMainActivity.class);
+					Intent intent = new Intent(self, HomeTabActivity.class);
 					startActivity(intent);
 					self.finish();
 				} else {

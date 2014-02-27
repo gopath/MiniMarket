@@ -1,0 +1,59 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical"
+    android:background="@color/gray">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimens_50dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/logo_text_long" />
+    
+    <TextView
+        android:id="@+id/tvAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimens_25dp"
+        android:padding="@dimen/dimens_20dp"
+        android:text="Mini Mart (Costumer Version) for Android is built using open source software.\nDeveloper : Fathia M. Fadilah A.\nEmail : fathia.mfa@gmail.com"
+        android:textColor="@color/main_background_end"
+        android:textSize="@dimen/text_16sp"
+        android:textAlignment="center"
+        android:textStyle="italic" />
+
+    
+    <TextView
+        android:id="@+id/tvVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimens_25dp"
+        android:text="@string/version"
+        android:textColor="@color/main_background_end"
+        android:textSize="@dimen/text_14sp"
+        android:textStyle="italic|bold" />
+    
+    <TextView
+        android:id="@+id/tvCopyright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimens_5dp"
+        android:text="Copyright 2014"
+        android:textColor="@color/main_background_end"
+        android:textSize="@dimen/text_14sp"
+        android:textStyle="italic|bold" />
+
+</LinearLayout>

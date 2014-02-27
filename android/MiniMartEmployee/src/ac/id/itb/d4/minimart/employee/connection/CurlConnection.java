@@ -24,7 +24,7 @@ public class CurlConnection extends AsyncHttpResponseHandler {
 	private RequestParams rParams;
 	
 	public enum RequestType{
-		GET, POST, JSON
+		GET, POST, JSON, XML
 	};
 	
 	public CurlConnection(ConnectionInterface connectionInterface, String url, int type,

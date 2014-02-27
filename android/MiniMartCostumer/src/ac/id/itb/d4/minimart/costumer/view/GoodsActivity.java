@@ -1,7 +1,6 @@
 package ac.id.itb.d4.minimart.costumer.view;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Vector;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -9,12 +8,12 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.devspark.appmsg.AppMsg;
+import com.google.zxing.client.android.CaptureActivity;
 
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardGridArrayAdapter;
 import it.gmariotti.cardslib.library.internal.CardHeader;
 import it.gmariotti.cardslib.library.internal.CardThumbnail;
-import it.gmariotti.cardslib.library.internal.base.BaseCard;
 import it.gmariotti.cardslib.library.view.CardGridView;
 import ac.id.itb.d4.minimart.costumer.R;
 import ac.id.itb.d4.minimart.costumer.connection.AsynConnection;
@@ -29,7 +28,6 @@ import ac.id.itb.d4.minimart.costumer.utils.Singleton;
 import ac.id.itb.d4.minimart.costumer.utils.TransparentProgressDialog;
 import ac.id.itb.d4.minimart.costumer.utils.sqlite.SqliteDatabaseHelper;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -39,8 +37,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RatingBar;
-import android.widget.ScrollView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,7 +46,7 @@ public class GoodsActivity extends SherlockFragmentActivity implements Connectio
 	
 	private GoodsActivity self = this;
 	private ActionBar mActionBar;
-	protected ScrollView mScrollView;
+	private ImageView tapToRefresh;
 	private int index = 0;
 	private SqliteDatabaseHelper sqliteHelper;
 	private SharedPreferences sessions;
@@ -63,17 +60,18 @@ public class GoodsActivity extends SherlockFragmentActivity implements Connectio
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_goods_grid_gplay);
 		
-		sessions = getSharedPreferences("SESSION", 0);		
-		sqliteHelper = new SqliteDatabaseHelper(self);		
-		
-		doGoods();
-		
 		// Activate Action Bar
 		mActionBar = getSupportActionBar();
 		mActionBar.setDisplayHomeAsUpEnabled(true);
 		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		mActionBar.setDisplayShowTitleEnabled(true);
 		mActionBar.setTitle("Goods");
+		
+		sessions = getSharedPreferences("SESSION", 0);		
+		sqliteHelper = new SqliteDatabaseHelper(self);		
+		
+		doGoods();		
+		
 	}
 	
 	@Override
@@ -82,6 +80,10 @@ public class GoodsActivity extends SherlockFragmentActivity implements Connectio
 		
 		menu.add(Menu.NONE, R.id.action_new, Menu.NONE, "")
         .setIcon(R.drawable.ic_action_new)
+        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+		
+		menu.add(Menu.NONE, R.id.action_barcode, Menu.NONE, "")
+        .setIcon(R.drawable.ic_action_barcode)
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 		
 		menu.add(Menu.NONE, R.id.action_cart, Menu.NONE, "")
@@ -94,10 +96,32 @@ public class GoodsActivity extends SherlockFragmentActivity implements Connectio
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+		case android.R.id.home:
+			Intent intent = new Intent(self, HomeTabActivity.class);
+			startActivity(intent);
+			self.finish(); 
+			return true;		
+		case R.id.action_barcode:
+			
+			intent = new Intent(self, CaptureActivity.class);
+			intent.putExtra("SCAN_MODE", "BARCODE_CODE_MODE");
+			startActivityForResult(intent, 0);
+			
+//			intent = new Intent(self, BarcodeActivity.class);
+//			startActivity(intent);
+			
+//			if(Singleton.getInstance().getBooleanPreferences(self, "isTransaction") == true){
+//				Toast.makeText(self, "Barcode", Toast.LENGTH_SHORT).show();
+//			} else {
+//				AppMsg appMsg = AppMsg.makeText(self, "Please start transaction first", AppMsg.STYLE_ALERT);
+//				appMsg.show();
+//			}
+			
+			return true;			
 		case R.id.action_cart:
 			
 			if(Singleton.getInstance().getBooleanPreferences(self, "isTransaction") == true){
-				Intent intent = new Intent(self, CartActivity.class);
+				intent = new Intent(self, CartActivity.class);
 				startActivity(intent);
 			} else {
 				AppMsg appMsg = AppMsg.makeText(self, "Please start transaction first", AppMsg.STYLE_ALERT);
@@ -106,47 +130,51 @@ public class GoodsActivity extends SherlockFragmentActivity implements Connectio
 			
 			return true;
 		case R.id.action_new:
-			
-			if(Singleton.getInstance().getBooleanPreferences(self, "isTransaction") == true){
-				
-				AppMsg appMsg = AppMsg.makeText(self, "You are already start transaction", AppMsg.STYLE_ALERT);
-				appMsg.show();
-				
-			} else {
-				AlertDialog.Builder alertDialog = new AlertDialog.Builder(self);
-		   		 
-	            // Setting Dialog Title
-	            alertDialog.setTitle("WARNING");         
-	            // Setting Dialog Message
-	            alertDialog.setMessage("Are you sure want to start transaction?");
-	     
-	            // Setting Icon to Dialog
-	            //alertDialog.setIcon(R.drawable.ic_warning);
-	     
-	            // Setting Positive "Yes" Button
-	            alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-	                public void onClick(DialogInterface dialog,int which) {
-	                	SharedPreferences.Editor edit = sessions.edit();
-	        			edit.putBoolean("isTransaction", true);
-	        			edit.commit();                    	
-	        			
-	        			AppMsg appMsg = AppMsg.makeText(self, "Your transaction have been recorded", AppMsg.STYLE_CONFIRM);
-						appMsg.show();
-	                }
-	            });
-	     
-	            // Setting Negative "NO" Button
-	            alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-	                public void onClick(DialogInterface dialog, int which) {
-	                	dialog.cancel();
-	                }
-	            });
-	     
-	            // Showing Alert Message
-	            alertDialog.show();						
+			if(Helper.isOnline(self)){
+				if(Singleton.getInstance().getBooleanPreferences(self, "isTransaction") == true){
+					
+					AppMsg appMsg = AppMsg.makeText(self, "You are already start transaction", AppMsg.STYLE_ALERT);
+					appMsg.show();
+					
+				} else {
+					AlertDialog.Builder alertDialog = new AlertDialog.Builder(self);
+			   		 
+		            // Setting Dialog Title
+		            alertDialog.setTitle("WARNING");         
+		            // Setting Dialog Message
+		            alertDialog.setMessage("Are you sure want to start transaction?");
+		     
+		            // Setting Icon to Dialog
+		            //alertDialog.setIcon(R.drawable.ic_warning);
+		     
+		            // Setting Positive "Yes" Button
+		            alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+		                public void onClick(DialogInterface dialog,int which) {
+		                	SharedPreferences.Editor edit = sessions.edit();
+		        			edit.putBoolean("isTransaction", true);
+		        			edit.commit();                    	
+		        			
+		        			AppMsg appMsg = AppMsg.makeText(self, "Your transaction have been recorded", AppMsg.STYLE_CONFIRM);
+							appMsg.show();
+		                }
+		            });
+		     
+		            // Setting Negative "NO" Button
+		            alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+		                public void onClick(DialogInterface dialog, int which) {
+		                	dialog.cancel();
+		                }
+		            });
+		     
+		            // Showing Alert Message
+		            alertDialog.show();						
 
-			}			
-						
+				}			
+			} else {
+				AppMsg appMsg = AppMsg.makeText(self, "No Internet Connection", AppMsg.STYLE_ALERT);
+				appMsg.show();	
+			}
+									
 			return true;
 		default:
 			return false;
@@ -154,7 +182,8 @@ public class GoodsActivity extends SherlockFragmentActivity implements Connectio
 	}
 	
 	private void doGoods(){
-		urlGoods = "http://" + Singleton.getInstance().getDefaultPreferences(self, "prefAddress") + AppConstant.URL_GOODS;		
+		//urlGoods = "http://" + Singleton.getInstance().getDefaultPreferences(self, "prefAddress") + AppConstant.URL_GOODS;		
+		urlGoods = AppConstant.BASE_URL + AppConstant.URL_GOODS;		
 		goodsAction(urlGoods);
 	}
 	
@@ -170,6 +199,17 @@ public class GoodsActivity extends SherlockFragmentActivity implements Connectio
 		} else {
 			AppMsg appMsg = AppMsg.makeText(self, "No Internet Connection", AppMsg.STYLE_ALERT);
 			appMsg.show();			
+			
+			setContentView(R.layout.no_connection);
+			tapToRefresh = (ImageView) findViewById(R.id.tapToRefresh);
+			tapToRefresh.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					doGoods();
+				}
+			});
 		}
 	}
 		
@@ -312,6 +352,7 @@ public class GoodsActivity extends SherlockFragmentActivity implements Connectio
 					GoodsParser goodParser = new GoodsParser();
 					goodsJsonData = goodParser.parse(value.toString());										
 					
+					// insert fresh data of goods if goods's data in database is empty
 					if(sqliteHelper.getGoodsDataCount() < 0){
 						for (int i = 0; i < goodsJsonData.size(); i++) {							
 							goods.setGoodsNo(goodsJsonData.get(i).getGoodsNo());
@@ -321,6 +362,7 @@ public class GoodsActivity extends SherlockFragmentActivity implements Connectio
 							sqliteHelper.insertGoods(goods);
 						}
 					} else {
+						// already good's data in database, then delete it first, after that insert new good's data
 						Vector<Goods> v = sqliteHelper.getAllGoodsData();
 						for (int i = 0; i < v.size(); i++) {
 							sqliteHelper.deleteGoodsData(v.get(i).getGoodsNo());
@@ -352,6 +394,11 @@ public class GoodsActivity extends SherlockFragmentActivity implements Connectio
 	public void callBackOnFailed(Object value, int responseCode, int type) {
 		// TODO Auto-generated method stub
 		progressDialog.dismiss();
+		
+		AppMsg appMsg = AppMsg.makeText(self, "Error Loading Goods's Data", AppMsg.STYLE_CONFIRM);
+		appMsg.show();			
+		
+		initCards();
 	}
 
 	@Override
@@ -370,5 +417,27 @@ public class GoodsActivity extends SherlockFragmentActivity implements Connectio
 	public void callBackOnConnect(Object value, int responseCode, int type) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, intent);
+		
+		String strFormat, strResult;
+		if (requestCode == 0) {
+			if (resultCode == RESULT_OK) {
+				strFormat = intent.getStringExtra("SCAN_RESULT_FORMAT");
+				strResult = intent.getStringExtra("SCAN_RESULT");
+				Toast.makeText(this, strFormat + " : " + strResult, Toast.LENGTH_LONG).show();
+			} else if (resultCode == RESULT_CANCELED) {
+				strResult = "Scan dibatalkan";
+				Toast.makeText(this, strResult, Toast.LENGTH_SHORT).show();
+				
+				intent = new Intent(self, GoodsActivity.class);
+				startActivity(intent);
+				self.finish();				
+			}
+		}
 	}
 }

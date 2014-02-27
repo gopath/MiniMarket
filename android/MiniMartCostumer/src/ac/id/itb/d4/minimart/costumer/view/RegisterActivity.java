@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.devspark.appmsg.AppMsg;
 
 import ac.id.itb.d4.minimart.costumer.R;
@@ -13,6 +14,7 @@ import ac.id.itb.d4.minimart.costumer.connection.Helper;
 import ac.id.itb.d4.minimart.costumer.connection.AsynConnection.RequestType;
 import ac.id.itb.d4.minimart.costumer.utils.TransparentProgressDialog;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,7 +44,7 @@ public class RegisterActivity extends SherlockActivity implements ConnectionInte
 		
 		// Activate Action Bar
 		mActionBar = getSupportActionBar();
-		mActionBar.setDisplayHomeAsUpEnabled(false);
+		mActionBar.setDisplayHomeAsUpEnabled(true);
 		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		mActionBar.setDisplayShowTitleEnabled(true);
 		mActionBar.setTitle("Register");
@@ -75,6 +77,22 @@ public class RegisterActivity extends SherlockActivity implements ConnectionInte
 			}
 		});
 		
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			Intent intent = new Intent(self, WelcomeScreenActivity.class);
+			startActivity(intent);
+			self.finish();
+			break;
+
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 	
 	private void doRegister(){

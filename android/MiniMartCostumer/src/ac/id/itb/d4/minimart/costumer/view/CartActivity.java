@@ -80,6 +80,11 @@ public class CartActivity extends SherlockFragmentActivity implements Connection
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+		case android.R.id.home:
+			Intent intent = new Intent(self, HomeTabActivity.class);
+			startActivity(intent);
+			self.finish();
+			return true;
 		case R.id.action_payment:
 		
 			AlertDialog.Builder alertDialog = new AlertDialog.Builder(self);
@@ -187,7 +192,8 @@ public class CartActivity extends SherlockFragmentActivity implements Connection
 	}
 
 	private void doCartPayment(){
-		urlCartPayment = "http://" + Singleton.getInstance().getDefaultPreferences(self, "prefAddress") + AppConstant.URL_TRANSACTION;		
+		//urlCartPayment = "http://" + Singleton.getInstance().getDefaultPreferences(self, "prefAddress") + AppConstant.URL_TRANSACTION;		
+		urlCartPayment = AppConstant.BASE_URL + AppConstant.URL_TRANSACTION;		
 		cartPaymentAction(urlCartPayment);
 	}
 	
@@ -236,7 +242,7 @@ public class CartActivity extends SherlockFragmentActivity implements Connection
 						appMsg.show();
 						
 						sqliteHelper.deleteTransactionData(1);
-						Intent intent = new Intent(self, MiniMartCostumerMainActivity.class);
+						Intent intent = new Intent(self, HomeTabActivity.class);
 						startActivity(intent);
 						
 					} else {

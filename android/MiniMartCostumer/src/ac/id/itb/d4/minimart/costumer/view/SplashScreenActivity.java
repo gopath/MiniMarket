@@ -48,11 +48,11 @@ public class SplashScreenActivity extends Activity {
 			
 			sessions = getSharedPreferences("SESSION", 0);
 			if(sessions.contains("isLogin")){
-				Intent intent = new Intent(self, MiniMartCostumerMainActivity.class);
+				Intent intent = new Intent(self, HomeTabActivity.class);
 				startActivity(intent);
 				self.finish();
 			}else{	
-				Intent intent = new Intent(self, CheckLoginActivity.class);
+				Intent intent = new Intent(self, WelcomeScreenActivity.class);
 				startActivity(intent);
 				self.finish();
 			}			
