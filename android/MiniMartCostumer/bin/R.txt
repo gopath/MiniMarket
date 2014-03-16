@@ -438,7 +438,7 @@ int drawable abs__textfield_searchview_right_holo_dark 0x7f020073
 int drawable abs__textfield_searchview_right_holo_light 0x7f020074
 int drawable abs__toast_frame 0x7f020075
 int drawable activated_background_card 0x7f020076
-int drawable background 0x7f020077
+int drawable background7 0x7f020077
 int drawable bg_grey_shadow_default 0x7f020078
 int drawable bg_grey_shadow_selected 0x7f020079
 int drawable btn_cab_done_default_minimart 0x7f02007a

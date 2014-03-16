@@ -23,7 +23,7 @@
                     android:id="@+id/frameProfile"
                     android:layout_width="fill_parent"
                     android:layout_height="200dp"
-                    android:background="@drawable/background"
+                    android:background="@drawable/background7"
                     android:orientation="vertical" >
 
                     <!-- ViewPager -->

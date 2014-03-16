@@ -1259,7 +1259,7 @@ containing a value of this type.
         public static final int abs__textfield_searchview_right_holo_light=0x7f020074;
         public static final int abs__toast_frame=0x7f020075;
         public static final int activated_background_card=0x7f020076;
-        public static final int background=0x7f020077;
+        public static final int background7=0x7f020077;
         public static final int bg_grey_shadow_default=0x7f020078;
         public static final int bg_grey_shadow_selected=0x7f020079;
         public static final int btn_cab_done_default_minimart=0x7f02007a;
