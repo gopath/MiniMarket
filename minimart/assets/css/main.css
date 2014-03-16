@@ -1,0 +1,686 @@
+/*** Stylio v1.0 custom styles ***
+*
+*
+*   Predefined colors for quick change:
+*	
+*	Pink - #ff5f9b
+*	Green - #39c8b7
+*	Blue - #59bbd7
+*	Berry - #fe6760
+*	Orange - #ff7200
+*
+*************************************/
+
+/*==========================================================================
+  RESETS AND MASTER STYLES 
+  ========================================================================== */
+	html, body {font: 10pt 'Source Sans Pro', sans-serif; line-height: 1!important; margin: 0!important;padding: 0!important;border: 0!important;font-size: 100%!important;vertical-align: baseline!important; height:100%; min-height:100%;}
+	h1, h2, h3, h4, h5, h6, span, p , small {font-family: 'Source Sans Pro', sans-serif; color:#fff;}
+	h1, h2, h3 {margin-top: 10px;}
+	p {font-family: 'Source Sans Pro', sans-serif; font-size:11pt; line-height:20pt;}
+	i {color:#fff;}
+	h1 {color:#fff; font-size:60pt; letter-spacing:-2px; font-weight:300;}
+	h2 {color:#fff; font-size:23pt; font-weight:300; margin-bottom:5px;}
+	h3 {color:#fff; font-size:16pt; font-weight:600; margin-bottom:15px;}
+	h4 {color:#fff; font-size:14pt; font-weight:600; margin-bottom:20px;}
+	h5 {font-size:14pt; font-weight:300; line-height:18pt}
+	h6{color:#2a2c55; font-size:14pt; font-weight:300;}
+	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+	small {font-size:70%; font-weight:100;}
+	a {color:#ff5f9b; }
+	a:hover{color:#ff5f9b; text-decoration:underline;}
+	*:focus {outline: none;}
+
+/*==========================================================================
+  GENERAL & RE-USABLE ADJUSTMENTS
+  ========================================================================== */
+	.row {z-index:2; margin-bottom:50px;}
+	.box {background:rgba(0,0,0,0.2); -webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;}
+	.center {text-align:center;}
+	.right {text-align:right;}
+	.left {text-align:left;}
+	.content {z-index:99; position:relative; overflow: hidden;}
+	.blink:hover {opacity:0.9;}
+	.half-offset {margin-bottom:25px !important;}
+	.no-offset {margin:0 !important; padding:0;}
+	.nobg {background: 0;border:0;}
+	.no-border {border:0 !important;}
+	.colored {color:#ff5f9b !important;}
+	.color-white {color:#fff;}
+	.colored-bg {background-color:#ff5f9b !important;}
+	.colored-bg-alt {background-color:#4D5761 !important;}
+	
+	.desk-pull-left {float:left;} /* ONLY FOR DESKTOP */
+	.desk-pull-right {float:right;} /* ONLY FOR DESKTOP */
+
+	.sm-icon {margin:0 auto; line-height:18px; text-align: center; width:33px; height:32px; display: inline-block; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; color:#fff;}
+	.sm-wrap {width:36px; height:36px; overflow:hidden;}
+	
+	
+	/* FIXING WIDTH JITTERS */
+	.md-wrap {width:60px; height:60px; text-align: center;margin: 0 auto; /*padding: 0.5em 0 0 0.7em;*/ overflow:hidden;}
+	.md-wrap .md-icon {position:absolute;}
+	/* JITTERS FIX END */
+	.md-icon {border:2px solid #fff;text-align: center; width:60px; height:60px; line-height:60px;  display:block;-webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; color:#fff; box-shadow: 0 0 0 0px rgba(255,255,255,1);overflow: hidden; margin: 0 auto;}
+	.md-icon:hover {background:#fff; color:#ff5f9b;}
+	.md-icon:hover i {color:#ff5f9b;}
+	
+	.md-icon:after, .md-icon:before {display: none;}
+	.sm-icon:hover {background: #ff7701; border-color:transparent; color:#fff; text-decoration:none;}
+	
+	.lg-wrap {width:90px; height:90px; text-align: center;margin: 0 auto; /*padding: 0.5em 0 0 0.7em;*/ overflow:hidden;}
+	.lg-wrap .lg-icon {position:absolute;}
+	.lg-icon {border:2px solid #fff; margin:0 auto; text-align: center; width:90px; height:90px; line-height:90px;  display:block; color:#fff; box-shadow: 0 0 0 0px rgba(255,255,255,0.7);overflow: hidden;}
+	
+	.sm-pic {width:70px; height:70px;}
+	.md-pic {width:100px; height:100px;}
+	.lg-pic {width:100%; max-width:355px;}
+	.icon.pull-left, .icon.desk-pull-left {margin-left: 20px; margin-right: 20px;}
+	
+	.line-wrap {height: 65px;display: block;padding-top: 35px;}
+
+	.big-line {margin: 0px 0px 0px 0px; opacity: 1;}
+	.big-line {min-height: 3px;height: 100%;line-height: 100%;display: block;}
+	.big-line span {min-height: 2px;height: 100%;line-height: 100%;width: 60px;display: block; border-top: 7px solid #ff5f9b; height: 2px;}
+
+	.no-hover:hover {opacity:1 !important; }
+	
+	#style-switcher {left:-225px;position: fixed;top: 200px;display: block;width: 225px;background: #ffffff;border: 2px solid #f0f0f0;padding: 10px 20px 20px 20px;z-index: 90000;}
+	#style-switcher ul {margin-bottom: 8px;width: 100%;list-style: none; padding-left:0;}
+	#style-switcher .style-toggle {margin-left:-2px;position: absolute;display: block;width: 50px;height: 50px;text-align: center;line-height: 50px;top: 25px;right: -52px; background:rgba(0, 0, 0, 0.3); -webkit-border-radius: 5%; -moz-border-radius: 5%; border-radius: 5%;}
+	#style-switcher a.color {padding: 15px 15px;background: #555555;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;color: #ffffff;float: left;margin-right: 5px;font-size: 12px;text-transform: uppercase;line-height: normal;display: block;}
+	#style-switcher a.color.pink {background:#ff5f9b;}
+	
+	
+	#style-switcher a.color.pink {background:#ff5f9b;}
+	#style-switcher a.color.green {background:#39c8b7;}
+	#style-switcher a.color.blue {background:#59bbd7;}
+	#style-switcher a.color.berry {background:#fe6760;}
+	#style-switcher a.color.orange {background:#ff7200;}
+
+/*==========================================================================
+  NAVIGATION
+  ========================================================================== */
+	
+	/*.navbar-brand {position: absolute; left: 50%;margin: 0px; z-index:100;}*/
+	.navbar ul {  margin: 0 auto;width: 100%; padding: 0;}
+    .navbar-header {position: absolute;left: 48.5%;margin: 0px 0 0 -108px;}
+	.navbar-nav {float:none;}
+	.navbar ul li:nth-of-type(4) {margin-left: 220px;}
+	
+	.navbar {line-height:160px; height:160px; display:block; vertical-align: middle;text-align: center;}
+	.navbar-nav.skrollable {position:relative !important;}
+	.nav li {height:100%; line-height:100%;  float: left;} 
+	.nav>li>a {display:table-cell; height:100%; line-height:100%; vertical-align:middle; color:#fff; padding: 15px 33px; font:700 12pt 'Source Sans Pro'; text-transform:uppercase;}
+	.nav>li>a:hover {background:0; color:#ff5f9b;}
+	.navbar-nav {float:right; margin-top:55px;}
+	.navbar .navbar-nav > .active > a {background:0; }
+	.navbar .navbar-nav > .active > .hover {opacity:1; margin:2px 20px; height:7px;}
+	.navbar-brand {padding:0; display:table-cell; vertical-align:middle; line-height:150px;}
+	.navbar-brand  img {vertical-align:middle;}
+	.resp-menu {border: 1px solid #B9B9B9; padding: 10px;}
+	.resp-menu .icon {color:#B9B9B9;}
+	.navbar-toggle {padding:0; margin:0; width: 80px;}
+	.navbar-collapse.in {margin-top:-5px !important;}
+	.navbar-small {line-height:60px; height:60px; background-color:rgba(0,0,0,1); display:block; vertical-align: middle;text-align: center; box-shadow: 2px 3px 5px 0px rgba(1, 1, 1, 0.4);}
+	.navbar-small .navbar-nav {margin-top:5px;}
+	.navbar-small .navbar-brand {padding:0; display:table-cell; vertical-align:middle; line-height:60px;}
+	.navbar-small .navbar-brand  img {vertical-align:middle; }
+
+  /*==========================================================================
+  HOME TOP
+  ========================================================================== */
+   .fullwidthbanner {padding-top:150px; background:url(../img/top-img.jpg) 0px 0px no-repeat;   -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;background-size: cover; background-attachment: fixed; width:100%; height:860px; overflow:hidden;}
+   .header {padding-left: 30px;}
+   .header-img  {margin:50px 0px 20px 0px;}
+   .header-txt  {font:300 20pt 'Source Sans Pro', sans-serif; opacity:0.9; margin-bottom:80px; padding-right:10px; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);}
+   .header-video-link {position:absolute; top:23%; left:23%; display:block; width:95px; height:95px; }
+   .lg-icon {line-height: 90px; border-width:6px; opacity:0.9; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%;}
+   .header-video-link .lg-icon { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);}
+   .header-video-link .lg-icon:hover {background:#fff; text-shadow: none;  opacity:1;}
+   .header-video-link .lg-icon:hover i {color:#ff5f9b;}
+   .download  {margin-right:15px;}
+   .download  img {width:45%; max-width:225px; opacity:0.7;}
+   .download:hover img {opacity:1;}
+   .header-img {width: 100%; max-width:385px;}
+   img.phone-in-hand {width: 100%; max-width:720px;}
+   .phone-holder {padding-left:0px;}
+
+
+/*==========================================================================
+  FEATURES
+  ========================================================================== */
+   #features {padding-top:35px;}
+   #features p {margin: 0px 10px 20px 10px;}
+   #features h4 {margin-bottom: 25px;}
+   #features .line-wrap {height:50px; display:block; padding-top:20px;}
+   #features .big-line {margin:0px 0px 0px 0px;}
+   #features .animate:hover .md-icon {background:#ff7701;}
+   #features .item {padding: 15px 0px 10px 0px; margin-bottom: 35px; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;}
+   /*#features .item:hover{background-color:#F14887;}*/
+  
+/*==========================================================================
+  PHONE SLIDER
+  ========================================================================== */
+   .phone-wrap { min-height: 600px; display:inline; float:left;}
+   .phone-wrap .left-col {overflow:hidden; padding-top: 50px;}
+   .phone-wrap .left-col img {width:93%; max-width:510px; padding-top:250px;}
+   .phone-wrap .left-col .phone img {max-width:620px; width:100%;}
+   .phone-wrap .right-col {vertical-align:top; padding-top: 50px;}
+   .phone-wrap .phone-menu {vertical-align:top; float:left; display:inline; list-style:none; padding: 100px 0px 0px 50px;}
+   .phone-wrap .text {font-family:Arial; color:#777; margin-left:80px;margin-bottom:10px; width:220px; display:none;}
+   
+   .phone-wrap .left-col .level4 {position:absolute; z-index:4;}
+   .phone-wrap .left-col .level3 {position:absolute; z-index:3;}
+   .phone-wrap .left-col .level2 {position:absolute; z-index:2;}
+   .phone-wrap .left-col .level1 {position:absolute; z-index:1;}
+   
+   /*
+   .phone-wrap .left-col .level4 {position:absolute; z-index:4; margin-top:-150px;}
+   .phone-wrap .left-col .level3 {position:absolute; z-index:3; margin-top:-100px;}
+   .phone-wrap .left-col .level2 {position:absolute; z-index:2; margin-top:-50px;}
+   .phone-wrap .left-col .level1 {position:absolute; z-index:1; margin-top:0px;}
+   */
+   
+   .phone-menu {z-index:999;}
+   .phone-menu ul {width:100%;}
+   .phone-menu li {width:100%; float:left; margin:10px 0px;}
+   .phone-menu li .text {width:98%; float:left; text-align:left; margin:0px 0px 0px 85px;}
+   .phone-menu .title {float: left;color: #777;line-height: 45pt;font-size: 21pt;font-weight: 300; padding-left:20px;}
+   
+   .phone-menu  li:hover .switch {border-color:#ff5f9b; text-decoration:none;}
+   .phone-menu  li.active:hover .switch {border-color:#fff;}
+   .phone-menu  li:hover .title {color:#ff5f9b !important;}
+   
+   .phone-menu .switch {border: 1px solid #B5B8BE; float: left;}
+   	.active .title {color:#ff5f9b;}
+   	.active .switch {color:#fff; background:#ff5f9b; border-color:#fff;}
+   	.active .switch i {color:#fff !important;}
+   	.active .text, .active .dotted  {display:block;}
+   
+   .phone-menu .switch i {color:#ff5f9b;}
+   .dotted {display:none; background:url('../img/dotted-line.png') center left repeat-x;width: 250px;height: 1px;position: absolute;left: -185px;margin-top: 30px; z-index:99;}
+   .resp-show.dotted {display:block;}
+   .slide-offset {height:150px; display:none;}
+   .slide-default-offset {height:50px; display:none;}
+   
+/*==========================================================================
+  USE
+  ========================================================================== */
+    #use {z-index: 10; padding-bottom: 25px; position:relative;}
+    #use h3 {padding:50px 0px 20px 0px;}
+    #use .title {margin-top: -10px; display: block;}
+    #use .big-line span {margin: 0 auto;}
+    .image-bg {background:url(../img/top-img.jpg) bottom center no-repeat;  background-attachment: fixed;  -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}
+    .overlay {position:absolute; background:#000; z-index:1; width:100%; height:100%; opacity:0.5;}
+	.faces {z-index: 999;position: relative;}
+	#use .holder:hover .line-wrap {padding-top:10px !important;}
+	
+
+/*==========================================================================
+  PRICING
+  ========================================================================== */
+	#pricing {min-height: 700px;padding-top: 80px;}
+	.package {background:#eee; padding:0px 0px 20px 0px; margin-top: 30px;}
+	.package:last-child {border:0;}
+	.package  h1 {margin:0px 0px 0px 0px;}
+	.features {list-style:none; margin:15px 0px 10px 0px; padding:0;}
+	.features>li {line-height: 40px; font-size: 80%; color:#3d3d3d;}
+	.features>li:nth-child(2n+1) {background-color: #f5f5f5;}
+	.term  {color:#c2c2c2; font-size:80%;}
+	.package .price  {color:#ff5f9b;}
+	.highlight  {color:#ff5f9b; font-size: 10pt; font-weight: 600;}
+	.inverted  {/* margin-top: 15px; padding:0px 0px 50px 0px; */ background:#ff5f9b;}
+	.inverted .features>li:nth-child(2n+1) {background-color: #ff5f9b;}
+	.package.inverted li, .package.inverted h1, .package.inverted h3, .package.inverted h2, .package.inverted sup, .package.inverted .term, .package.inverted .highlight  {color:#fff !important;}
+	.inverted .btn-default {color:#fff !important;}
+	.inverted .btn-default {border:3px solid #fff; color:#fff;}
+    .inverted .btn-default:hover {color:#ff5f9b !important;}
+	
+  /*==========================================================================
+  TWITTER
+  ========================================================================== */
+	#twitter a {font-size:85%; }
+	#twitter a:hover {color:#428bca; text-decoration:none;}
+/*==========================================================================
+  NEWSLETTER
+  ========================================================================== */
+	#newsletter {padding-top: 50px;}
+	.newsletter-bg {background:url(../img/newsletter-bg.png) #4D5761 top left repeat-x;}
+	#newsletter .form-group {margin: 15px 0px 0px 10px;}
+	#newsletter .btn-primary:hover,#newsletter .btn-primary:focus, #newsletter .btn-primary:active {background:transparent; border-color: #ff5f9b !important; outline: 0 !important; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6) !important; box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6) !important;}
+	#newsletter #response {display:block;position: absolute;}
+	
+/*==========================================================================
+  REVIEWS
+  ========================================================================== */
+	#reviews {padding-top:55px; padding-bottom:45px;}
+	.reviews-bg {background:#eee;}
+	.review-wrap {height:50px;}
+	.review {padding: 20px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+	.review .txt {min-height: 160px; color:#696b70; font-weight:200; font-size:18pt; line-height:23pt;}
+	.review .source {color:#696b70; font-weight:200; font-size:17pt; text-indent: 5px; display: inline;}
+	.review .line-wrap {clear:both;}
+	.review .rating  {font-size: 20pt; font-weight:200; color:#696b70; margin-top:10px;}
+	.review .rating .values {font-size: 20pt; font-weight:200; color:#696b70;}
+	.review .rating .colored {font-size: 25pt; font-weight: 900;}
+	.review img {width:100%;}
+	.review:hover {background:#e9e9e9;}
+	.review:hover .line-wrap {padding-top:20px !important;}
+
+/*==========================================================================
+  BLOG
+  ========================================================================== */
+	#blog {padding-top:50px;}
+	#blog article {height:280px; margin-bottom: 45px;}
+	#blog p {color:#3d3d3d;}
+	#blog h2 {font-size: 21pt;font-weight: 700;letter-spacing: 0px;margin:0px 0px 5px 0px; text-transform:uppercase; height: 75px;}
+	#blog .date {float: left;color: #696b70;font-weight: 700;font-size: 14pt;}
+	#blog .thumb {padding:0px 15px 15px 0px;} 
+	#blog .line-wrap {padding-top:0;}
+	#blog .big-line span {margin:25px 0px 25px 0px;}
+	
+/*==========================================================================
+  SOCIAL
+  ========================================================================== */
+	.social a:hover {text-decoration:none;}
+	/*#social a:hover > i {font-size:1.8em;}*/
+	.twitter a {color:#fff; text-decoration:underline;}
+
+/*==========================================================================
+  FOOTER
+  ========================================================================== */
+	footer {margin:15px 0px 15px 0px; font-size:9pt;}
+	.footer {bottom:0; margin-bottom:0px; padding:40px 0px 20px 0px;}
+	.footer:after {content:''; clear:both;}
+	.footer .contacts {margin-top: 10px;}
+	.copy {text-align:right; opacity: 0.5; margin:20px 20px 0px 0px;}
+	.footer .social {padding-top:20px; width: 250px; margin: 0 auto; }
+	.footer .social a {float:left; margin:0px 10px 10px 0px;}
+	.footer .sep {height:20px; width:100%;float: left;}
+	.twitter p {font-size: 10pt;line-height: 18pt;}
+	.twitter i {line-height:45px;}
+	.twitter h3 {text-indent:10px;}
+/*==========================================================================
+  ICONS
+  ========================================================================== */
+	.fa-1{font-size:1em;}
+	.fa-15{font-size:1.5em;}
+	.fa-2{font-size:2em;}
+	.fa-3{font-size:3em;}
+	.fa-35{font-size:3.5em;}
+	.fa-4{font-size:4em;}
+	.fa-5{font-size:5em;}
+	.fa-6{font-size:6em;}
+	.fa-7{font-size:7em;}
+	.fa-8{font-size:8em;}
+	.fa-9{font-size:9em;}
+	.fa-10{font-size:10em;}
+
+/*==========================================================================
+  ELEMENTS
+  ========================================================================== */	
+	/* FORMS */
+	.form-control {height: 47px;}
+	.form-group {margin-bottom: 20px;}
+	.form-control:focus {
+	  border-color: #ff5f9b !important;
+	  outline: 0 !important;
+	  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6) !important;
+			  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6) !important;
+	}
+
+	/* BUTTONS */
+	.btn {color:#fff; font-weight:700; border:0; background:transparent; }
+	.btn-default {background:transparent; border:3px solid #ff5f9b;}
+	.btn-primary {background:transparent; border:3px solid #fff;}
+	.btn-sm {padding:10px 30px 10px 30px; font-size:90%;}
+	.btn-md {width: 80%; padding: 12px 0px;}
+	.btn-lg {padding:25px 25px; min-width:220px; font-size:120%;}
+
+	.btn-link:hover,
+	.btn-link:focus { color: #f8862c; text-decoration: underline;background-color: transparent; text-decoration:none;}
+	.btn-circle {width:90px; height:90px; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; background:transparent;}
+	.btn-primary:hover,
+	.btn-primary:focus,
+	.btn-primary:active,
+	.btn-primary.active,
+	.open .dropdown-toggle.btn-primary {
+	  color: #ff5f9b !important;
+	  background:#fff;
+	  border:3px solid #fff;
+	  -webkit-border-radius: 3px;
+	  -moz-border-radius: 3px;
+	  border-radius: 3px;
+	}
+	.btn-default:hover,
+	.btn-default:focus,
+	.btn-default:active,
+	.btn-default.active,
+	.open .dropdown-toggle.btn-default {
+	  color: #ff5f9b !important;
+	  background:#fff;
+	  border:3px solid #fff;
+	  -webkit-border-radius: 3px;
+	  -moz-border-radius: 3px;
+	  border-radius: 3px;
+	}
+	.btn.theme-bg, .btn.bg-green, .btn.bg-blue {border:0 !important; background-image:none !important;}
+	
+	
+	
+
+/*** Responsive adjustments, media queries ***/	
+
+@media only screen and (min-device-width : 768px)  { /* iPad horizontal */
+
+	.navbar-nav {float:none;}
+	/*.fullwidthbanner, .image-bg {background-size:auto;}*/
+
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px)  { /* iPad horizontal */
+	.header-video-link {left:24%; top:24%;}
+	.header-video-link, .header-video-link .lg-icon {border-width:4px; width:50px !important; height:50px !important; line-height:45px !important;}
+	.header-video-link .fa-2 {font-size:1em;}
+	.nav>li>a {padding: 15px 28px;}
+    .copy {text-align: center !important; margin:0;}
+	.navbar, .navbar-brand {line-height:55px; height:59px; background:#000;} 
+	.navbar-brand img{width:50px;}
+	.desk-pull-left {float:none; margin:0;}
+	.fullwidthbanner, .image-bg {background-size:auto;}
+	.fullwidthbanner {height: 550px; padding-top: 80px;}
+	.download img {width: 40%;}
+	.header-txt {margin-bottom: 20px; font-size:16pt;}
+	.header-img {margin-top: 15px;}
+	.image-bg {background-size:auto !important; background-attachment: scroll !important;}
+	#features {padding-top: 0px;}
+	.review .txt {min-height: 220px; font-size: 14pt;line-height: 20pt;}
+	.review .source {font-size: 13pt;}
+	.review .rating .values, .review .rating .colored {font-size:16pt;}
+	.phone-menu li .text {width: 85%;}
+	.phone-wrap .left-col img {width: 85%;}
+	.image-bg {background-attachment: auto; }
+	.twitter p { text-indent:0;}
+	.twitter i {line-height: 40px;}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) { /* iPad vertical */
+
+/*==========================================================================
+   GENERAL FIXES 
+   ========================================================================== */
+	.navbar, .navbar-brand {line-height:53px; height:58px; background:#000;} 
+	.navbar-brand img{width:50px;}
+	.nav>li>a {font-size: 11pt;}	
+	.nav>li>a {padding: 15px 12px;}
+	.md-icon {width: 45px;height: 45px;line-height: 45px;}
+	.footer .social {padding-top:20px; width: 170px; margin: 0 auto; }
+	/*.fullwidthbanner, .image-bg {background-size:auto;}*/
+	.download img {width: 40%;}
+	.header-txt {margin-bottom: 20px; font-size:16pt;}
+	.header-video-link {width: 85px;height: 85px; top: 23%; left: 17%;}
+	.header-video-link .fa-2 {font-size:1em;}
+	.header-video-link .lg-icon {width: 55px;height: 55px;line-height: 50px; border-width: 3px;}
+	.fullwidthbanner {height: 500px; padding-top: 80px;}
+	.header-img {margin-top: 15px;}
+	.review .txt {min-height: 335px; font-size: 14pt;line-height: 20pt;}
+	.image-bg {background-attachment: auto; }
+	.phone-menu .title {font-size: 16pt;} 
+	.phone-menu p {font-size: 10pt;} 
+	.phone-wrap .left-col img {width: 80%;}
+	.phone-menu li {margin:0px;}
+	.phone-menu .fa-2 {font-size:1.5em;}
+	.phone-menu li .text {width: 80%;margin: 0px 0px 0px 70px;}
+	.phone-wrap .phone-menu {padding: 85px 0px 0px 5px;}
+	.left-col .level0, .left-col .level1, .left-col .level2, .left-col .level3, .left-col .level4 {margin-left:0px;}
+	.dotted {width: 170px;left: -145px; margin-top: 25px;}
+	.image-bg {background-size:auto !important; background-attachment: scroll !important;}
+	#use .holder .toggle-profile img {width: 70%; height: 70%;}
+	#use .title {min-height: 32px;}
+	#blog h2 {font-size: 18pt;}
+	#newsletter h3 {padding-left:35px;}
+	#newsletter #response {position: relative;}
+	#newsletter .form-group {float:none; margin:0;}
+	#newsletter .btn-sm {margin-top:10px;}
+	.twitter p { text-indent:0;}
+	.twitter h3 {text-indent: 0px;}
+	.twitter i {line-height: 40px;}
+	.fa-15{font-size:1em;}
+	h3 {font-size: 13pt;}
+	h4 {font-size: 13pt;}
+}
+	
+@media only screen and (min-width: 480px) and (max-width: 767px) { /* iPad vertical, iPhone horizontal */
+	
+/*==========================================================================
+   HOME TOP
+   ========================================================================== */	
+	.fullwidthbanner {padding-top: 50px; height: 860px; background-size:auto !important; background-position:  bottom left ; background-attachment: scroll !important;}	
+	.image-bg {background-size:auto !important; background-attachment: scroll !important;}	
+	.download img {width: 40%;}
+	.header-txt {margin-bottom: 20px; font-size:17pt;}
+	.phone-holder {margin-top:35px; margin-left: 20px;}
+	.header-video-link, .header-video-link .lg-icon {left:21%;border-width:2px; width:45px; height:45px; line-height:45px;}
+	.image-bg {background-attachment: auto; }
+	  
+/*==========================================================================
+   FEATURES
+   ========================================================================== */	
+	#features {height:auto;}	
+	#features {padding-top: 0px;}
+	  
+/*==========================================================================
+   PRICING
+   ========================================================================== */	
+	#pricing {padding-top: 0px;}
+	  
+/*==========================================================================
+   USE
+   ========================================================================== */	
+	#use .holder {margin-bottom: 35px;}
+	#use .line-wrap {padding-top: 25px;}
+	
+/*==========================================================================
+   PHONE
+   ========================================================================== */	
+	.phone-wrap {margin-top:0; min-height: 460px;}
+	.phone-wrap .right-col {float:left; padding-top: 0px; width: 100%;}
+	.phone-wrap .left-col {margin-top: 150px;}
+	.phone-wrap .phone-menu {padding: 0px 0px 0px 15px;}
+	.phone-menu li {width:51px; margin: 0;}
+	.phone-menu .title, .phone-menu .dotted {display:none;}
+	.phone-menu li .text {width: 100%; padding:0px 20px; float: left;margin: 75px 0px 0px 5px; position: absolute;left: 0; text-align: left; line-height: 15pt; z-index:99;}
+	.phone-wrap .left-col img {width: 80%; padding-top: 90px;}
+	.left-col .level0, .left-col .level1, .left-col .level2, .left-col .level3, .left-col .level4 {margin-left:0px;}
+	.resp-show.dotted {display:none;}
+	.active .phone-menu .switch {border:1px solid #ff5f9b;}
+	.active .title {text-transform: uppercase; font-weight: 700; color:#555; display:inline; width:100%; line-height:10pt; font-size:12pt; width:100%; position:absolute; left:0; text-align: left; margin:60px 0px 0px 5px;}
+	.phone-menu  li.active:hover .title {color:#555 !important;}
+	.slide-offset {height:50px;}
+	.slide-default-offset {height:25px;}
+	
+/*==========================================================================
+   FOOTER
+   ========================================================================== */	
+	.contacts {margin-bottom: 25px;}
+	.footer .social {width:185px; margin:0 auto;margin-bottom: 35px; }
+	.footer-alt p {text-align: center;}
+	.copy {text-align:center; margin-right:0;}
+	.footer .sep {height: 10px;}
+	  
+/*==========================================================================
+   NAVIGATION
+   ========================================================================== */
+	.navbar, .navbar-brand {line-height:55px; height:60px; background-color:rgba(29,33,37,1);}
+	.navbar-collapse {padding:0; background-color: rgba(0, 0, 0, 0.9); margin-top:-10px !important; }
+	.navbar-collapse .navbar-nav {margin:0 !important; width:100%;}
+	.navbar-collapse .navbar-nav  li, .navbar-collapse .navbar-nav  li a {width:100%; text-align:center;}
+	.navbar-collapse .navbar-nav  li a {display:block;}
+	.navbar-brand  {margin-left:5px;}
+	.navbar-brand  img {width: 50px;}
+	.navbar-header {position: relative; left: auto; margin: 0px;}
+	.navbar ul li:nth-of-type(4) {margin-left: 0;}
+		
+/*==========================================================================
+   BLOG
+   ========================================================================== */
+	#blog article {height:auto; margin:0;}
+	#blog h2 {height:auto; margin:0; margin-bottom: 10px;}
+	#blog p {line-height:17pt; margin-top:10px;}
+	#blog .thumb {padding:0; margin-bottom:15px; width:100%;}
+	#blog .date {float:none !important; margin-top:15px;}
+	#blog .big-line span {margin:0 auto; margin-top: 30px;}
+	
+/*==========================================================================
+   NEWSLETTER
+   ========================================================================== */		
+	#newsletter h3 {padding: 0px 10px 0px 10px;}	
+	#newsletter .form-group {margin: 15px 10px 0px 10px;}
+		
+/*==========================================================================
+   REVIEWS
+   ========================================================================== */		
+	.review {margin-bottom: 45px; height:auto;}
+	.review .rating {position:relative;}
+	.review .source {margin: 5px 0px 0px 0px; position:relative;}
+	.review .line-wrap {padding: 25px 0px 25px 0px;}
+	.review:hover .line-wrap {padding-top:25px !important;}
+	
+/*==========================================================================
+  GENERAL
+  ========================================================================== */
+	.md-icon {width: 50px;height: 50px;line-height: 50px;}
+	.fa-15 {font-size: 1.2em;}
+	.fa-2 {font-size: 1.2em;}
+	.twitter i {line-height: 0px; float:none !important;}
+	.pull-left {margin-right:0;}
+	.desk-pull-left {float:none; margin:0;}
+	.desk-pull-right {float:none; margin:0;}
+	.resp-center {text-align:center;}
+	.line-wrap {height: 45px;}
+	p {font-size: 80%;} 
+	h1 {font-size: 50pt;} 
+	h2 {font-size: 30pt; margin-bottom:0px;} 
+	h3 {font-size: 18pt;}
+	h4 {font-size: 16pt;}
+	h5 {font-size: 11pt; line-height: 15pt;}
+
+}
+ 
+@media only screen and (min-width: 0px) and (max-width: 479px) { /* iPhone vertical */
+
+/*==========================================================================
+   HOME TOP
+   ========================================================================== */	
+	.fullwidthbanner {padding-top: 50px; height: 860px; background-size:auto !important; background-position:  bottom left ; background-attachment: scroll !important;}	
+	.image-bg {background-size:auto !important; background-attachment: scroll !important;}
+	.download img {width: 40%;}
+	.header-txt {margin-bottom: 20px; font-size:17pt;}
+	.phone-holder {margin-top:35px; margin-left: 20px;}
+	.header-video-link, .header-video-link .lg-icon {left:31%;border-width:2px; width:45px; height:45px; line-height:45px;}
+	.image-bg {background-attachment: auto; }
+	img.phone-in-hand {width: 135%;}
+	  
+/*==========================================================================
+   FEATURES
+   ========================================================================== */	
+	#features {height:auto;}	
+	#features {padding-top: 0px;}
+	  
+/*==========================================================================
+   PRICING
+   ========================================================================== */	
+	#pricing {padding-top: 0px;}
+	  
+/*==========================================================================
+   USE
+   ========================================================================== */	
+	#use .holder {margin-bottom: 35px;}
+	#use .line-wrap {padding-top: 25px;}
+	
+/*==========================================================================
+   PHONE
+   ========================================================================== */	
+	.phone-wrap {margin-top:0; min-height: 460px;}
+	.phone-wrap .right-col {float:left; padding-top: 0px; width: 100%;}
+	.phone-wrap .left-col {margin-top: 150px;}
+	.phone-wrap .phone-menu {padding: 0px 0px 0px 15px;}
+	.phone-menu li {width:51px; margin: 0;}
+	.phone-menu .title, .phone-menu .dotted {display:none;}
+	.phone-menu li .text {width: 100%; padding:0px 20px; float: left;margin: 75px 0px 0px 5px; position: absolute;left: 0; text-align: left; line-height: 15pt; z-index:99;}
+	.phone-wrap .left-col img {width: 80%; padding-top: 90px;}
+	.left-col .level0, .left-col .level1, .left-col .level2, .left-col .level3, .left-col .level4 {margin-left:0px;}
+	.resp-show.dotted {display:none;}
+	.active .phone-menu .switch {border:1px solid #ff5f9b;}
+	.active .title {text-transform: uppercase; font-weight: 700; color:#555; display:inline; width:100%; line-height:10pt; font-size:12pt; width:100%; position:absolute; left:0; text-align: left; margin:60px 0px 0px 5px;}
+	.phone-menu  li.active:hover .title {color:#555 !important;}
+	.slide-offset {height:50px;}
+	.slide-default-offset {height:25px;}
+	
+/*==========================================================================
+   FOOTER
+   ========================================================================== */	
+	.contacts {margin-bottom: 25px;}
+	.footer .social {width:185px; margin:0 auto;margin-bottom: 35px; }
+	.footer-alt p {text-align: center;}
+	.copy {text-align:center; margin-right:0;}
+	.footer .sep {height: 10px;}
+	  
+/*==========================================================================
+   NAVIGATION
+   ========================================================================== */
+	.navbar, .navbar-brand {line-height:55px; height:60px; background-color:rgba(29,33,37,1);}
+	.navbar-collapse {padding:0; background-color: rgba(0, 0, 0, 0.9); margin-top:-10px !important; }
+	.navbar-collapse .navbar-nav {margin:0 !important; width:100%;}
+	.navbar-collapse .navbar-nav  li, .navbar-collapse .navbar-nav  li a {width:100%; text-align:center;}
+	.navbar-collapse .navbar-nav  li a {display:block;}
+	.navbar-brand  {margin-left:5px;}
+	.navbar-brand  img {width: 50px;}
+	.navbar-header {position: relative; left: auto; margin: 0px;}
+	.navbar ul li:nth-of-type(4) {margin-left: 0;}
+		
+/*==========================================================================
+   BLOG
+   ========================================================================== */
+	#blog article {height:auto; margin:0;}
+	#blog h2 {height:auto; margin:0; margin-bottom: 10px;}
+	#blog p {line-height:17pt; margin-top:10px;}
+	#blog .thumb {padding:0; margin-bottom:15px; width:100%;}
+	#blog .date {float:none !important; margin-top:15px;}
+	#blog .big-line span {margin:0 auto; margin-top: 30px;}
+	
+/*==========================================================================
+   NEWSLETTER
+   ========================================================================== */		
+	#newsletter h3 {padding: 0px 10px 0px 10px;}	
+	#newsletter .form-group {margin: 15px 10px 0px 10px;}
+		
+/*==========================================================================
+   REVIEWS
+   ========================================================================== */		
+	.review {margin-bottom: 45px; height:auto;}
+	.review .rating {position:relative;}
+	.review .source {margin: 5px 0px 0px 0px; position:relative;}
+	.review .line-wrap {padding: 25px 0px 25px 0px;}
+	.review:hover .line-wrap {padding-top:25px !important;}
+	
+/*==========================================================================
+  GENERAL
+  ========================================================================== */
+	.md-icon {width: 50px;height: 50px;line-height: 50px;}
+	.fa-15 {font-size: 1.2em;}
+	.fa-2 {font-size: 1.2em;}
+	.twitter i {line-height: 0px; float:none !important;}
+	.pull-left {margin-right:0;}
+	.desk-pull-left {float:none; margin:0;}
+	.desk-pull-right {float:none; margin:0;}
+	.resp-center {text-align:center;}
+	.line-wrap {height: 45px;}
+	p {font-size: 80%;} 
+	h1 {font-size: 50pt;} 
+	h2 {font-size: 30pt; margin-bottom:0px;} 
+	h3 {font-size: 18pt;}
+	h4 {font-size: 16pt;}
+	h5 {font-size: 11pt; line-height: 15pt;}
+
+}

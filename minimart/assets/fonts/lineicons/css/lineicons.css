@@ -1,0 +1,99 @@
+@font-face {
+  font-family: 'lineicons';
+  src: url('../font/lineiconsbe83.eot?97916077');
+  src: url('../font/lineiconsbe83.eot?97916077#iefix') format('embedded-opentype'),
+       url('../font/lineiconsbe83.woff?97916077') format('woff'),
+       url('../font/lineiconsbe83.ttf?97916077') format('truetype'),
+       url('../font/lineiconsbe83.svg?97916077#lineicons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'lineicons';
+    src: url('../font/lineicons.svg?97916077#lineicons') format('svg');
+  }
+}
+*/
+ 
+ [class^="linicon-"]:before, [class*=" linicon-"]:before {
+  font-family: "lineicons";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+     
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.linicon-music:before { content: '\e800'; } /* '' */
+.linicon-wallet:before { content: '\e997'; } /* '' */
+.linicon-mail:before { content: '\e802'; } /* '' */
+.linicon-heart:before { content: '\e803'; } /* '' */
+.linicon-star:before { content: '\e804'; } /* '' */
+.linicon-user:before { content: '\e805'; } /* '' */
+.linicon-videocam:before { content: '\e806'; } /* '' */
+.linicon-camera:before { content: '\e807'; } /* '' */
+.linicon-attach:before { content: '\e809'; } /* '' */
+.linicon-lock:before { content: '\e80a'; } /* '' */
+.linicon-eye:before { content: '\e80b'; } /* '' */
+.linicon-tag:before { content: '\e80c'; } /* '' */
+.linicon-thumbs-up:before { content: '\e80d'; } /* '' */
+.linicon-pencil:before { content: '\e80e'; } /* '' */
+.linicon-comment:before { content: '\e80f'; } /* '' */
+.linicon-location:before { content: '\e810'; } /* '' */
+.linicon-cup:before { content: '\e811'; } /* '' */
+.linicon-trash:before { content: '\e812'; } /* '' */
+.linicon-doc:before { content: '\e813'; } /* '' */
+.linicon-note:before { content: '\e814'; } /* '' */
+.linicon-cog:before { content: '\e815'; } /* '' */
+.linicon-params:before { content: '\e816'; } /* '' */
+.linicon-calendar:before { content: '\e817'; } /* '' */
+.linicon-search:before { content: '\e801'; } /* '' */
+.linicon-clock:before { content: '\e819'; } /* '' */
+.linicon-lightbulb:before { content: '\e81a'; } /* '' */
+.linicon-tv:before { content: '\e81b'; } /* '' */
+.linicon-desktop:before { content: '\e81c'; } /* '' */
+.linicon-mobile:before { content: '\e81d'; } /* '' */
+.linicon-cd:before { content: '\e81e'; } /* '' */
+.linicon-inbox-1:before { content: '\e81f'; } /* '' */
+.linicon-globe:before { content: '\e820'; } /* '' */
+.linicon-cloud:before { content: '\e821'; } /* '' */
+.linicon-paper-plane:before { content: '\e822'; } /* '' */
+.linicon-fire:before { content: '\e823'; } /* '' */
+.linicon-graduation-cap:before { content: '\e824'; } /* '' */
+.linicon-megaphone:before { content: '\e825'; } /* '' */
+.linicon-database:before { content: '\e826'; } /* '' */
+.linicon-key:before { content: '\e827'; } /* '' */
+.linicon-beaker:before { content: '\e828'; } /* '' */
+.linicon-truck:before { content: '\e829'; } /* '' */
+.linicon-money:before { content: '\e82a'; } /* '' */
+.linicon-food:before { content: '\e82b'; } /* '' */
+.linicon-shop:before { content: '\e82c'; } /* '' */
+.linicon-diamond:before { content: '\e82d'; } /* '' */
+.linicon-t-shirt:before { content: '\e82e'; } /* '' */
+.linicon-sound:before { content: '\e818'; } /* '' */
