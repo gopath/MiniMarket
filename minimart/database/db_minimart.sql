@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Inang: 127.0.0.1
--- Waktu pembuatan: 11 Mar 2014 pada 03.26
--- Versi Server: 5.5.32
--- Versi PHP: 5.4.19
+-- Host: 127.0.0.1
+-- Generation Time: Mar 18, 2014 at 01:45 AM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,16 +17,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Basis data: `db_minimart`
+-- Database: `db_minimart`
 --
-CREATE DATABASE IF NOT EXISTS `db_minimart` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `db_minimart`;
 
 DELIMITER $$
 --
--- Prosedur
+-- Procedures
 --
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `cache_securableitem_actual_permissions_for_permitable`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `cache_securableitem_actual_permissions_for_permitable`(
                                 in _securableitem_id  int(11),
                                 in _permitable_id     int(11),
                                 in _allow_permissions tinyint,
@@ -41,13 +39,13 @@ begin
                 values (_securableitem_id, _permitable_id, _allow_permissions, _deny_permissions);
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `clear_cache_all_actual_permissions`()
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `clear_cache_all_actual_permissions`()
     READS SQL DATA
 begin
                 delete from actual_permissions_cache;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `clear_cache_securableitem_actual_permissions`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `clear_cache_securableitem_actual_permissions`(
                                 in _securableitem_id int(11)
                               )
 begin
@@ -55,7 +53,7 @@ begin
                 where securableitem_id = _securableitem_id;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `decrement_count`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `decrement_count`(
                                 in munge_table_name  varchar(255),
                                 in _securableitem_id int(11),
                                 in item_id           int(11),
@@ -69,7 +67,7 @@ begin
                       munge_id         = concat(_type, item_id);
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `decrement_parent_roles_counts`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `decrement_parent_roles_counts`(
                                 in munge_table_name varchar(255),
                                 in securableitem_id int(11),
                                 in role_id          int(11)
@@ -87,7 +85,7 @@ begin
                 end if;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `get_group_inherited_actual_right_ignoring_everyone`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `get_group_inherited_actual_right_ignoring_everyone`(
                                 in  _group_id   int(11),
                                 in  module_name varchar(255),
                                 in  right_name  varchar(255),
@@ -112,7 +110,7 @@ begin
                 end if;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `get_securableitem_cached_actual_permissions_for_permitable`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `get_securableitem_cached_actual_permissions_for_permitable`(
                                 in  _securableitem_id  int(11),
                                 in  _permitable_id     int(11),
                                 out _allow_permissions tinyint,
@@ -126,7 +124,7 @@ begin
                        permitable_id    = _permitable_id;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `get_securableitem_explicit_actual_permissions_for_permitable`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `get_securableitem_explicit_actual_permissions_for_permitable`(
                                 in  _securableitem_id int(11),
                                 in  _permitable_id    int(11),
                                 out allow_permissions tinyint,
@@ -148,7 +146,7 @@ begin
                 securableitem_id = _securableitem_id;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `get_securableitem_explicit_inherited_permissions_for_permitable`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `get_securableitem_explicit_inherited_permissions_for_permitable`(
                                 in  _securableitem_id int(11),
                                 in  _permitable_id    int(11),
                                 out allow_permissions tinyint,
@@ -189,7 +187,7 @@ begin
                 close permitable_id_type_and_permissions;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `get_securableitem_module_and_model_permissions_for_permitable`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `get_securableitem_module_and_model_permissions_for_permitable`(
                                 in  _securableitem_id int(11),
                                 in  _permitable_id    int(11),
                                 in  class_name        varchar(255),
@@ -233,7 +231,7 @@ begin
                 close permitable_id_type_and_permissions_for_namedsecurableitem;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `get_securableitem_propagated_allow_permissions_for_permitable`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `get_securableitem_propagated_allow_permissions_for_permitable`(
                                 in  _securableitem_id int(11),
                                 in  _permitable_id    int(11),
                                 in  class_name        varchar(255),
@@ -255,7 +253,7 @@ begin
                 end if;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `increment_count`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `increment_count`(
                                 in munge_table_name varchar(255),
                                 in securableitem_id int(11),
                                 in item_id          int(11),
@@ -275,7 +273,7 @@ begin
                 deallocate prepare statement;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `increment_parent_roles_counts`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `increment_parent_roles_counts`(
                                 in munge_table_name varchar(255),
                                 in securableitem_id int(11),
                                 in _role_id         int(11)
@@ -293,7 +291,7 @@ begin
                 end if;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `rebuild`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `rebuild`(
                                 in model_table_name varchar(255),
                                 in munge_table_name varchar(255)
                               )
@@ -304,7 +302,7 @@ begin
                 call rebuild_roles  (model_table_name, munge_table_name);
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `rebuild_a_permitable`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `rebuild_a_permitable`(
                                 in munge_table_name varchar(255),
                                 in securableitem_id int(11),
                                 in actual_id        int(11),
@@ -325,7 +323,7 @@ begin
                 end if;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `rebuild_groups`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `rebuild_groups`(
                                 in model_table_name varchar(255),
                                 in munge_table_name varchar(255)
                               )
@@ -358,7 +356,7 @@ begin
                 end;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `rebuild_roles`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `rebuild_roles`(
                                 in model_table_name varchar(255),
                                 in munge_table_name varchar(255)
                               )
@@ -368,7 +366,7 @@ begin
                 call rebuild_roles_securableitem_with_explicit_group_permissions(model_table_name, munge_table_name);
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `rebuild_roles_for_users_in_group`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `rebuild_roles_for_users_in_group`(
                                 in munge_table_name  varchar(255),
                                 in _securableitem_id int(11),
                                 in __group_id        int(11)
@@ -393,7 +391,7 @@ begin
                 close role_ids;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `rebuild_roles_owned_securableitems`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `rebuild_roles_owned_securableitems`(
                                 in model_table_name varchar(255),
                                 in munge_table_name varchar(255)
                               )
@@ -424,7 +422,7 @@ begin
                 end;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `rebuild_roles_securableitem_with_explicit_group_permissions`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `rebuild_roles_securableitem_with_explicit_group_permissions`(
                                 in model_table_name varchar(255),
                                 in munge_table_name varchar(255)
                               )
@@ -462,7 +460,7 @@ begin
                 end;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `rebuild_roles_securableitem_with_explicit_user_permissions`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `rebuild_roles_securableitem_with_explicit_user_permissions`(
                                 in model_table_name varchar(255),
                                 in munge_table_name varchar(255)
                               )
@@ -495,7 +493,7 @@ begin
                 end;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `rebuild_sub_groups`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `rebuild_sub_groups`(
                                 in munge_table_name  varchar(255),
                                 in _securableitem_id int(11),
                                 in __group_id        int(11)
@@ -521,7 +519,7 @@ begin
                 close sub_group_ids;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `rebuild_users`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `rebuild_users`(
                                 in model_table_name varchar(255),
                                 in munge_table_name varchar(255)
                               )
@@ -553,7 +551,7 @@ begin
                 end;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `recreate_tables`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `recreate_tables`(
                                 in munge_table_name varchar(255)
                               )
 begin
@@ -578,7 +576,7 @@ begin
                 deallocate prepare statement;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `recursive_get_all_descendent_roles`(in _permitable_id int(11), in parent_role_id int(11))
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `recursive_get_all_descendent_roles`(in _permitable_id int(11), in parent_role_id int(11))
 begin
                 declare child_role_id int(11);
                 declare no_more_records tinyint default 0;
@@ -599,7 +597,7 @@ begin
                 close child_role_ids;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `recursive_get_securableitem_actual_permissions_for_permitable`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `recursive_get_securableitem_actual_permissions_for_permitable`(
                                 in  _securableitem_id int(11),
                                 in  _permitable_id    int(11),
                                 in  class_name        varchar(255),
@@ -633,7 +631,7 @@ begin
                 end if;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `recursive_get_securableitem_propagated_allow_permissions_permit`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `recursive_get_securableitem_propagated_allow_permissions_permit`(
                                 in  _securableitem_id int(11),
                                 in  _permitable_id    int(11),
                                 in  class_name        varchar(255),
@@ -687,7 +685,7 @@ begin
                 end;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `recursive_get_user_actual_right`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `recursive_get_user_actual_right`(
                                 in  _user_id    int(11),
                                 in  module_name varchar(255),
                                 in  right_name  varchar(255),
@@ -718,7 +716,7 @@ begin
                 end if;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `recursive_get_user_role_propagated_actual_allow_right`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `recursive_get_user_role_propagated_actual_allow_right`(
                                 in  _role_id    int(11),
                                 in  module_name varchar(255),
                                 in  right_name  varchar(255),
@@ -762,7 +760,7 @@ begin
                 close sub_role_ids;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `recursive_group_contains_group`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `recursive_group_contains_group`(
                                 in  group_id_1 int(11),
                                 in  group_id_2 int(11),
                                 out result     tinyint
@@ -799,7 +797,7 @@ begin
                 end if;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` PROCEDURE `recursive_group_contains_user`(
+CREATE DEFINER=`zurmo`@`localhost` PROCEDURE `recursive_group_contains_user`(
                                 in  _group_id int(11),
                                 in  _user_id  int(11),
                                 out result    tinyint
@@ -835,9 +833,9 @@ begin
             end$$
 
 --
--- Fungsi
+-- Functions
 --
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `any_user_in_a_sub_role_has_read_permission`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `any_user_in_a_sub_role_has_read_permission`(
                                 securableitem_id int(11),
                                 role_id          int(11),
                                 class_name       varchar(255),
@@ -852,7 +850,7 @@ begin
                 return has_read;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `get_group_actual_right`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `get_group_actual_right`(
                                 _group_id   int(11),
                                 module_name varchar(255),
                                 right_name  varchar(255)
@@ -871,7 +869,7 @@ begin
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `get_group_explicit_actual_policy`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `get_group_explicit_actual_policy`(
                                 _group_id   int(11),
                                 module_name varchar(255),
                                 policy_name varchar(255)
@@ -891,7 +889,7 @@ begin
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `get_group_explicit_actual_right`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `get_group_explicit_actual_right`(
                                 _group_id   int(11),
                                 module_name varchar(255),
                                 right_name  varchar(255)
@@ -911,7 +909,7 @@ begin
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `get_group_inherited_actual_right`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `get_group_inherited_actual_right`(
                                 _group_id   int(11),
                                 module_name varchar(255),
                                 right_name  varchar(255)
@@ -931,7 +929,7 @@ begin
                 return combined_right;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `get_named_group_explicit_actual_policy`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `get_named_group_explicit_actual_policy`(
                                 group_name  varchar(255),
                                 module_name varchar(255),
                                 policy_name varchar(255)
@@ -951,7 +949,7 @@ begin                # but since PDO returns it as a string I am too, until I kn
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `get_named_group_explicit_actual_right`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `get_named_group_explicit_actual_right`(
                                 group_name  varchar(255),
                                 module_name varchar(255),
                                 right_name  varchar(255)
@@ -971,7 +969,7 @@ begin
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `get_permitable_explicit_actual_policy`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `get_permitable_explicit_actual_policy`(
                                 permitable_id int(11),
                                 module_name   varchar(255),
                                 policy_name   varchar(255)
@@ -991,7 +989,7 @@ begin                # but since PDO returns it as a string I am too, until I kn
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `get_permitable_explicit_actual_right`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `get_permitable_explicit_actual_right`(
                                 permitable_id int(11),
                                 module_name   varchar(255),
                                 right_name    varchar(255)
@@ -1013,7 +1011,7 @@ begin
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `get_permitable_group_id`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `get_permitable_group_id`(
                                 _permitable_id int(11)
                             ) RETURNS int(11)
 begin
@@ -1026,7 +1024,7 @@ begin
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `get_permitable_user_id`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `get_permitable_user_id`(
                                 _permitable_id int(11)
                             ) RETURNS int(11)
     READS SQL DATA
@@ -1041,7 +1039,7 @@ begin
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `get_securableitem_actual_permissions_for_permitable`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `get_securableitem_actual_permissions_for_permitable`(
                                 _securableitem_id int(11),
                                 _permitable_id    int(11),
                                 class_name        varchar(255),
@@ -1088,7 +1086,7 @@ begin
                 return (allow_permissions << 8) | deny_permissions;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `get_user_actual_right`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `get_user_actual_right`(
                                 _user_id    int(11),
                                 module_name varchar(255),
                                 right_name  varchar(255)
@@ -1109,7 +1107,7 @@ begin
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `get_user_explicit_actual_policy`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `get_user_explicit_actual_policy`(
                                 _user_id    int(11),
                                 module_name varchar(255),
                                 policy_name varchar(255)
@@ -1129,7 +1127,7 @@ begin                # but since PDO returns it as a string I am too, until I kn
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `get_user_explicit_actual_right`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `get_user_explicit_actual_right`(
                                 _user_id    int(11),
                                 module_name varchar(255),
                                 right_name  varchar(255)
@@ -1149,7 +1147,7 @@ begin
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `get_user_inherited_actual_right`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `get_user_inherited_actual_right`(
                                 _user_id    int(11),
                                 module_name varchar(255),
                                 right_name  varchar(255)
@@ -1188,7 +1186,7 @@ begin
                 return combined_right;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `group_contains_permitable`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `group_contains_permitable`(
                                 _group_id      int(11),
                                 _permitable_id int(11)
                              ) RETURNS tinyint(4)
@@ -1221,7 +1219,7 @@ begin
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `group_contains_user`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `group_contains_user`(
                                 _group_id int(11),
                                 _user_id  int(11)
                              ) RETURNS tinyint(4)
@@ -1234,7 +1232,7 @@ begin
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `named_group_contains_permitable`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `named_group_contains_permitable`(
                                 group_name     varchar(255),
                                 _permitable_id int(11)
                              ) RETURNS tinyint(4)
@@ -1266,7 +1264,7 @@ begin
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `named_group_contains_user`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `named_group_contains_user`(
                                 _group_name varchar(255),
                                 _user_id    int(11)
                              ) RETURNS tinyint(4)
@@ -1288,7 +1286,7 @@ begin
                 return result;
             end$$
 
-CREATE DEFINER=`minimart`@`localhost` FUNCTION `permitable_contains_permitable`(
+CREATE DEFINER=`zurmo`@`localhost` FUNCTION `permitable_contains_permitable`(
                                 permitable_id_1 int(11),
                                 permitable_id_2 int(11)
                              ) RETURNS tinyint(4)
@@ -1330,7 +1328,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `account`
+-- Table structure for table `account`
 --
 
 CREATE TABLE IF NOT EXISTS `account` (
@@ -1355,7 +1353,7 @@ CREATE TABLE IF NOT EXISTS `account` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Dumping data untuk tabel `account`
+-- Dumping data for table `account`
 --
 
 INSERT INTO `account` (`id`, `annualrevenue`, `description`, `employees`, `latestactivitydatetime`, `name`, `officephone`, `officefax`, `website`, `ownedsecurableitem_id`, `account_id`, `billingaddress_address_id`, `industry_customfield_id`, `primaryemail_email_id`, `secondaryemail_email_id`, `shippingaddress_address_id`, `type_customfield_id`) VALUES
@@ -1369,7 +1367,7 @@ INSERT INTO `account` (`id`, `annualrevenue`, `description`, `employees`, `lates
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `accountaccountaffiliation`
+-- Table structure for table `accountaccountaffiliation`
 --
 
 CREATE TABLE IF NOT EXISTS `accountaccountaffiliation` (
@@ -1383,7 +1381,7 @@ CREATE TABLE IF NOT EXISTS `accountaccountaffiliation` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `accountcontactaffiliation`
+-- Table structure for table `accountcontactaffiliation`
 --
 
 CREATE TABLE IF NOT EXISTS `accountcontactaffiliation` (
@@ -1399,7 +1397,7 @@ CREATE TABLE IF NOT EXISTS `accountcontactaffiliation` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `accountstarred`
+-- Table structure for table `accountstarred`
 --
 
 CREATE TABLE IF NOT EXISTS `accountstarred` (
@@ -1413,7 +1411,7 @@ CREATE TABLE IF NOT EXISTS `accountstarred` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `account_project`
+-- Table structure for table `account_project`
 --
 
 CREATE TABLE IF NOT EXISTS `account_project` (
@@ -1427,7 +1425,7 @@ CREATE TABLE IF NOT EXISTS `account_project` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Dumping data untuk tabel `account_project`
+-- Dumping data for table `account_project`
 --
 
 INSERT INTO `account_project` (`id`, `account_id`, `project_id`) VALUES
@@ -1441,7 +1439,7 @@ INSERT INTO `account_project` (`id`, `account_id`, `project_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `account_read`
+-- Table structure for table `account_read`
 --
 
 CREATE TABLE IF NOT EXISTS `account_read` (
@@ -1455,7 +1453,7 @@ CREATE TABLE IF NOT EXISTS `account_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Dumping data untuk tabel `account_read`
+-- Dumping data for table `account_read`
 --
 
 INSERT INTO `account_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -1469,7 +1467,7 @@ INSERT INTO `account_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `account_read_subscription`
+-- Table structure for table `account_read_subscription`
 --
 
 CREATE TABLE IF NOT EXISTS `account_read_subscription` (
@@ -1485,7 +1483,7 @@ CREATE TABLE IF NOT EXISTS `account_read_subscription` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `activelanguage`
+-- Table structure for table `activelanguage`
 --
 
 CREATE TABLE IF NOT EXISTS `activelanguage` (
@@ -1501,7 +1499,7 @@ CREATE TABLE IF NOT EXISTS `activelanguage` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `activity`
+-- Table structure for table `activity`
 --
 
 CREATE TABLE IF NOT EXISTS `activity` (
@@ -1512,7 +1510,7 @@ CREATE TABLE IF NOT EXISTS `activity` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=136 ;
 
 --
--- Dumping data untuk tabel `activity`
+-- Dumping data for table `activity`
 --
 
 INSERT INTO `activity` (`id`, `latestdatetime`, `ownedsecurableitem_id`) VALUES
@@ -1655,7 +1653,7 @@ INSERT INTO `activity` (`id`, `latestdatetime`, `ownedsecurableitem_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `activity_item`
+-- Table structure for table `activity_item`
 --
 
 CREATE TABLE IF NOT EXISTS `activity_item` (
@@ -1669,7 +1667,7 @@ CREATE TABLE IF NOT EXISTS `activity_item` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=220 ;
 
 --
--- Dumping data untuk tabel `activity_item`
+-- Dumping data for table `activity_item`
 --
 
 INSERT INTO `activity_item` (`id`, `activity_id`, `item_id`) VALUES
@@ -1896,7 +1894,7 @@ INSERT INTO `activity_item` (`id`, `activity_id`, `item_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `actual_permissions_cache`
+-- Table structure for table `actual_permissions_cache`
 --
 
 CREATE TABLE IF NOT EXISTS `actual_permissions_cache` (
@@ -1910,7 +1908,7 @@ CREATE TABLE IF NOT EXISTS `actual_permissions_cache` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `address`
+-- Table structure for table `address`
 --
 
 CREATE TABLE IF NOT EXISTS `address` (
@@ -1928,7 +1926,7 @@ CREATE TABLE IF NOT EXISTS `address` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=39 ;
 
 --
--- Dumping data untuk tabel `address`
+-- Dumping data for table `address`
 --
 
 INSERT INTO `address` (`id`, `city`, `country`, `invalid`, `latitude`, `longitude`, `postalcode`, `street1`, `street2`, `state`) VALUES
@@ -1974,7 +1972,7 @@ INSERT INTO `address` (`id`, `city`, `country`, `invalid`, `latitude`, `longitud
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `auditevent`
+-- Table structure for table `auditevent`
 --
 
 CREATE TABLE IF NOT EXISTS `auditevent` (
@@ -1987,10 +1985,10 @@ CREATE TABLE IF NOT EXISTS `auditevent` (
   `serializeddata` text COLLATE utf8_unicode_ci,
   `_user_id` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=935 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=947 ;
 
 --
--- Dumping data untuk tabel `auditevent`
+-- Dumping data for table `auditevent`
 --
 
 INSERT INTO `auditevent` (`id`, `datetime`, `eventname`, `modulename`, `modelclassname`, `modelid`, `serializeddata`, `_user_id`) VALUES
@@ -2929,12 +2927,24 @@ INSERT INTO `auditevent` (`id`, `datetime`, `eventname`, `modulename`, `modelcla
 (931, '2014-03-10 18:40:00', 'User Logged Out', 'UsersModule', NULL, NULL, 'N;', 1),
 (932, '2014-03-11 00:16:51', 'User Logged In', 'UsersModule', NULL, NULL, 'N;', 1),
 (933, '2014-03-11 00:17:12', 'Item Created', 'ZurmoModule', 'GameCoin', 1, 's:6:"1 coin";', 1),
-(934, '2014-03-11 00:20:27', 'User Logged Out', 'UsersModule', NULL, NULL, 'N;', 1);
+(934, '2014-03-11 00:20:27', 'User Logged Out', 'UsersModule', NULL, NULL, 'N;', 1),
+(935, '2014-03-16 11:14:18', 'User Logged Out', 'UsersModule', NULL, NULL, 'N;', 1),
+(936, '2014-03-16 11:29:47', 'User Logged In', 'UsersModule', NULL, NULL, 'N;', 1),
+(937, '2014-03-16 11:29:47', 'Item Created', 'ZurmoModule', 'GameScore', 21, 's:9:"EarlyBird";', 1),
+(938, '2014-03-16 11:29:48', 'Item Created', 'ZurmoModule', 'GameBadge', 21, 's:11:"EarlyBird 1";', 1),
+(939, '2014-03-16 15:27:29', 'User Logged In', 'UsersModule', NULL, NULL, 'N;', 1),
+(940, '2014-03-17 03:14:07', 'User Logged In', 'UsersModule', NULL, NULL, 'N;', 1),
+(941, '2014-03-17 03:14:08', 'Item Created', 'ZurmoModule', 'GameScore', 22, 's:8:"NightOwl";', 1),
+(942, '2014-03-17 03:14:09', 'Item Created', 'ZurmoModule', 'GameBadge', 22, 's:10:"NightOwl 1";', 1),
+(943, '2014-03-17 10:26:53', 'User Logged In', 'UsersModule', NULL, NULL, 'N;', 1),
+(944, '2014-03-17 10:27:20', 'User Logged In', 'UsersModule', NULL, NULL, 'N;', 1),
+(945, '2014-03-17 14:03:36', 'User Logged In', 'UsersModule', NULL, NULL, 'N;', 1),
+(946, '2014-03-18 04:34:30', 'User Logged In', 'UsersModule', NULL, NULL, 'N;', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `autoresponder`
+-- Table structure for table `autoresponder`
 --
 
 CREATE TABLE IF NOT EXISTS `autoresponder` (
@@ -2952,7 +2962,7 @@ CREATE TABLE IF NOT EXISTS `autoresponder` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data untuk tabel `autoresponder`
+-- Dumping data for table `autoresponder`
 --
 
 INSERT INTO `autoresponder` (`id`, `subject`, `htmlcontent`, `textcontent`, `fromoperationdurationinterval`, `fromoperationdurationtype`, `operationtype`, `enabletracking`, `item_id`, `marketinglist_id`) VALUES
@@ -2964,7 +2974,7 @@ INSERT INTO `autoresponder` (`id`, `subject`, `htmlcontent`, `textcontent`, `fro
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `autoresponderitem`
+-- Table structure for table `autoresponderitem`
 --
 
 CREATE TABLE IF NOT EXISTS `autoresponderitem` (
@@ -2978,7 +2988,7 @@ CREATE TABLE IF NOT EXISTS `autoresponderitem` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
--- Dumping data untuk tabel `autoresponderitem`
+-- Dumping data for table `autoresponderitem`
 --
 
 INSERT INTO `autoresponderitem` (`id`, `processdatetime`, `processed`, `contact_id`, `emailmessage_id`, `autoresponder_id`) VALUES
@@ -3004,7 +3014,7 @@ INSERT INTO `autoresponderitem` (`id`, `processdatetime`, `processed`, `contact_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `autoresponderitemactivity`
+-- Table structure for table `autoresponderitemactivity`
 --
 
 CREATE TABLE IF NOT EXISTS `autoresponderitemactivity` (
@@ -3016,7 +3026,7 @@ CREATE TABLE IF NOT EXISTS `autoresponderitemactivity` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
--- Dumping data untuk tabel `autoresponderitemactivity`
+-- Dumping data for table `autoresponderitemactivity`
 --
 
 INSERT INTO `autoresponderitemactivity` (`id`, `emailmessageactivity_id`, `autoresponderitem_id`) VALUES
@@ -3042,7 +3052,7 @@ INSERT INTO `autoresponderitemactivity` (`id`, `emailmessageactivity_id`, `autor
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `basecustomfield`
+-- Table structure for table `basecustomfield`
 --
 
 CREATE TABLE IF NOT EXISTS `basecustomfield` (
@@ -3052,7 +3062,7 @@ CREATE TABLE IF NOT EXISTS `basecustomfield` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=212 ;
 
 --
--- Dumping data untuk tabel `basecustomfield`
+-- Dumping data for table `basecustomfield`
 --
 
 INSERT INTO `basecustomfield` (`id`, `data_customfielddata_id`) VALUES
@@ -3271,7 +3281,7 @@ INSERT INTO `basecustomfield` (`id`, `data_customfielddata_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `basestarredmodel`
+-- Table structure for table `basestarredmodel`
 --
 
 CREATE TABLE IF NOT EXISTS `basestarredmodel` (
@@ -3283,7 +3293,7 @@ CREATE TABLE IF NOT EXISTS `basestarredmodel` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bytimeworkflowinqueue`
+-- Table structure for table `bytimeworkflowinqueue`
 --
 
 CREATE TABLE IF NOT EXISTS `bytimeworkflowinqueue` (
@@ -3299,7 +3309,7 @@ CREATE TABLE IF NOT EXISTS `bytimeworkflowinqueue` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `calculatedderivedattributemetadata`
+-- Table structure for table `calculatedderivedattributemetadata`
 --
 
 CREATE TABLE IF NOT EXISTS `calculatedderivedattributemetadata` (
@@ -3311,7 +3321,7 @@ CREATE TABLE IF NOT EXISTS `calculatedderivedattributemetadata` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `campaign`
+-- Table structure for table `campaign`
 --
 
 CREATE TABLE IF NOT EXISTS `campaign` (
@@ -3332,7 +3342,7 @@ CREATE TABLE IF NOT EXISTS `campaign` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
--- Dumping data untuk tabel `campaign`
+-- Dumping data for table `campaign`
 --
 
 INSERT INTO `campaign` (`id`, `name`, `status`, `supportsrichtext`, `sendondatetime`, `fromname`, `fromaddress`, `subject`, `htmlcontent`, `textcontent`, `enabletracking`, `ownedsecurableitem_id`, `marketinglist_id`) VALUES
@@ -3350,7 +3360,7 @@ INSERT INTO `campaign` (`id`, `name`, `status`, `supportsrichtext`, `sendondatet
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `campaignitem`
+-- Table structure for table `campaignitem`
 --
 
 CREATE TABLE IF NOT EXISTS `campaignitem` (
@@ -3363,7 +3373,7 @@ CREATE TABLE IF NOT EXISTS `campaignitem` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
--- Dumping data untuk tabel `campaignitem`
+-- Dumping data for table `campaignitem`
 --
 
 INSERT INTO `campaignitem` (`id`, `processed`, `contact_id`, `emailmessage_id`, `campaign_id`) VALUES
@@ -3389,7 +3399,7 @@ INSERT INTO `campaignitem` (`id`, `processed`, `contact_id`, `emailmessage_id`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `campaignitemactivity`
+-- Table structure for table `campaignitemactivity`
 --
 
 CREATE TABLE IF NOT EXISTS `campaignitemactivity` (
@@ -3401,7 +3411,7 @@ CREATE TABLE IF NOT EXISTS `campaignitemactivity` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
--- Dumping data untuk tabel `campaignitemactivity`
+-- Dumping data for table `campaignitemactivity`
 --
 
 INSERT INTO `campaignitemactivity` (`id`, `emailmessageactivity_id`, `campaignitem_id`) VALUES
@@ -3427,7 +3437,7 @@ INSERT INTO `campaignitemactivity` (`id`, `emailmessageactivity_id`, `campaignit
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `campaign_read`
+-- Table structure for table `campaign_read`
 --
 
 CREATE TABLE IF NOT EXISTS `campaign_read` (
@@ -3441,7 +3451,7 @@ CREATE TABLE IF NOT EXISTS `campaign_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
--- Dumping data untuk tabel `campaign_read`
+-- Dumping data for table `campaign_read`
 --
 
 INSERT INTO `campaign_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -3459,7 +3469,7 @@ INSERT INTO `campaign_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALU
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE IF NOT EXISTS `comment` (
@@ -3472,7 +3482,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=235 ;
 
 --
--- Dumping data untuk tabel `comment`
+-- Dumping data for table `comment`
 --
 
 INSERT INTO `comment` (`id`, `description`, `item_id`, `relatedmodel_id`, `relatedmodel_type`) VALUES
@@ -3714,7 +3724,7 @@ INSERT INTO `comment` (`id`, `description`, `item_id`, `relatedmodel_id`, `relat
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contact`
+-- Table structure for table `contact`
 --
 
 CREATE TABLE IF NOT EXISTS `contact` (
@@ -3735,7 +3745,7 @@ CREATE TABLE IF NOT EXISTS `contact` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=29 ;
 
 --
--- Dumping data untuk tabel `contact`
+-- Dumping data for table `contact`
 --
 
 INSERT INTO `contact` (`id`, `companyname`, `description`, `latestactivitydatetime`, `website`, `googlewebtrackingid`, `person_id`, `account_id`, `industry_customfield_id`, `secondaryaddress_address_id`, `secondaryemail_email_id`, `source_customfield_id`, `state_contactstate_id`) VALUES
@@ -3771,7 +3781,7 @@ INSERT INTO `contact` (`id`, `companyname`, `description`, `latestactivitydateti
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contactstarred`
+-- Table structure for table `contactstarred`
 --
 
 CREATE TABLE IF NOT EXISTS `contactstarred` (
@@ -3785,7 +3795,7 @@ CREATE TABLE IF NOT EXISTS `contactstarred` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contactstate`
+-- Table structure for table `contactstate`
 --
 
 CREATE TABLE IF NOT EXISTS `contactstate` (
@@ -3797,7 +3807,7 @@ CREATE TABLE IF NOT EXISTS `contactstate` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Dumping data untuk tabel `contactstate`
+-- Dumping data for table `contactstate`
 --
 
 INSERT INTO `contactstate` (`id`, `name`, `order`, `serializedlabels`) VALUES
@@ -3811,7 +3821,7 @@ INSERT INTO `contactstate` (`id`, `name`, `order`, `serializedlabels`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contactwebform`
+-- Table structure for table `contactwebform`
 --
 
 CREATE TABLE IF NOT EXISTS `contactwebform` (
@@ -3832,7 +3842,7 @@ CREATE TABLE IF NOT EXISTS `contactwebform` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
--- Dumping data untuk tabel `contactwebform`
+-- Dumping data for table `contactwebform`
 --
 
 INSERT INTO `contactwebform` (`id`, `name`, `redirecturl`, `submitbuttonlabel`, `serializeddata`, `excludestyles`, `enablecaptcha`, `language`, `defaultpermissionsetting`, `defaultpermissiongroupsetting`, `ownedsecurableitem_id`, `defaultstate_contactstate_id`, `defaultowner__user_id`) VALUES
@@ -3845,7 +3855,7 @@ INSERT INTO `contactwebform` (`id`, `name`, `redirecturl`, `submitbuttonlabel`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contactwebformentry`
+-- Table structure for table `contactwebformentry`
 --
 
 CREATE TABLE IF NOT EXISTS `contactwebformentry` (
@@ -3861,7 +3871,7 @@ CREATE TABLE IF NOT EXISTS `contactwebformentry` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
--- Dumping data untuk tabel `contactwebformentry`
+-- Dumping data for table `contactwebformentry`
 --
 
 INSERT INTO `contactwebformentry` (`id`, `serializeddata`, `status`, `message`, `hashindex`, `item_id`, `contact_id`, `entries_contactwebform_id`) VALUES
@@ -3874,7 +3884,7 @@ INSERT INTO `contactwebformentry` (`id`, `serializeddata`, `status`, `message`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contactwebform_read`
+-- Table structure for table `contactwebform_read`
 --
 
 CREATE TABLE IF NOT EXISTS `contactwebform_read` (
@@ -3888,7 +3898,7 @@ CREATE TABLE IF NOT EXISTS `contactwebform_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
--- Dumping data untuk tabel `contactwebform_read`
+-- Dumping data for table `contactwebform_read`
 --
 
 INSERT INTO `contactwebform_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -3905,7 +3915,7 @@ INSERT INTO `contactwebform_read` (`id`, `securableitem_id`, `munge_id`, `count`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contact_opportunity`
+-- Table structure for table `contact_opportunity`
 --
 
 CREATE TABLE IF NOT EXISTS `contact_opportunity` (
@@ -3919,7 +3929,7 @@ CREATE TABLE IF NOT EXISTS `contact_opportunity` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
--- Dumping data untuk tabel `contact_opportunity`
+-- Dumping data for table `contact_opportunity`
 --
 
 INSERT INTO `contact_opportunity` (`id`, `contact_id`, `opportunity_id`) VALUES
@@ -3939,7 +3949,7 @@ INSERT INTO `contact_opportunity` (`id`, `contact_id`, `opportunity_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contact_project`
+-- Table structure for table `contact_project`
 --
 
 CREATE TABLE IF NOT EXISTS `contact_project` (
@@ -3955,7 +3965,7 @@ CREATE TABLE IF NOT EXISTS `contact_project` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contact_read`
+-- Table structure for table `contact_read`
 --
 
 CREATE TABLE IF NOT EXISTS `contact_read` (
@@ -3969,7 +3979,7 @@ CREATE TABLE IF NOT EXISTS `contact_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=27 ;
 
 --
--- Dumping data untuk tabel `contact_read`
+-- Dumping data for table `contact_read`
 --
 
 INSERT INTO `contact_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -4003,7 +4013,7 @@ INSERT INTO `contact_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contact_read_subscription`
+-- Table structure for table `contact_read_subscription`
 --
 
 CREATE TABLE IF NOT EXISTS `contact_read_subscription` (
@@ -4019,7 +4029,7 @@ CREATE TABLE IF NOT EXISTS `contact_read_subscription` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `conversation`
+-- Table structure for table `conversation`
 --
 
 CREATE TABLE IF NOT EXISTS `conversation` (
@@ -4034,7 +4044,7 @@ CREATE TABLE IF NOT EXISTS `conversation` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Dumping data untuk tabel `conversation`
+-- Dumping data for table `conversation`
 --
 
 INSERT INTO `conversation` (`id`, `description`, `latestdatetime`, `subject`, `ownerhasreadlatest`, `isclosed`, `ownedsecurableitem_id`) VALUES
@@ -4045,7 +4055,7 @@ INSERT INTO `conversation` (`id`, `description`, `latestdatetime`, `subject`, `o
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `conversationparticipant`
+-- Table structure for table `conversationparticipant`
 --
 
 CREATE TABLE IF NOT EXISTS `conversationparticipant` (
@@ -4057,7 +4067,7 @@ CREATE TABLE IF NOT EXISTS `conversationparticipant` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
--- Dumping data untuk tabel `conversationparticipant`
+-- Dumping data for table `conversationparticipant`
 --
 
 INSERT INTO `conversationparticipant` (`id`, `hasreadlatest`, `person_item_id`, `conversation_id`) VALUES
@@ -4077,7 +4087,7 @@ INSERT INTO `conversationparticipant` (`id`, `hasreadlatest`, `person_item_id`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `conversationstarred`
+-- Table structure for table `conversationstarred`
 --
 
 CREATE TABLE IF NOT EXISTS `conversationstarred` (
@@ -4091,7 +4101,7 @@ CREATE TABLE IF NOT EXISTS `conversationstarred` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `conversation_item`
+-- Table structure for table `conversation_item`
 --
 
 CREATE TABLE IF NOT EXISTS `conversation_item` (
@@ -4105,7 +4115,7 @@ CREATE TABLE IF NOT EXISTS `conversation_item` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Dumping data untuk tabel `conversation_item`
+-- Dumping data for table `conversation_item`
 --
 
 INSERT INTO `conversation_item` (`id`, `conversation_id`, `item_id`) VALUES
@@ -4116,7 +4126,7 @@ INSERT INTO `conversation_item` (`id`, `conversation_id`, `item_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `conversation_read`
+-- Table structure for table `conversation_read`
 --
 
 CREATE TABLE IF NOT EXISTS `conversation_read` (
@@ -4130,7 +4140,7 @@ CREATE TABLE IF NOT EXISTS `conversation_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=24 ;
 
 --
--- Dumping data untuk tabel `conversation_read`
+-- Dumping data for table `conversation_read`
 --
 
 INSERT INTO `conversation_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -4153,7 +4163,7 @@ INSERT INTO `conversation_read` (`id`, `securableitem_id`, `munge_id`, `count`) 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `currency`
+-- Table structure for table `currency`
 --
 
 CREATE TABLE IF NOT EXISTS `currency` (
@@ -4166,19 +4176,19 @@ CREATE TABLE IF NOT EXISTS `currency` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data untuk tabel `currency`
+-- Dumping data for table `currency`
 --
 
 INSERT INTO `currency` (`id`, `active`, `code`, `ratetobase`) VALUES
 (1, 1, 'USD', 1),
-(2, 1, 'EUR', 1),
-(3, 1, 'CAD', 1),
-(4, 1, 'JPY', 1);
+(2, 1, 'EUR', 1.3881),
+(3, 1, 'CAD', 0.903681617838),
+(4, 1, 'JPY', 0.00973296888141);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `currencyvalue`
+-- Table structure for table `currencyvalue`
 --
 
 CREATE TABLE IF NOT EXISTS `currencyvalue` (
@@ -4190,7 +4200,7 @@ CREATE TABLE IF NOT EXISTS `currencyvalue` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=168 ;
 
 --
--- Dumping data untuk tabel `currencyvalue`
+-- Dumping data for table `currencyvalue`
 --
 
 INSERT INTO `currencyvalue` (`id`, `ratetobase`, `value`, `currency_id`) VALUES
@@ -4365,7 +4375,7 @@ INSERT INTO `currencyvalue` (`id`, `ratetobase`, `value`, `currency_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `customfield`
+-- Table structure for table `customfield`
 --
 
 CREATE TABLE IF NOT EXISTS `customfield` (
@@ -4376,7 +4386,7 @@ CREATE TABLE IF NOT EXISTS `customfield` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=212 ;
 
 --
--- Dumping data untuk tabel `customfield`
+-- Dumping data for table `customfield`
 --
 
 INSERT INTO `customfield` (`id`, `value`, `basecustomfield_id`) VALUES
@@ -4595,7 +4605,7 @@ INSERT INTO `customfield` (`id`, `value`, `basecustomfield_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `customfielddata`
+-- Table structure for table `customfielddata`
 --
 
 CREATE TABLE IF NOT EXISTS `customfielddata` (
@@ -4609,7 +4619,7 @@ CREATE TABLE IF NOT EXISTS `customfielddata` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
--- Dumping data untuk tabel `customfielddata`
+-- Dumping data for table `customfielddata`
 --
 
 INSERT INTO `customfielddata` (`id`, `name`, `defaultvalue`, `serializeddata`, `serializedlabels`) VALUES
@@ -4625,7 +4635,7 @@ INSERT INTO `customfielddata` (`id`, `name`, `defaultvalue`, `serializeddata`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `customfieldvalue`
+-- Table structure for table `customfieldvalue`
 --
 
 CREATE TABLE IF NOT EXISTS `customfieldvalue` (
@@ -4638,7 +4648,7 @@ CREATE TABLE IF NOT EXISTS `customfieldvalue` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dashboard`
+-- Table structure for table `dashboard`
 --
 
 CREATE TABLE IF NOT EXISTS `dashboard` (
@@ -4652,7 +4662,7 @@ CREATE TABLE IF NOT EXISTS `dashboard` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data untuk tabel `dashboard`
+-- Dumping data for table `dashboard`
 --
 
 INSERT INTO `dashboard` (`id`, `isdefault`, `layoutid`, `layouttype`, `name`, `ownedsecurableitem_id`) VALUES
@@ -4661,7 +4671,7 @@ INSERT INTO `dashboard` (`id`, `isdefault`, `layoutid`, `layouttype`, `name`, `o
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `derivedattributemetadata`
+-- Table structure for table `derivedattributemetadata`
 --
 
 CREATE TABLE IF NOT EXISTS `derivedattributemetadata` (
@@ -4675,7 +4685,7 @@ CREATE TABLE IF NOT EXISTS `derivedattributemetadata` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dropdowndependencyderivedattributemetadata`
+-- Table structure for table `dropdowndependencyderivedattributemetadata`
 --
 
 CREATE TABLE IF NOT EXISTS `dropdowndependencyderivedattributemetadata` (
@@ -4687,7 +4697,7 @@ CREATE TABLE IF NOT EXISTS `dropdowndependencyderivedattributemetadata` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `email`
+-- Table structure for table `email`
 --
 
 CREATE TABLE IF NOT EXISTS `email` (
@@ -4699,7 +4709,7 @@ CREATE TABLE IF NOT EXISTS `email` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=40 ;
 
 --
--- Dumping data untuk tabel `email`
+-- Dumping data for table `email`
 --
 
 INSERT INTO `email` (`id`, `emailaddress`, `isinvalid`, `optout`) VALUES
@@ -4746,7 +4756,7 @@ INSERT INTO `email` (`id`, `emailaddress`, `isinvalid`, `optout`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailaccount`
+-- Table structure for table `emailaccount`
 --
 
 CREATE TABLE IF NOT EXISTS `emailaccount` (
@@ -4771,7 +4781,7 @@ CREATE TABLE IF NOT EXISTS `emailaccount` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailbox`
+-- Table structure for table `emailbox`
 --
 
 CREATE TABLE IF NOT EXISTS `emailbox` (
@@ -4783,7 +4793,7 @@ CREATE TABLE IF NOT EXISTS `emailbox` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Dumping data untuk tabel `emailbox`
+-- Dumping data for table `emailbox`
 --
 
 INSERT INTO `emailbox` (`id`, `name`, `item_id`, `_user_id`) VALUES
@@ -4793,7 +4803,7 @@ INSERT INTO `emailbox` (`id`, `name`, `item_id`, `_user_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailfolder`
+-- Table structure for table `emailfolder`
 --
 
 CREATE TABLE IF NOT EXISTS `emailfolder` (
@@ -4806,7 +4816,7 @@ CREATE TABLE IF NOT EXISTS `emailfolder` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
 
 --
--- Dumping data untuk tabel `emailfolder`
+-- Dumping data for table `emailfolder`
 --
 
 INSERT INTO `emailfolder` (`id`, `name`, `type`, `item_id`, `emailbox_id`) VALUES
@@ -4830,7 +4840,7 @@ INSERT INTO `emailfolder` (`id`, `name`, `type`, `item_id`, `emailbox_id`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailmessage`
+-- Table structure for table `emailmessage`
 --
 
 CREATE TABLE IF NOT EXISTS `emailmessage` (
@@ -4850,7 +4860,7 @@ CREATE TABLE IF NOT EXISTS `emailmessage` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=37 ;
 
 --
--- Dumping data untuk tabel `emailmessage`
+-- Dumping data for table `emailmessage`
 --
 
 INSERT INTO `emailmessage` (`id`, `subject`, `sendattempts`, `sentdatetime`, `sendondatetime`, `headers`, `ownedsecurableitem_id`, `folder_emailfolder_id`, `content_emailmessagecontent_id`, `sender_emailmessagesender_id`, `error_emailmessagesenderror_id`, `account_emailaccount_id`) VALUES
@@ -4894,7 +4904,7 @@ INSERT INTO `emailmessage` (`id`, `subject`, `sendattempts`, `sentdatetime`, `se
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailmessageactivity`
+-- Table structure for table `emailmessageactivity`
 --
 
 CREATE TABLE IF NOT EXISTS `emailmessageactivity` (
@@ -4910,7 +4920,7 @@ CREATE TABLE IF NOT EXISTS `emailmessageactivity` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=37 ;
 
 --
--- Dumping data untuk tabel `emailmessageactivity`
+-- Dumping data for table `emailmessageactivity`
 --
 
 INSERT INTO `emailmessageactivity` (`id`, `latestdatetime`, `type`, `quantity`, `latestsourceip`, `item_id`, `person_id`, `emailmessageurl_id`) VALUES
@@ -4954,7 +4964,7 @@ INSERT INTO `emailmessageactivity` (`id`, `latestdatetime`, `type`, `quantity`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailmessagecontent`
+-- Table structure for table `emailmessagecontent`
 --
 
 CREATE TABLE IF NOT EXISTS `emailmessagecontent` (
@@ -4965,7 +4975,7 @@ CREATE TABLE IF NOT EXISTS `emailmessagecontent` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=37 ;
 
 --
--- Dumping data untuk tabel `emailmessagecontent`
+-- Dumping data for table `emailmessagecontent`
 --
 
 INSERT INTO `emailmessagecontent` (`id`, `htmlcontent`, `textcontent`) VALUES
@@ -5009,7 +5019,7 @@ INSERT INTO `emailmessagecontent` (`id`, `htmlcontent`, `textcontent`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailmessagerecipient`
+-- Table structure for table `emailmessagerecipient`
 --
 
 CREATE TABLE IF NOT EXISTS `emailmessagerecipient` (
@@ -5023,7 +5033,7 @@ CREATE TABLE IF NOT EXISTS `emailmessagerecipient` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=37 ;
 
 --
--- Dumping data untuk tabel `emailmessagerecipient`
+-- Dumping data for table `emailmessagerecipient`
 --
 
 INSERT INTO `emailmessagerecipient` (`id`, `toaddress`, `toname`, `type`, `emailmessage_id`) VALUES
@@ -5067,7 +5077,7 @@ INSERT INTO `emailmessagerecipient` (`id`, `toaddress`, `toname`, `type`, `email
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailmessagerecipient_item`
+-- Table structure for table `emailmessagerecipient_item`
 --
 
 CREATE TABLE IF NOT EXISTS `emailmessagerecipient_item` (
@@ -5081,7 +5091,7 @@ CREATE TABLE IF NOT EXISTS `emailmessagerecipient_item` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=37 ;
 
 --
--- Dumping data untuk tabel `emailmessagerecipient_item`
+-- Dumping data for table `emailmessagerecipient_item`
 --
 
 INSERT INTO `emailmessagerecipient_item` (`id`, `emailmessagerecipient_id`, `item_id`) VALUES
@@ -5125,7 +5135,7 @@ INSERT INTO `emailmessagerecipient_item` (`id`, `emailmessagerecipient_id`, `ite
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailmessagesender`
+-- Table structure for table `emailmessagesender`
 --
 
 CREATE TABLE IF NOT EXISTS `emailmessagesender` (
@@ -5136,7 +5146,7 @@ CREATE TABLE IF NOT EXISTS `emailmessagesender` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=37 ;
 
 --
--- Dumping data untuk tabel `emailmessagesender`
+-- Dumping data for table `emailmessagesender`
 --
 
 INSERT INTO `emailmessagesender` (`id`, `fromaddress`, `fromname`) VALUES
@@ -5180,7 +5190,7 @@ INSERT INTO `emailmessagesender` (`id`, `fromaddress`, `fromname`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailmessagesenderror`
+-- Table structure for table `emailmessagesenderror`
 --
 
 CREATE TABLE IF NOT EXISTS `emailmessagesenderror` (
@@ -5193,7 +5203,7 @@ CREATE TABLE IF NOT EXISTS `emailmessagesenderror` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailmessagesender_item`
+-- Table structure for table `emailmessagesender_item`
 --
 
 CREATE TABLE IF NOT EXISTS `emailmessagesender_item` (
@@ -5207,7 +5217,7 @@ CREATE TABLE IF NOT EXISTS `emailmessagesender_item` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=37 ;
 
 --
--- Dumping data untuk tabel `emailmessagesender_item`
+-- Dumping data for table `emailmessagesender_item`
 --
 
 INSERT INTO `emailmessagesender_item` (`id`, `emailmessagesender_id`, `item_id`) VALUES
@@ -5251,7 +5261,7 @@ INSERT INTO `emailmessagesender_item` (`id`, `emailmessagesender_id`, `item_id`)
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailmessageurl`
+-- Table structure for table `emailmessageurl`
 --
 
 CREATE TABLE IF NOT EXISTS `emailmessageurl` (
@@ -5262,7 +5272,7 @@ CREATE TABLE IF NOT EXISTS `emailmessageurl` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
--- Dumping data untuk tabel `emailmessageurl`
+-- Dumping data for table `emailmessageurl`
 --
 
 INSERT INTO `emailmessageurl` (`id`, `url`, `emailmessageactivity_id`) VALUES
@@ -5288,7 +5298,7 @@ INSERT INTO `emailmessageurl` (`id`, `url`, `emailmessageactivity_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailmessage_read`
+-- Table structure for table `emailmessage_read`
 --
 
 CREATE TABLE IF NOT EXISTS `emailmessage_read` (
@@ -5302,7 +5312,7 @@ CREATE TABLE IF NOT EXISTS `emailmessage_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=73 ;
 
 --
--- Dumping data untuk tabel `emailmessage_read`
+-- Dumping data for table `emailmessage_read`
 --
 
 INSERT INTO `emailmessage_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -5382,7 +5392,7 @@ INSERT INTO `emailmessage_read` (`id`, `securableitem_id`, `munge_id`, `count`) 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailsignature`
+-- Table structure for table `emailsignature`
 --
 
 CREATE TABLE IF NOT EXISTS `emailsignature` (
@@ -5396,7 +5406,7 @@ CREATE TABLE IF NOT EXISTS `emailsignature` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailtemplate`
+-- Table structure for table `emailtemplate`
 --
 
 CREATE TABLE IF NOT EXISTS `emailtemplate` (
@@ -5413,7 +5423,7 @@ CREATE TABLE IF NOT EXISTS `emailtemplate` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
--- Dumping data untuk tabel `emailtemplate`
+-- Dumping data for table `emailtemplate`
 --
 
 INSERT INTO `emailtemplate` (`id`, `type`, `modelclassname`, `name`, `subject`, `language`, `htmlcontent`, `textcontent`, `ownedsecurableitem_id`) VALUES
@@ -5430,7 +5440,7 @@ INSERT INTO `emailtemplate` (`id`, `type`, `modelclassname`, `name`, `subject`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `emailtemplate_read`
+-- Table structure for table `emailtemplate_read`
 --
 
 CREATE TABLE IF NOT EXISTS `emailtemplate_read` (
@@ -5444,7 +5454,7 @@ CREATE TABLE IF NOT EXISTS `emailtemplate_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
--- Dumping data untuk tabel `emailtemplate_read`
+-- Dumping data for table `emailtemplate_read`
 --
 
 INSERT INTO `emailtemplate_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -5465,7 +5475,7 @@ INSERT INTO `emailtemplate_read` (`id`, `securableitem_id`, `munge_id`, `count`)
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `exportfilemodel`
+-- Table structure for table `exportfilemodel`
 --
 
 CREATE TABLE IF NOT EXISTS `exportfilemodel` (
@@ -5477,7 +5487,7 @@ CREATE TABLE IF NOT EXISTS `exportfilemodel` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `exportitem`
+-- Table structure for table `exportitem`
 --
 
 CREATE TABLE IF NOT EXISTS `exportitem` (
@@ -5496,7 +5506,7 @@ CREATE TABLE IF NOT EXISTS `exportitem` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `filecontent`
+-- Table structure for table `filecontent`
 --
 
 CREATE TABLE IF NOT EXISTS `filecontent` (
@@ -5506,7 +5516,7 @@ CREATE TABLE IF NOT EXISTS `filecontent` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=66 ;
 
 --
--- Dumping data untuk tabel `filecontent`
+-- Dumping data for table `filecontent`
 --
 
 INSERT INTO `filecontent` (`id`, `content`) VALUES
@@ -5610,7 +5620,7 @@ INSERT INTO `filecontent` (`id`, `content`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `filemodel`
+-- Table structure for table `filemodel`
 --
 
 CREATE TABLE IF NOT EXISTS `filemodel` (
@@ -5626,7 +5636,7 @@ CREATE TABLE IF NOT EXISTS `filemodel` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=66 ;
 
 --
--- Dumping data untuk tabel `filemodel`
+-- Dumping data for table `filemodel`
 --
 
 INSERT INTO `filemodel` (`id`, `name`, `size`, `type`, `item_id`, `filecontent_id`, `relatedmodel_id`, `relatedmodel_type`) VALUES
@@ -5699,7 +5709,7 @@ INSERT INTO `filemodel` (`id`, `name`, `size`, `type`, `item_id`, `filecontent_i
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gamebadge`
+-- Table structure for table `gamebadge`
 --
 
 CREATE TABLE IF NOT EXISTS `gamebadge` (
@@ -5709,10 +5719,10 @@ CREATE TABLE IF NOT EXISTS `gamebadge` (
   `item_id` int(11) unsigned DEFAULT NULL,
   `person_item_id` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=23 ;
 
 --
--- Dumping data untuk tabel `gamebadge`
+-- Dumping data for table `gamebadge`
 --
 
 INSERT INTO `gamebadge` (`id`, `type`, `grade`, `item_id`, `person_item_id`) VALUES
@@ -5735,12 +5745,14 @@ INSERT INTO `gamebadge` (`id`, `type`, `grade`, `item_id`, `person_item_id`) VAL
 (17, 'LoginUser', 2, 311, 24),
 (18, 'CreateAccount', 3, 312, 24),
 (19, 'LoginUser', 2, 319, 1),
-(20, 'CreateAccount', 3, 320, 1);
+(20, 'CreateAccount', 3, 320, 1),
+(21, 'EarlyBird', 1, 858, 1),
+(22, 'NightOwl', 1, 860, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gamecoin`
+-- Table structure for table `gamecoin`
 --
 
 CREATE TABLE IF NOT EXISTS `gamecoin` (
@@ -5752,16 +5764,16 @@ CREATE TABLE IF NOT EXISTS `gamecoin` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data untuk tabel `gamecoin`
+-- Dumping data for table `gamecoin`
 --
 
 INSERT INTO `gamecoin` (`id`, `value`, `item_id`, `person_item_id`) VALUES
-(1, 1, 856, 1);
+(1, 3, 856, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gamecollection`
+-- Table structure for table `gamecollection`
 --
 
 CREATE TABLE IF NOT EXISTS `gamecollection` (
@@ -5776,7 +5788,7 @@ CREATE TABLE IF NOT EXISTS `gamecollection` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gamelevel`
+-- Table structure for table `gamelevel`
 --
 
 CREATE TABLE IF NOT EXISTS `gamelevel` (
@@ -5789,7 +5801,7 @@ CREATE TABLE IF NOT EXISTS `gamelevel` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
 
 --
--- Dumping data untuk tabel `gamelevel`
+-- Dumping data for table `gamelevel`
 --
 
 INSERT INTO `gamelevel` (`id`, `type`, `value`, `item_id`, `person_item_id`) VALUES
@@ -5811,13 +5823,13 @@ INSERT INTO `gamelevel` (`id`, `type`, `value`, `item_id`, `person_item_id`) VAL
 (16, 'NewBusiness', 1, 306, 20),
 (17, 'General', 1, 313, 24),
 (18, 'NewBusiness', 1, 314, 24),
-(19, 'General', 1, 321, 1),
+(19, 'General', 2, 321, 1),
 (20, 'NewBusiness', 1, 322, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gamenotification`
+-- Table structure for table `gamenotification`
 --
 
 CREATE TABLE IF NOT EXISTS `gamenotification` (
@@ -5830,7 +5842,7 @@ CREATE TABLE IF NOT EXISTS `gamenotification` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gamepoint`
+-- Table structure for table `gamepoint`
 --
 
 CREATE TABLE IF NOT EXISTS `gamepoint` (
@@ -5843,7 +5855,7 @@ CREATE TABLE IF NOT EXISTS `gamepoint` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
 
 --
--- Dumping data untuk tabel `gamepoint`
+-- Dumping data for table `gamepoint`
 --
 
 INSERT INTO `gamepoint` (`id`, `type`, `value`, `item_id`, `person_item_id`) VALUES
@@ -5865,13 +5877,13 @@ INSERT INTO `gamepoint` (`id`, `type`, `value`, `item_id`, `person_item_id`) VAL
 (16, 'NewBusiness', 100, 302, 20),
 (17, 'UserAdoption', 220, 308, 24),
 (18, 'NewBusiness', 100, 310, 24),
-(19, 'UserAdoption', 319, 316, 1),
+(19, 'UserAdoption', 539, 316, 1),
 (20, 'NewBusiness', 100, 318, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gamepointtransaction`
+-- Table structure for table `gamepointtransaction`
 --
 
 CREATE TABLE IF NOT EXISTS `gamepointtransaction` (
@@ -5880,10 +5892,10 @@ CREATE TABLE IF NOT EXISTS `gamepointtransaction` (
   `createddatetime` datetime DEFAULT NULL,
   `gamepoint_id` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=33 ;
 
 --
--- Dumping data untuk tabel `gamepointtransaction`
+-- Dumping data for table `gamepointtransaction`
 --
 
 INSERT INTO `gamepointtransaction` (`id`, `value`, `createddatetime`, `gamepoint_id`) VALUES
@@ -5909,12 +5921,21 @@ INSERT INTO `gamepointtransaction` (`id`, `value`, `createddatetime`, `gamepoint
 (20, 100, '2014-03-10 18:14:25', 20),
 (21, 10, '2014-03-10 18:34:07', 19),
 (22, 10, '2014-03-10 18:38:13', 19),
-(23, 10, '2014-03-11 00:16:52', 19);
+(23, 10, '2014-03-11 00:16:52', 19),
+(24, 20, '2014-03-16 11:29:47', 19),
+(25, 50, '2014-03-16 11:29:48', 19),
+(26, 10, '2014-03-16 15:27:29', 19),
+(27, 20, '2014-03-17 03:14:08', 19),
+(28, 50, '2014-03-17 03:14:09', 19),
+(29, 20, '2014-03-17 10:26:53', 19),
+(30, 20, '2014-03-17 10:27:20', 19),
+(31, 10, '2014-03-17 14:03:36', 19),
+(32, 20, '2014-03-18 04:34:33', 19);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gamereward`
+-- Table structure for table `gamereward`
 --
 
 CREATE TABLE IF NOT EXISTS `gamereward` (
@@ -5929,7 +5950,7 @@ CREATE TABLE IF NOT EXISTS `gamereward` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
--- Dumping data untuk tabel `gamereward`
+-- Dumping data for table `gamereward`
 --
 
 INSERT INTO `gamereward` (`id`, `cost`, `description`, `expirationdatetime`, `name`, `quantity`, `ownedsecurableitem_id`) VALUES
@@ -5947,7 +5968,7 @@ INSERT INTO `gamereward` (`id`, `cost`, `description`, `expirationdatetime`, `na
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gamerewardtransaction`
+-- Table structure for table `gamerewardtransaction`
 --
 
 CREATE TABLE IF NOT EXISTS `gamerewardtransaction` (
@@ -5960,7 +5981,7 @@ CREATE TABLE IF NOT EXISTS `gamerewardtransaction` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=51 ;
 
 --
--- Dumping data untuk tabel `gamerewardtransaction`
+-- Dumping data for table `gamerewardtransaction`
 --
 
 INSERT INTO `gamerewardtransaction` (`id`, `redemptiondatetime`, `quantity`, `person_item_id`, `transactions_gamereward_id`) VALUES
@@ -6018,7 +6039,7 @@ INSERT INTO `gamerewardtransaction` (`id`, `redemptiondatetime`, `quantity`, `pe
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gamereward_read`
+-- Table structure for table `gamereward_read`
 --
 
 CREATE TABLE IF NOT EXISTS `gamereward_read` (
@@ -6032,7 +6053,7 @@ CREATE TABLE IF NOT EXISTS `gamereward_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
 
 --
--- Dumping data untuk tabel `gamereward_read`
+-- Dumping data for table `gamereward_read`
 --
 
 INSERT INTO `gamereward_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -6059,7 +6080,7 @@ INSERT INTO `gamereward_read` (`id`, `securableitem_id`, `munge_id`, `count`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gamescore`
+-- Table structure for table `gamescore`
 --
 
 CREATE TABLE IF NOT EXISTS `gamescore` (
@@ -6069,10 +6090,10 @@ CREATE TABLE IF NOT EXISTS `gamescore` (
   `item_id` int(11) unsigned DEFAULT NULL,
   `person_item_id` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=23 ;
 
 --
--- Dumping data untuk tabel `gamescore`
+-- Dumping data for table `gamescore`
 --
 
 INSERT INTO `gamescore` (`id`, `type`, `value`, `item_id`, `person_item_id`) VALUES
@@ -6094,13 +6115,15 @@ INSERT INTO `gamescore` (`id`, `type`, `value`, `item_id`, `person_item_id`) VAL
 (16, 'CreateAccount', 10, 301, 20),
 (17, 'LoginUser', 10, 307, 24),
 (18, 'CreateAccount', 10, 309, 24),
-(19, 'LoginUser', 13, 315, 1),
-(20, 'CreateAccount', 10, 317, 1);
+(19, 'LoginUser', 20, 315, 1),
+(20, 'CreateAccount', 10, 317, 1),
+(21, 'EarlyBird', 3, 857, 1),
+(22, 'NightOwl', 2, 859, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `globalmetadata`
+-- Table structure for table `globalmetadata`
 --
 
 CREATE TABLE IF NOT EXISTS `globalmetadata` (
@@ -6112,19 +6135,19 @@ CREATE TABLE IF NOT EXISTS `globalmetadata` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data untuk tabel `globalmetadata`
+-- Dumping data for table `globalmetadata`
 --
 
 INSERT INTO `globalmetadata` (`id`, `classname`, `serializedmetadata`) VALUES
 (1, 'ContactsModule', 'a:10:{s:17:"designerMenuItems";a:4:{s:14:"showFieldsLink";b:1;s:15:"showGeneralLink";b:1;s:15:"showLayoutsLink";b:1;s:13:"showMenusLink";b:1;}s:26:"globalSearchAttributeNames";a:4:{i:0;s:8:"fullName";i:1;s:8:"anyEmail";i:2;s:11:"officePhone";i:3;s:11:"mobilePhone";}s:13:"startingState";i:1;s:12:"tabMenuItems";a:1:{i:0;a:4:{s:5:"label";s:80:"eval:Zurmo::t(''ContactsModule'', ''ContactsModulePluralLabel'', $translationParams)";s:3:"url";a:1:{i:0;s:17:"/contacts/default";}s:5:"right";s:19:"Access Contacts Tab";s:6:"mobile";b:1;}}s:24:"shortcutsCreateMenuItems";a:1:{i:0;a:4:{s:5:"label";s:82:"eval:Zurmo::t(''ContactsModule'', ''ContactsModuleSingularLabel'', $translationParams)";s:3:"url";a:1:{i:0;s:24:"/contacts/default/create";}s:5:"right";s:15:"Create Contacts";s:6:"mobile";b:1;}}s:48:"updateLatestActivityDateTimeWhenATaskIsCompleted";b:1;s:46:"updateLatestActivityDateTimeWhenANoteIsCreated";b:1;s:55:"updateLatestActivityDateTimeWhenAnEmailIsSentOrArchived";b:1;s:51:"updateLatestActivityDateTimeWhenAMeetingIsInThePast";b:1;s:15:"startingStateId";i:5;}'),
-(2, 'ZurmoModule', 'a:7:{s:18:"configureMenuItems";a:7:{i:0;a:5:{s:8:"category";i:1;s:10:"titleLabel";s:52:"eval:Zurmo::t(''ZurmoModule'', ''Global Configuration'')";s:16:"descriptionLabel";s:59:"eval:Zurmo::t(''ZurmoModule'', ''Manage Global Configuration'')";s:5:"route";s:32:"/zurmo/default/configurationEdit";s:5:"right";s:27:"Access Global Configuration";}i:1;a:5:{s:8:"category";i:1;s:10:"titleLabel";s:54:"eval:Zurmo::t(''ZurmoModule'', ''Currency Configuration'')";s:16:"descriptionLabel";s:61:"eval:Zurmo::t(''ZurmoModule'', ''Manage Currency Configuration'')";s:5:"route";s:33:"/zurmo/currency/configurationList";s:5:"right";s:29:"Access Currency Configuration";}i:2;a:5:{s:8:"category";i:1;s:10:"titleLabel";s:34:"eval:Zurmo::t(''Core'', ''Languages'')";s:16:"descriptionLabel";s:55:"eval:Zurmo::t(''ZurmoModule'', ''Manage Active Languages'')";s:5:"route";s:33:"/zurmo/language/configurationList";s:5:"right";s:27:"Access Global Configuration";}i:3;a:5:{s:8:"category";i:1;s:10:"titleLabel";s:47:"eval:Zurmo::t(''ZurmoModule'', ''Developer Tools'')";s:16:"descriptionLabel";s:54:"eval:Zurmo::t(''ZurmoModule'', ''Access Developer Tools'')";s:5:"route";s:19:"/zurmo/development/";s:5:"right";s:27:"Access Global Configuration";}i:4;a:5:{s:8:"category";i:1;s:10:"titleLabel";s:60:"eval:Zurmo::t(''ZurmoModule'', ''Authentication Configuration'')";s:16:"descriptionLabel";s:67:"eval:Zurmo::t(''ZurmoModule'', ''Manage Authentication Configuration'')";s:5:"route";s:39:"/zurmo/authentication/configurationEdit";s:5:"right";s:27:"Access Global Configuration";}i:5;a:5:{s:8:"category";i:1;s:10:"titleLabel";s:39:"eval:Zurmo::t(''ZurmoModule'', ''Plugins'')";s:16:"descriptionLabel";s:63:"eval:Zurmo::t(''ZurmoModule'', ''Manage Plugins and Integrations'')";s:5:"route";s:32:"/zurmo/plugins/configurationEdit";s:5:"right";s:27:"Access Global Configuration";}i:6;a:5:{s:8:"category";i:1;s:10:"titleLabel";s:60:"eval:Zurmo::t(''ZurmoModule'', ''User Interface Configuration'')";s:16:"descriptionLabel";s:67:"eval:Zurmo::t(''ZurmoModule'', ''Manage User Interface Configuration'')";s:5:"route";s:45:"/zurmo/default/userInterfaceConfigurationEdit";s:5:"right";s:27:"Access Global Configuration";}}s:15:"headerMenuItems";a:3:{i:0;a:5:{s:5:"label";s:46:"eval:Zurmo::t(''ZurmoModule'', ''Administration'')";s:3:"url";a:1:{i:0;s:14:"/configuration";}s:5:"right";s:25:"Access Administration Tab";s:5:"order";i:1;s:6:"mobile";b:0;}i:1;a:4:{s:5:"label";s:45:"eval:Zurmo::t(''ZurmoModule'', ''Need Support?'')";s:3:"url";s:36:"http://www.zurmo.com/needSupport.php";s:5:"order";i:9;s:6:"mobile";b:1;}i:2;a:4:{s:5:"label";s:43:"eval:Zurmo::t(''ZurmoModule'', ''About Zurmo'')";s:3:"url";a:1:{i:0;s:20:"/zurmo/default/about";}s:5:"order";i:10;s:6:"mobile";b:1;}}s:21:"configureSubMenuItems";a:1:{i:0;a:5:{s:8:"category";i:2;s:10:"titleLabel";s:50:"eval:Zurmo::t(''ZurmoModule'', ''LDAP Configuration'')";s:16:"descriptionLabel";s:58:"eval:Zurmo::t(''ZurmoModule'', ''Manage LDAP Authentication'')";s:5:"route";s:33:"/zurmo/ldap/configurationEditLdap";s:5:"right";s:27:"Access Global Configuration";}}s:31:"adminTabMenuItemsModuleOrdering";a:9:{i:0;s:4:"home";i:1;s:13:"configuration";i:2;s:8:"designer";i:3;s:6:"import";i:4;s:6:"groups";i:5;s:5:"users";i:6;s:5:"roles";i:7;s:9:"workflows";i:8;s:15:"contactWebForms";}s:26:"tabMenuItemsModuleOrdering";a:10:{i:0;s:4:"home";i:1;s:13:"mashableInbox";i:2;s:8:"accounts";i:3;s:5:"leads";i:4;s:8:"contacts";i:5;s:13:"opportunities";i:6;s:9:"marketing";i:7;s:8:"projects";i:8;s:8:"products";i:9;s:7:"reports";}s:15:"applicationName";s:17:"Demo Company Inc.";s:32:"lastAttemptedInfoUpdateTimeStamp";i:1394476447;}'),
-(3, 'Currency', 'a:3:{s:7:"members";a:3:{i:0;s:6:"active";i:1;s:4:"code";i:2;s:10:"rateToBase";}s:5:"rules";a:9:{i:0;a:2:{i:0;s:6:"active";i:1;s:7:"boolean";}i:1;a:3:{i:0;s:6:"active";i:1;s:7:"default";s:5:"value";b:1;}i:2;a:2:{i:0;s:4:"code";i:1;s:8:"required";}i:3;a:2:{i:0;s:4:"code";i:1;s:6:"unique";}i:4;a:3:{i:0;s:4:"code";i:1;s:4:"type";s:4:"type";s:6:"string";}i:5;a:4:{i:0;s:4:"code";i:1;s:6:"length";s:3:"min";i:3;s:3:"max";i:3;}i:6;a:4:{i:0;s:4:"code";i:1;s:5:"match";s:7:"pattern";s:19:"/^[A-Z][A-Z][A-Z]$/";s:7:"message";s:35:"Code must be a valid currency code.";}i:7;a:2:{i:0;s:10:"rateToBase";i:1;s:8:"required";}i:8;a:3:{i:0;s:10:"rateToBase";i:1;s:4:"type";s:4:"type";s:5:"float";}}s:32:"lastAttemptedRateUpdateTimeStamp";i:1394476395;}'),
+(2, 'ZurmoModule', 'a:9:{s:18:"configureMenuItems";a:7:{i:0;a:5:{s:8:"category";i:1;s:10:"titleLabel";s:52:"eval:Zurmo::t(''ZurmoModule'', ''Global Configuration'')";s:16:"descriptionLabel";s:59:"eval:Zurmo::t(''ZurmoModule'', ''Manage Global Configuration'')";s:5:"route";s:32:"/zurmo/default/configurationEdit";s:5:"right";s:27:"Access Global Configuration";}i:1;a:5:{s:8:"category";i:1;s:10:"titleLabel";s:54:"eval:Zurmo::t(''ZurmoModule'', ''Currency Configuration'')";s:16:"descriptionLabel";s:61:"eval:Zurmo::t(''ZurmoModule'', ''Manage Currency Configuration'')";s:5:"route";s:33:"/zurmo/currency/configurationList";s:5:"right";s:29:"Access Currency Configuration";}i:2;a:5:{s:8:"category";i:1;s:10:"titleLabel";s:34:"eval:Zurmo::t(''Core'', ''Languages'')";s:16:"descriptionLabel";s:55:"eval:Zurmo::t(''ZurmoModule'', ''Manage Active Languages'')";s:5:"route";s:33:"/zurmo/language/configurationList";s:5:"right";s:27:"Access Global Configuration";}i:3;a:5:{s:8:"category";i:1;s:10:"titleLabel";s:47:"eval:Zurmo::t(''ZurmoModule'', ''Developer Tools'')";s:16:"descriptionLabel";s:54:"eval:Zurmo::t(''ZurmoModule'', ''Access Developer Tools'')";s:5:"route";s:19:"/zurmo/development/";s:5:"right";s:27:"Access Global Configuration";}i:4;a:5:{s:8:"category";i:1;s:10:"titleLabel";s:60:"eval:Zurmo::t(''ZurmoModule'', ''Authentication Configuration'')";s:16:"descriptionLabel";s:67:"eval:Zurmo::t(''ZurmoModule'', ''Manage Authentication Configuration'')";s:5:"route";s:39:"/zurmo/authentication/configurationEdit";s:5:"right";s:27:"Access Global Configuration";}i:5;a:5:{s:8:"category";i:1;s:10:"titleLabel";s:39:"eval:Zurmo::t(''ZurmoModule'', ''Plugins'')";s:16:"descriptionLabel";s:63:"eval:Zurmo::t(''ZurmoModule'', ''Manage Plugins and Integrations'')";s:5:"route";s:32:"/zurmo/plugins/configurationEdit";s:5:"right";s:27:"Access Global Configuration";}i:6;a:5:{s:8:"category";i:1;s:10:"titleLabel";s:60:"eval:Zurmo::t(''ZurmoModule'', ''User Interface Configuration'')";s:16:"descriptionLabel";s:67:"eval:Zurmo::t(''ZurmoModule'', ''Manage User Interface Configuration'')";s:5:"route";s:45:"/zurmo/default/userInterfaceConfigurationEdit";s:5:"right";s:27:"Access Global Configuration";}}s:15:"headerMenuItems";a:3:{i:0;a:5:{s:5:"label";s:46:"eval:Zurmo::t(''ZurmoModule'', ''Administration'')";s:3:"url";a:1:{i:0;s:14:"/configuration";}s:5:"right";s:25:"Access Administration Tab";s:5:"order";i:1;s:6:"mobile";b:0;}i:1;a:4:{s:5:"label";s:45:"eval:Zurmo::t(''ZurmoModule'', ''Need Support?'')";s:3:"url";s:36:"http://www.zurmo.com/needSupport.php";s:5:"order";i:9;s:6:"mobile";b:1;}i:2;a:4:{s:5:"label";s:43:"eval:Zurmo::t(''ZurmoModule'', ''About Zurmo'')";s:3:"url";a:1:{i:0;s:20:"/zurmo/default/about";}s:5:"order";i:10;s:6:"mobile";b:1;}}s:21:"configureSubMenuItems";a:1:{i:0;a:5:{s:8:"category";i:2;s:10:"titleLabel";s:50:"eval:Zurmo::t(''ZurmoModule'', ''LDAP Configuration'')";s:16:"descriptionLabel";s:58:"eval:Zurmo::t(''ZurmoModule'', ''Manage LDAP Authentication'')";s:5:"route";s:33:"/zurmo/ldap/configurationEditLdap";s:5:"right";s:27:"Access Global Configuration";}}s:31:"adminTabMenuItemsModuleOrdering";a:9:{i:0;s:4:"home";i:1;s:13:"configuration";i:2;s:8:"designer";i:3;s:6:"import";i:4;s:6:"groups";i:5;s:5:"users";i:6;s:5:"roles";i:7;s:9:"workflows";i:8;s:15:"contactWebForms";}s:26:"tabMenuItemsModuleOrdering";a:10:{i:0;s:4:"home";i:1;s:13:"mashableInbox";i:2;s:8:"accounts";i:3;s:5:"leads";i:4;s:8:"contacts";i:5;s:13:"opportunities";i:6;s:9:"marketing";i:7;s:8:"projects";i:8;s:8:"products";i:9;s:7:"reports";}s:15:"applicationName";s:17:"Demo Company Inc.";s:32:"lastAttemptedInfoUpdateTimeStamp";i:1395117273;s:11:"globalState";s:88:"a:1:{s:34:"Yii.CSecurityManager.validationkey";s:32:"4333614f354390260154c7360783cfc3";}";s:22:"lastZurmoStableVersion";s:9:"2.0.12 ()";}'),
+(3, 'Currency', 'a:3:{s:7:"members";a:3:{i:0;s:6:"active";i:1;s:4:"code";i:2;s:10:"rateToBase";}s:5:"rules";a:9:{i:0;a:2:{i:0;s:6:"active";i:1;s:7:"boolean";}i:1;a:3:{i:0;s:6:"active";i:1;s:7:"default";s:5:"value";b:1;}i:2;a:2:{i:0;s:4:"code";i:1;s:8:"required";}i:3;a:2:{i:0;s:4:"code";i:1;s:6:"unique";}i:4;a:3:{i:0;s:4:"code";i:1;s:4:"type";s:4:"type";s:6:"string";}i:5;a:4:{i:0;s:4:"code";i:1;s:6:"length";s:3:"min";i:3;s:3:"max";i:3;}i:6;a:4:{i:0;s:4:"code";i:1;s:5:"match";s:7:"pattern";s:19:"/^[A-Z][A-Z][A-Z]$/";s:7:"message";s:35:"Code must be a valid currency code.";}i:7;a:2:{i:0;s:10:"rateToBase";i:1;s:8:"required";}i:8;a:3:{i:0;s:10:"rateToBase";i:1;s:4:"type";s:4:"type";s:5:"float";}}s:32:"lastAttemptedRateUpdateTimeStamp";i:1395112486;}'),
 (4, 'UsersModule', 'a:6:{s:17:"adminTabMenuItems";a:1:{i:0;a:4:{s:5:"label";s:37:"eval:Zurmo::t(''UsersModule'', ''Users'')";s:3:"url";a:1:{i:0;s:14:"/users/default";}s:5:"right";s:16:"Access Users Tab";s:5:"items";a:2:{i:0;a:3:{s:5:"label";s:43:"eval:Zurmo::t(''UsersModule'', ''Create User'')";s:3:"url";a:1:{i:0;s:21:"/users/default/create";}s:5:"right";s:12:"Create Users";}i:1;a:3:{s:5:"label";s:37:"eval:Zurmo::t(''UsersModule'', ''Users'')";s:3:"url";a:1:{i:0;s:14:"/users/default";}s:5:"right";s:16:"Access Users Tab";}}}}s:26:"globalSearchAttributeNames";a:3:{i:0;s:8:"fullName";i:1;s:8:"anyEmail";i:2;s:8:"username";}s:18:"configureMenuItems";a:1:{i:0;a:5:{s:8:"category";i:1;s:10:"titleLabel";s:37:"eval:Zurmo::t(''UsersModule'', ''Users'')";s:16:"descriptionLabel";s:44:"eval:Zurmo::t(''UsersModule'', ''Manage Users'')";s:5:"route";s:14:"/users/default";s:5:"right";s:16:"Access Users Tab";}}s:15:"headerMenuItems";a:1:{i:0;a:5:{s:5:"label";s:37:"eval:Zurmo::t(''UsersModule'', ''Users'')";s:3:"url";a:1:{i:0;s:14:"/users/default";}s:5:"right";s:16:"Access Users Tab";s:5:"order";i:4;s:6:"mobile";b:0;}}s:19:"userHeaderMenuItems";a:2:{i:0;a:3:{s:5:"label";s:42:"eval:Zurmo::t(''UsersModule'', ''My Profile'')";s:3:"url";a:1:{i:0;s:22:"/users/default/profile";}s:5:"order";i:1;}i:1;a:3:{s:5:"label";s:40:"eval:Zurmo::t(''UsersModule'', ''Sign out'')";s:3:"url";a:1:{i:0;s:21:"/zurmo/default/logout";}s:5:"order";i:4;}}s:17:"designerMenuItems";a:4:{s:14:"showFieldsLink";b:0;s:15:"showGeneralLink";b:0;s:15:"showLayoutsLink";b:1;s:13:"showMenusLink";b:0;}}');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `import`
+-- Table structure for table `import`
 --
 
 CREATE TABLE IF NOT EXISTS `import` (
@@ -6137,7 +6160,7 @@ CREATE TABLE IF NOT EXISTS `import` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `item`
+-- Table structure for table `item`
 --
 
 CREATE TABLE IF NOT EXISTS `item` (
@@ -6147,10 +6170,10 @@ CREATE TABLE IF NOT EXISTS `item` (
   `createdbyuser__user_id` int(11) unsigned DEFAULT NULL,
   `modifiedbyuser__user_id` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=857 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=861 ;
 
 --
--- Dumping data untuk tabel `item`
+-- Dumping data for table `item`
 --
 
 INSERT INTO `item` (`id`, `createddatetime`, `modifieddatetime`, `createdbyuser__user_id`, `modifiedbyuser__user_id`) VALUES
@@ -6468,13 +6491,13 @@ INSERT INTO `item` (`id`, `createddatetime`, `modifieddatetime`, `createdbyuser_
 (312, '2014-03-10 18:14:23', '2014-03-10 18:14:23', 1, 1),
 (313, '2014-03-10 18:14:23', '2014-03-10 18:14:23', 1, 1),
 (314, '2014-03-10 18:14:24', '2014-03-10 18:14:24', 1, 1),
-(315, '2014-03-10 18:14:24', '2014-03-11 00:16:52', 1, 1),
-(316, '2014-03-10 18:14:24', '2014-03-11 00:16:52', 1, 1),
+(315, '2014-03-10 18:14:24', '2014-03-18 04:34:30', 1, 1),
+(316, '2014-03-10 18:14:24', '2014-03-18 04:34:33', 1, 1),
 (317, '2014-03-10 18:14:25', '2014-03-10 18:14:25', 1, 1),
 (318, '2014-03-10 18:14:25', '2014-03-10 18:14:25', 1, 1),
 (319, '2014-03-10 18:14:25', '2014-03-10 18:14:25', 1, 1),
 (320, '2014-03-10 18:14:25', '2014-03-10 18:14:26', 1, 1),
-(321, '2014-03-10 18:14:26', '2014-03-10 18:14:26', 1, 1),
+(321, '2014-03-10 18:14:26', '2014-03-17 03:14:09', 1, 1),
 (322, '2014-03-10 18:14:26', '2014-03-10 18:14:26', 1, 1),
 (323, '2014-03-10 18:14:26', '2014-03-10 18:14:26', 1, 1),
 (324, '2014-03-10 18:14:28', '2014-03-10 18:14:28', 1, 1),
@@ -7009,12 +7032,16 @@ INSERT INTO `item` (`id`, `createddatetime`, `modifieddatetime`, `createdbyuser_
 (853, '2014-03-10 18:34:52', '2014-03-10 18:34:53', 1, 1),
 (854, '2014-03-10 18:34:52', '2014-03-10 18:34:53', 1, 1),
 (855, '2014-03-10 18:34:52', '2014-03-10 18:34:54', 1, 1),
-(856, '2014-03-11 00:17:11', '2014-03-11 00:17:11', 1, 1);
+(856, '2014-03-11 00:17:11', '2014-03-17 03:14:09', 1, 1),
+(857, '2014-03-16 11:29:47', '2014-03-17 10:27:20', 1, 1),
+(858, '2014-03-16 11:29:48', '2014-03-16 11:29:48', 1, 1),
+(859, '2014-03-17 03:14:08', '2014-03-18 04:34:31', 1, 1),
+(860, '2014-03-17 03:14:09', '2014-03-17 03:14:09', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jobinprocess`
+-- Table structure for table `jobinprocess`
 --
 
 CREATE TABLE IF NOT EXISTS `jobinprocess` (
@@ -7027,7 +7054,7 @@ CREATE TABLE IF NOT EXISTS `jobinprocess` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `joblog`
+-- Table structure for table `joblog`
 --
 
 CREATE TABLE IF NOT EXISTS `joblog` (
@@ -7045,7 +7072,7 @@ CREATE TABLE IF NOT EXISTS `joblog` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kanbanitem`
+-- Table structure for table `kanbanitem`
 --
 
 CREATE TABLE IF NOT EXISTS `kanbanitem` (
@@ -7058,7 +7085,7 @@ CREATE TABLE IF NOT EXISTS `kanbanitem` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=79 ;
 
 --
--- Dumping data untuk tabel `kanbanitem`
+-- Dumping data for table `kanbanitem`
 --
 
 INSERT INTO `kanbanitem` (`id`, `type`, `sortorder`, `kanbanrelateditem_item_id`, `task_id`) VALUES
@@ -7144,7 +7171,7 @@ INSERT INTO `kanbanitem` (`id`, `type`, `sortorder`, `kanbanrelateditem_item_id`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `marketinglist`
+-- Table structure for table `marketinglist`
 --
 
 CREATE TABLE IF NOT EXISTS `marketinglist` (
@@ -7159,7 +7186,7 @@ CREATE TABLE IF NOT EXISTS `marketinglist` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
--- Dumping data untuk tabel `marketinglist`
+-- Dumping data for table `marketinglist`
 --
 
 INSERT INTO `marketinglist` (`id`, `name`, `description`, `fromname`, `fromaddress`, `anyonecansubscribe`, `ownedsecurableitem_id`) VALUES
@@ -7172,7 +7199,7 @@ INSERT INTO `marketinglist` (`id`, `name`, `description`, `fromname`, `fromaddre
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `marketinglistmember`
+-- Table structure for table `marketinglistmember`
 --
 
 CREATE TABLE IF NOT EXISTS `marketinglistmember` (
@@ -7186,7 +7213,7 @@ CREATE TABLE IF NOT EXISTS `marketinglistmember` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=61 ;
 
 --
--- Dumping data untuk tabel `marketinglistmember`
+-- Dumping data for table `marketinglistmember`
 --
 
 INSERT INTO `marketinglistmember` (`id`, `createddatetime`, `modifieddatetime`, `unsubscribed`, `contact_id`, `marketinglist_id`) VALUES
@@ -7254,7 +7281,7 @@ INSERT INTO `marketinglistmember` (`id`, `createddatetime`, `modifieddatetime`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `marketinglist_read`
+-- Table structure for table `marketinglist_read`
 --
 
 CREATE TABLE IF NOT EXISTS `marketinglist_read` (
@@ -7268,7 +7295,7 @@ CREATE TABLE IF NOT EXISTS `marketinglist_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
--- Dumping data untuk tabel `marketinglist_read`
+-- Dumping data for table `marketinglist_read`
 --
 
 INSERT INTO `marketinglist_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -7285,7 +7312,7 @@ INSERT INTO `marketinglist_read` (`id`, `securableitem_id`, `munge_id`, `count`)
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `meeting`
+-- Table structure for table `meeting`
 --
 
 CREATE TABLE IF NOT EXISTS `meeting` (
@@ -7303,7 +7330,7 @@ CREATE TABLE IF NOT EXISTS `meeting` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=37 ;
 
 --
--- Dumping data untuk tabel `meeting`
+-- Dumping data for table `meeting`
 --
 
 INSERT INTO `meeting` (`id`, `description`, `enddatetime`, `processedforlatestactivity`, `location`, `logged`, `name`, `startdatetime`, `activity_id`, `category_customfield_id`) VALUES
@@ -7347,7 +7374,7 @@ INSERT INTO `meeting` (`id`, `description`, `enddatetime`, `processedforlatestac
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `meeting_read`
+-- Table structure for table `meeting_read`
 --
 
 CREATE TABLE IF NOT EXISTS `meeting_read` (
@@ -7361,7 +7388,7 @@ CREATE TABLE IF NOT EXISTS `meeting_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=37 ;
 
 --
--- Dumping data untuk tabel `meeting_read`
+-- Dumping data for table `meeting_read`
 --
 
 INSERT INTO `meeting_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -7405,7 +7432,7 @@ INSERT INTO `meeting_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `meeting_read_subscription`
+-- Table structure for table `meeting_read_subscription`
 --
 
 CREATE TABLE IF NOT EXISTS `meeting_read_subscription` (
@@ -7421,7 +7448,7 @@ CREATE TABLE IF NOT EXISTS `meeting_read_subscription` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `messagesource`
+-- Table structure for table `messagesource`
 --
 
 CREATE TABLE IF NOT EXISTS `messagesource` (
@@ -7435,7 +7462,7 @@ CREATE TABLE IF NOT EXISTS `messagesource` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `messagetranslation`
+-- Table structure for table `messagetranslation`
 --
 
 CREATE TABLE IF NOT EXISTS `messagetranslation` (
@@ -7450,7 +7477,7 @@ CREATE TABLE IF NOT EXISTS `messagetranslation` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mission`
+-- Table structure for table `mission`
 --
 
 CREATE TABLE IF NOT EXISTS `mission` (
@@ -7466,7 +7493,7 @@ CREATE TABLE IF NOT EXISTS `mission` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data untuk tabel `mission`
+-- Dumping data for table `mission`
 --
 
 INSERT INTO `mission` (`id`, `description`, `duedatetime`, `latestdatetime`, `status`, `reward`, `ownedsecurableitem_id`, `takenbyuser__user_id`) VALUES
@@ -7478,7 +7505,7 @@ INSERT INTO `mission` (`id`, `description`, `duedatetime`, `latestdatetime`, `st
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mission_read`
+-- Table structure for table `mission_read`
 --
 
 CREATE TABLE IF NOT EXISTS `mission_read` (
@@ -7492,7 +7519,7 @@ CREATE TABLE IF NOT EXISTS `mission_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
--- Dumping data untuk tabel `mission_read`
+-- Dumping data for table `mission_read`
 --
 
 INSERT INTO `mission_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -7507,7 +7534,7 @@ INSERT INTO `mission_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `modelcreationapisync`
+-- Table structure for table `modelcreationapisync`
 --
 
 CREATE TABLE IF NOT EXISTS `modelcreationapisync` (
@@ -7522,7 +7549,7 @@ CREATE TABLE IF NOT EXISTS `modelcreationapisync` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `multiplevaluescustomfield`
+-- Table structure for table `multiplevaluescustomfield`
 --
 
 CREATE TABLE IF NOT EXISTS `multiplevaluescustomfield` (
@@ -7534,7 +7561,739 @@ CREATE TABLE IF NOT EXISTS `multiplevaluescustomfield` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `namedsecurableitem`
+-- Table structure for table `m_costumer`
+--
+
+CREATE TABLE IF NOT EXISTS `m_costumer` (
+  `COSTUMER_ID` bigint(20) NOT NULL,
+  `USER_ID` bigint(20) NOT NULL,
+  `COSTUMER_NAME` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `COSTUMER_GENDER` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `COSTUMER_ADDRESS` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `COSTUMER_CITY` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `COSTUMER_PROVINCE` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `COSTUMER_HOMEPHONE` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `COSTUMER_EPAY_SALDO` double DEFAULT NULL,
+  `COSTUMER_PHOTO` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`COSTUMER_ID`),
+  KEY `FK_RELATIONSHIP_2` (`USER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `m_costumer`
+--
+
+INSERT INTO `m_costumer` (`COSTUMER_ID`, `USER_ID`, `COSTUMER_NAME`, `COSTUMER_GENDER`, `COSTUMER_ADDRESS`, `COSTUMER_CITY`, `COSTUMER_PROVINCE`, `COSTUMER_HOMEPHONE`, `COSTUMER_EPAY_SALDO`, `COSTUMER_PHOTO`) VALUES
+(1, 161466210000005, 'Ulil Albab', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_costumer_epayment`
+--
+
+CREATE TABLE IF NOT EXISTS `m_costumer_epayment` (
+  `EPAYMENT_CODE` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
+  `COSTUMER_ID` bigint(20) NOT NULL,
+  PRIMARY KEY (`EPAYMENT_CODE`,`COSTUMER_ID`),
+  KEY `FK_RELATIONSHIP_41` (`COSTUMER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_costumer_point`
+--
+
+CREATE TABLE IF NOT EXISTS `m_costumer_point` (
+  `COSTUMER_ID` bigint(20) DEFAULT NULL,
+  `POINT` bigint(20) DEFAULT NULL,
+  KEY `FK_RELATIONSHIP_31` (`COSTUMER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_delivery_order`
+--
+
+CREATE TABLE IF NOT EXISTS `m_delivery_order` (
+  `EMPLOYEE_ID` bigint(20) NOT NULL,
+  `ORDER_ID` bigint(20) NOT NULL,
+  PRIMARY KEY (`EMPLOYEE_ID`,`ORDER_ID`),
+  KEY `FK_RELATIONSHIP_46` (`ORDER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_driver_status`
+--
+
+CREATE TABLE IF NOT EXISTS `m_driver_status` (
+  `EMPLOYEE_ID` bigint(20) DEFAULT NULL,
+  `AVAILABLE_DRIVER` tinyint(1) DEFAULT NULL,
+  KEY `FK_RELATIONSHIP_47` (`EMPLOYEE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_employee`
+--
+
+CREATE TABLE IF NOT EXISTS `m_employee` (
+  `EMPLOYEE_ID` bigint(20) NOT NULL,
+  `EMPLOYEE_POSITION_ID` int(11) NOT NULL,
+  `SHIFT_ID` int(11) NOT NULL,
+  `USER_ID` bigint(20) NOT NULL,
+  `MINIMART_ID` bigint(20) NOT NULL,
+  `EMPLOYEE_NAME` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `EMPLOYEE_GENDER` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `EMPLOYEE_RELIGION` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `EMPLOYEE_ADDRESS` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `EMPLOYEE_CITY` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `EMPLOYEE_PROVINCE` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `EMPLOYEE_HOMEPHONE` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `EMPLOYEE_MARITAL_STATUS` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `EMPLOYEE_PHOTO` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`EMPLOYEE_ID`),
+  KEY `FK_RELATIONSHIP_1` (`EMPLOYEE_POSITION_ID`),
+  KEY `FK_RELATIONSHIP_19` (`MINIMART_ID`),
+  KEY `FK_RELATIONSHIP_28` (`SHIFT_ID`),
+  KEY `FK_RELATIONSHIP_3` (`USER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `m_employee`
+--
+
+INSERT INTO `m_employee` (`EMPLOYEE_ID`, `EMPLOYEE_POSITION_ID`, `SHIFT_ID`, `USER_ID`, `MINIMART_ID`, `EMPLOYEE_NAME`, `EMPLOYEE_GENDER`, `EMPLOYEE_RELIGION`, `EMPLOYEE_ADDRESS`, `EMPLOYEE_CITY`, `EMPLOYEE_PROVINCE`, `EMPLOYEE_HOMEPHONE`, `EMPLOYEE_MARITAL_STATUS`, `EMPLOYEE_PHOTO`) VALUES
+(1989062020140110004, 5, 2, 161466210000005, 101, 'Ulil Albab', 'M', 'Islam', 'Jl. Ciputat Raya No. 77', 'Tangerang', 'Banten', '082198546732', 'Single', ''),
+(1990072120140120002, 3, 1, 161466210000003, 101, 'Febriyanti Darnis', 'F', 'Islam', 'Jl. Sriiwijaya Dalam No.34 A', 'Palembang', 'Sumatra Selatan', '085612563478', 'Single', ''),
+(1991061820140110001, 2, 1, 161466210000002, 101, 'Ahmad Ikhsan Ramadhan', 'M', 'Islam', 'JL. Bogor Raya No.12', 'Bogor', 'Jawa Barat', '085298765432', 'Single', ''),
+(1991062220140120003, 4, 1, 161466210000004, 101, 'Dwi Meylitasari Tarigan', 'F', 'Islam', 'Jl. Dusun Sriwijaya Hilir No. 56', 'Palembang', 'Sumatra Selatan', '089912349876', 'Single', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_employee_attandance`
+--
+
+CREATE TABLE IF NOT EXISTS `m_employee_attandance` (
+  `ATTENDANCE_ID` bigint(20) NOT NULL,
+  `EMPLOYEE_ID` bigint(20) NOT NULL,
+  `ATTANDANCE_DATE` date DEFAULT NULL,
+  `START_ATTANDANCE_TIME` time DEFAULT NULL,
+  `END_ATTANDANCE_TIME` time DEFAULT NULL,
+  PRIMARY KEY (`ATTENDANCE_ID`),
+  KEY `FK_RELATIONSHIP_29` (`EMPLOYEE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_employee_position`
+--
+
+CREATE TABLE IF NOT EXISTS `m_employee_position` (
+  `EMPLOYEE_POSITION_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `EMPLOYEE_POSITION_NAME` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `EMPLOYEE_BASE_SALARY` double DEFAULT NULL,
+  PRIMARY KEY (`EMPLOYEE_POSITION_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `m_employee_position`
+--
+
+INSERT INTO `m_employee_position` (`EMPLOYEE_POSITION_ID`, `EMPLOYEE_POSITION_NAME`, `EMPLOYEE_BASE_SALARY`) VALUES
+(1, 'Administrator', 5000000),
+(2, 'General Manager', 8000000),
+(3, 'Inventory', 4000000),
+(4, 'Purchasing', 4000000),
+(5, 'Delivery', 3000000),
+(6, 'Cashier', 3000000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_employee_shift`
+--
+
+CREATE TABLE IF NOT EXISTS `m_employee_shift` (
+  `SHIFT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `SHIFT_NAME` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SHIFT_START_TIME` time DEFAULT NULL,
+  `SHIFT_END_TIME` time DEFAULT NULL,
+  PRIMARY KEY (`SHIFT_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `m_employee_shift`
+--
+
+INSERT INTO `m_employee_shift` (`SHIFT_ID`, `SHIFT_NAME`, `SHIFT_START_TIME`, `SHIFT_END_TIME`) VALUES
+(1, 'Non Shift', '08:00:00', '16:00:00'),
+(2, 'Day Shift', '07:00:00', '15:00:00'),
+(3, 'Night Shift', '15:00:00', '22:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_epayment`
+--
+
+CREATE TABLE IF NOT EXISTS `m_epayment` (
+  `EPAYMENT_CODE` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
+  `EPAYMENT_VALUE_ID` int(11) DEFAULT NULL,
+  `EPAYMENT_STATUS` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`EPAYMENT_CODE`),
+  KEY `FK_RELATIONSHIP_42` (`EPAYMENT_VALUE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_epayment_value`
+--
+
+CREATE TABLE IF NOT EXISTS `m_epayment_value` (
+  `EPAYMENT_VALUE_ID` int(11) NOT NULL,
+  `EPAYMENT_VALUE` float DEFAULT NULL,
+  PRIMARY KEY (`EPAYMENT_VALUE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_expired`
+--
+
+CREATE TABLE IF NOT EXISTS `m_expired` (
+  `EXPIRED_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `EXPIRED_NAME` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`EXPIRED_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `m_expired`
+--
+
+INSERT INTO `m_expired` (`EXPIRED_ID`, `EXPIRED_NAME`) VALUES
+(1, 'Non Expired'),
+(2, 'Expired');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_expired_goods`
+--
+
+CREATE TABLE IF NOT EXISTS `m_expired_goods` (
+  `BARCODE_ID` bigint(20) NOT NULL,
+  `EXPIRED_ID` int(11) NOT NULL,
+  `EXPIRED_DATE` date DEFAULT NULL,
+  PRIMARY KEY (`EXPIRED_ID`,`BARCODE_ID`),
+  KEY `FK_RELATIONSHIP_38` (`BARCODE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `m_expired_goods`
+--
+
+INSERT INTO `m_expired_goods` (`BARCODE_ID`, `EXPIRED_ID`, `EXPIRED_DATE`) VALUES
+(8991001000019, 2, '2014-10-01'),
+(8991001000026, 2, '2014-10-01'),
+(8991001000033, 2, '2014-10-01'),
+(8991001000040, 2, '2014-10-15'),
+(8991001000057, 2, '2014-10-15'),
+(8991001000064, 2, '2014-10-15'),
+(8991001000071, 2, '2014-10-15'),
+(8991001000088, 2, '2014-10-01'),
+(8991001000095, 2, '2014-10-01'),
+(8991001000101, 2, '2014-10-01'),
+(8991001000118, 2, '2014-10-15'),
+(8991001000125, 2, '2014-10-15'),
+(8991001000132, 2, '2014-10-15'),
+(8991001000149, 2, '2014-11-01'),
+(8991001000156, 2, '2014-11-01'),
+(8991002000018, 2, '2014-12-01'),
+(8991002000025, 2, '2014-12-01'),
+(8991002000032, 2, '2014-12-01'),
+(8991002000049, 2, '2014-12-01'),
+(8991002000056, 2, '2014-12-01'),
+(8991002000063, 2, '2014-12-01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_goods`
+--
+
+CREATE TABLE IF NOT EXISTS `m_goods` (
+  `BARCODE_ID` bigint(20) NOT NULL,
+  `GOODS_CATEGORY_ID` int(11) DEFAULT NULL,
+  `GOODS_ID` bigint(20) NOT NULL,
+  `GOODS_NAME` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `GOODS_SELL_PRICE` float DEFAULT NULL,
+  `GOODS_SAFETY_STOCK` bigint(20) DEFAULT NULL,
+  `GOODS_ACTIVE_DATE` date DEFAULT NULL,
+  `GOODS_DESCRIPTION` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `GOODS_IMAGE` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`BARCODE_ID`),
+  KEY `FK_RELATIONSHIP_7` (`GOODS_CATEGORY_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `m_goods`
+--
+
+INSERT INTO `m_goods` (`BARCODE_ID`, `GOODS_CATEGORY_ID`, `GOODS_ID`, `GOODS_NAME`, `GOODS_SELL_PRICE`, `GOODS_SAFETY_STOCK`, `GOODS_ACTIVE_DATE`, `GOODS_DESCRIPTION`, `GOODS_IMAGE`) VALUES
+(8991001000019, 2, 10001, 'Bear Brand 180ml', 6575, 60, '2014-01-01', 'Susu beruang', ''),
+(8991001000026, 2, 10002, 'Bear Brand Gold White Tea 140ml', 6650, 60, '2014-01-01', 'Susu beruang dengan kandungan teh putih', ''),
+(8991001000033, 2, 10003, 'Bear Brand Gold White Malt 140ml', 6650, 60, '2014-01-01', 'Susu beruang dengan kandungan malt', ''),
+(8991001000040, 2, 10004, 'Milo Can Original 240ml', 8150, 60, '2014-01-15', 'Milo rasa coklat original dalam kemasan kaleng 240ml', ''),
+(8991001000057, 2, 10005, 'Milo Can High Calcium 240ml', 8150, 60, '2014-01-15', 'Milo rasa coklat yang tinggi kalsium dalam kemasan kaleng 240ml', ''),
+(8991001000064, 2, 10006, 'Milo Can Mocca 240ml', 8150, 60, '2014-01-15', 'Milo rasa mocca dalam kemasan kaleng 240ml', ''),
+(8991001000071, 2, 10007, 'Milo UHT 200ml', 3800, 50, '2014-01-15', 'Milo rasa coklat dalam kemasan kotak 200ml', ''),
+(8991001000088, 2, 10008, 'Nescafe Can Original 240ml', 7250, 60, '2014-01-01', 'Nescafe kopi susu dalam kemasan kaleng 240ml', ''),
+(8991001000095, 2, 10009, 'Nescafe Can Latte 240ml', 7250, 60, '2014-01-01', 'Nescafe kopi susu latte dalam kemasan kaleng 240ml', ''),
+(8991001000101, 2, 10010, 'Nescafe Can Mocca 240ml', 7250, 60, '2014-01-01', 'Nescafe kopi rasa mocca dalam kemasan kaleng 240ml', ''),
+(8991001000118, 2, 10011, 'Nescafe UHT Cream 200ml', 3500, 50, '2014-01-15', 'Nescafe kopi plus cream dalam kemasan kotak 200ml', ''),
+(8991001000125, 2, 10012, 'Nescafe UHT Vanilla 200ml', 3500, 50, '2014-01-15', 'Nescafe kopi plus vanilla dalam kemasan kotak 200ml', ''),
+(8991001000132, 2, 10013, 'Nescafe UHT Caramelious 200ml', 3500, 50, '2014-01-15', 'Nescafe kopi plus caramel dalam kemasan kotak 200ml', ''),
+(8991001000149, 1, 10014, 'Milo Actigen-e 300gr', 30900, 40, '2014-02-01', 'Milo rasa coklat bubuk dalam kemasan kotak 300gr', ''),
+(8991001000156, 1, 10015, 'Milo 3 in 1 300gr', 29650, 40, '2014-02-01', 'Milo rasa coklat plus susu bubuk dalam kemasan kotak 300gr', ''),
+(8991002000018, 2, 10016, 'Ultra Milk Full Cream 200ml', 3250, 50, '2014-03-01', 'Susu ultra full cream dalam kemasan kotak 200ml', ''),
+(8991002000025, 2, 10017, 'Ultra Milk Strowberry 200ml', 3250, 50, '2014-03-01', 'Susu ultra rasa strowberry dalam kemasan kotak 200ml', ''),
+(8991002000032, 2, 10018, 'Ultra Milk Coklat 200ml', 3250, 50, '2014-03-01', 'Susu ultra rasa coklat dalam kemasan kotak 200ml', ''),
+(8991002000049, 2, 10019, 'Ultra Milk Full Cream Mini 125ml', 2000, 50, '2014-03-01', 'Susu ultra full cream dalam kemasan kotak 125ml', ''),
+(8991002000056, 2, 10020, 'Ultra Milk Strowberry Mini 125ml', 2000, 50, '2014-03-01', 'Susu ultra rasa strowberry dalam kemasan kotak 125ml', ''),
+(8991002000063, 2, 10021, 'Ultra Milk Coklat Mini 125ml', 2000, 50, '2014-03-01', 'Susu ultra rasa coklat dalam kemasan kotak 125ml', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_goods_category`
+--
+
+CREATE TABLE IF NOT EXISTS `m_goods_category` (
+  `GOODS_CATEGORY_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `GOODS_CATEGORY_NAME` varchar(258) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`GOODS_CATEGORY_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
+
+--
+-- Dumping data for table `m_goods_category`
+--
+
+INSERT INTO `m_goods_category` (`GOODS_CATEGORY_ID`, `GOODS_CATEGORY_NAME`) VALUES
+(1, 'Susu Bubuk'),
+(2, 'Susu Cair'),
+(3, 'Susu Kental Manis'),
+(4, 'Kopi Bubuk'),
+(5, 'Kopi Cair'),
+(6, 'Teh Bubuk'),
+(7, 'Teh'),
+(8, 'Jus Buah'),
+(9, 'Jus Sayur'),
+(10, 'Minuman Bersoda'),
+(11, 'Sirup'),
+(12, 'Air Mineral'),
+(13, 'Minuman Serbuk');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_goods_order`
+--
+
+CREATE TABLE IF NOT EXISTS `m_goods_order` (
+  `PURCHASE_ORDER_ID` bigint(20) NOT NULL,
+  `PURCHASE_ORDER_NUMBER` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `BARCODE_ID` bigint(20) NOT NULL,
+  `ORDER_QTY` int(11) DEFAULT NULL,
+  `GOODS_ORDER_EXPIRED` date DEFAULT NULL,
+  PRIMARY KEY (`BARCODE_ID`,`PURCHASE_ORDER_ID`,`PURCHASE_ORDER_NUMBER`),
+  KEY `FK_RELATIONSHIP_35` (`PURCHASE_ORDER_ID`,`PURCHASE_ORDER_NUMBER`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_goods_receive`
+--
+
+CREATE TABLE IF NOT EXISTS `m_goods_receive` (
+  `GOOD_RECEIVE_ID` bigint(20) NOT NULL,
+  `GOOD_RECEIVE_NUMBER` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `PURCHASE_ORDER_ID` bigint(20) DEFAULT NULL,
+  `PURCHASE_ORDER_NUMBER` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `EMPLOYEE_ID` bigint(20) DEFAULT NULL,
+  `GOOD_RECEIVE_DATE` date DEFAULT NULL,
+  `GOOD_RECEIVE_QTY` bigint(20) DEFAULT NULL,
+  `GOOD_RECEIVE_STATUS` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`GOOD_RECEIVE_ID`,`GOOD_RECEIVE_NUMBER`),
+  KEY `FK_RELATIONSHIP_17` (`EMPLOYEE_ID`),
+  KEY `FK_RELATIONSHIP_30` (`PURCHASE_ORDER_ID`,`PURCHASE_ORDER_NUMBER`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_minimart`
+--
+
+CREATE TABLE IF NOT EXISTS `m_minimart` (
+  `MINIMART_ID` bigint(20) NOT NULL,
+  `MINIMART_TYPE_ID` int(11) NOT NULL,
+  `MINIMART_NAME` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `MINIMART_ADDRESS` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `MINIMART_CITY` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `MINIMART_PROVINCE` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `MINIMART_LATITUDE` double DEFAULT NULL,
+  `MINIMART_LONGITUDE` double DEFAULT NULL,
+  PRIMARY KEY (`MINIMART_ID`),
+  KEY `FK_RELATIONSHIP_18` (`MINIMART_TYPE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `m_minimart`
+--
+
+INSERT INTO `m_minimart` (`MINIMART_ID`, `MINIMART_TYPE_ID`, `MINIMART_NAME`, `MINIMART_ADDRESS`, `MINIMART_CITY`, `MINIMART_PROVINCE`, `MINIMART_LATITUDE`, `MINIMART_LONGITUDE`) VALUES
+(101, 1, 'Minimart Pusat Bandung', 'Jl. Soekarno Hatta No. 791', 'Bandung', 'Jawa Barat', -6.94361, 107.64615),
+(102, 1, 'Minimart Pusat Cimahi', 'Jl. Nanjung Blok Ajeng No. 12', 'Cimahi', 'Jawa Barat', -6.91238, 107.53707),
+(201, 2, 'Minimart Gunung Batu', 'Jl. Gunung Batu No. 30', 'Bandung', 'Jawa Barat', -6.88883, 107.56519),
+(202, 2, 'Minimart Gatot Subroto Cimahi', 'Jl. Gatot Subroto No. 151', 'Cimahi', 'Jawa Barat', -6.87808, 107.54471);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_minimart_goods`
+--
+
+CREATE TABLE IF NOT EXISTS `m_minimart_goods` (
+  `MINIMART_ID` bigint(20) NOT NULL,
+  `BARCODE_ID` bigint(20) NOT NULL,
+  `CURRENT_STOCK_QTY` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`MINIMART_ID`,`BARCODE_ID`),
+  KEY `FK_RELATIONSHIP_39` (`BARCODE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_minimart_type`
+--
+
+CREATE TABLE IF NOT EXISTS `m_minimart_type` (
+  `MINIMART_TYPE_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `MINIMART_TYPE_NAME` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`MINIMART_TYPE_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `m_minimart_type`
+--
+
+INSERT INTO `m_minimart_type` (`MINIMART_TYPE_ID`, `MINIMART_TYPE_NAME`) VALUES
+(1, 'Minimart Pusat'),
+(2, 'Minimart Cabang');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_order`
+--
+
+CREATE TABLE IF NOT EXISTS `m_order` (
+  `ORDER_ID` bigint(20) NOT NULL,
+  `ORDER_TYPE_ID` int(11) NOT NULL,
+  `ORDER_STATUS_ID` int(11) NOT NULL,
+  `COSTUMER_ID` bigint(20) DEFAULT NULL,
+  `ORDER_DATE` date DEFAULT NULL,
+  `ORDER_TIME` time DEFAULT NULL,
+  PRIMARY KEY (`ORDER_ID`),
+  KEY `FK_RELATIONSHIP_4` (`COSTUMER_ID`),
+  KEY `FK_RELATIONSHIP_43` (`ORDER_STATUS_ID`),
+  KEY `FK_RELATIONSHIP_44` (`ORDER_TYPE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_order_details`
+--
+
+CREATE TABLE IF NOT EXISTS `m_order_details` (
+  `ORDER_ID` bigint(20) DEFAULT NULL,
+  `BARCODE_ID` bigint(20) DEFAULT NULL,
+  `ORDER_QTY` int(11) DEFAULT NULL,
+  KEY `FK_RELATIONSHIP_24` (`BARCODE_ID`),
+  KEY `FK_RELATIONSHIP_6` (`ORDER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_order_status`
+--
+
+CREATE TABLE IF NOT EXISTS `m_order_status` (
+  `ORDER_STATUS_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ORDER_STATUS_NAME` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`ORDER_STATUS_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `m_order_status`
+--
+
+INSERT INTO `m_order_status` (`ORDER_STATUS_ID`, `ORDER_STATUS_NAME`) VALUES
+(1, 'Open'),
+(2, 'On Delivery'),
+(3, 'Close');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_order_type`
+--
+
+CREATE TABLE IF NOT EXISTS `m_order_type` (
+  `ORDER_TYPE_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ORDER_TYPE_NAME` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`ORDER_TYPE_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `m_order_type`
+--
+
+INSERT INTO `m_order_type` (`ORDER_TYPE_ID`, `ORDER_TYPE_NAME`) VALUES
+(1, 'Order In Minimart'),
+(2, 'Delivery Order');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_promo_goods`
+--
+
+CREATE TABLE IF NOT EXISTS `m_promo_goods` (
+  `PROMO_ID` bigint(20) NOT NULL,
+  `BARCODE_ID` bigint(20) DEFAULT NULL,
+  `PROMO_START_DATE` date DEFAULT NULL,
+  `PROMO_END_DATE` date DEFAULT NULL,
+  `PROMO_PRICE` float DEFAULT NULL,
+  PRIMARY KEY (`PROMO_ID`),
+  KEY `FK_RELATIONSHIP_25` (`BARCODE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_purchase_order`
+--
+
+CREATE TABLE IF NOT EXISTS `m_purchase_order` (
+  `PURCHASE_ORDER_ID` bigint(20) NOT NULL,
+  `PURCHASE_ORDER_NUMBER` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `SUPPLIER_ID` bigint(20) DEFAULT NULL,
+  `EMPLOYEE_ID` bigint(20) DEFAULT NULL,
+  `PURCHASE_ORDER_DATE` date DEFAULT NULL,
+  `PURCHASE_ORDER_DELIVERY_DATE` date DEFAULT NULL,
+  `PURCHASE_ORDER_DESTINATION` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`PURCHASE_ORDER_ID`,`PURCHASE_ORDER_NUMBER`),
+  KEY `FK_RELATIONSHIP_15` (`EMPLOYEE_ID`),
+  KEY `FK_RELATIONSHIP_27` (`SUPPLIER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_purchase_payment`
+--
+
+CREATE TABLE IF NOT EXISTS `m_purchase_payment` (
+  `PURCHASE_PAYMENT_ID` bigint(20) NOT NULL,
+  `PURCHASE_PAYMENT_NUMBER` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `GOOD_RECEIVE_ID` bigint(20) DEFAULT NULL,
+  `GOOD_RECEIVE_NUMBER` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `EMPLOYEE_ID` bigint(20) DEFAULT NULL,
+  `PURCHASE_PAYMENT_DATE` date DEFAULT NULL,
+  PRIMARY KEY (`PURCHASE_PAYMENT_ID`,`PURCHASE_PAYMENT_NUMBER`),
+  KEY `FK_RELATIONSHIP_16` (`EMPLOYEE_ID`),
+  KEY `FK_RELATIONSHIP_26` (`GOOD_RECEIVE_ID`,`GOOD_RECEIVE_NUMBER`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_role`
+--
+
+CREATE TABLE IF NOT EXISTS `m_role` (
+  `ROLE_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ROLE_NAME` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`ROLE_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `m_role`
+--
+
+INSERT INTO `m_role` (`ROLE_ID`, `ROLE_NAME`) VALUES
+(1, 'Administrator'),
+(2, 'Manager'),
+(3, 'Employee'),
+(4, 'Costumer'),
+(5, 'Guest');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_salary`
+--
+
+CREATE TABLE IF NOT EXISTS `m_salary` (
+  `SALARY_ID` bigint(20) NOT NULL,
+  `EMPLOYEE_ID` bigint(20) NOT NULL,
+  `SALARY_DATE` date DEFAULT NULL,
+  `WORKING_TIME` float DEFAULT NULL,
+  `EMPLOYEE_SALARY` double DEFAULT NULL,
+  PRIMARY KEY (`SALARY_ID`),
+  KEY `FK_RELATIONSHIP_22` (`EMPLOYEE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_sale_transaction`
+--
+
+CREATE TABLE IF NOT EXISTS `m_sale_transaction` (
+  `TRANSACTION_ID` bigint(20) NOT NULL,
+  `ORDER_ID` bigint(20) DEFAULT NULL,
+  `EMPLOYEE_ID` bigint(20) DEFAULT NULL,
+  `TRANSACTION_DATE` date DEFAULT NULL,
+  `TRANSACTION_TIME` time DEFAULT NULL,
+  `TRANSACTION_TOTAL_PRICE` double DEFAULT NULL,
+  PRIMARY KEY (`TRANSACTION_ID`),
+  KEY `FK_RELATIONSHIP_23` (`EMPLOYEE_ID`),
+  KEY `FK_RELATIONSHIP_5` (`ORDER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_supplier`
+--
+
+CREATE TABLE IF NOT EXISTS `m_supplier` (
+  `SUPPLIER_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `SUPPLIER_NAME` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SUPPLIER_ADDRESS` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SUPPLIER_CITY` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SUPPLIER_STATE` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SUPPLIER_COUNTRY` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SUPPLIER_POSTCODE` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SUPPLIER_CONTACT_PERSON` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SUPPLIER_PHONE` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SUPPLIER_LATITUDE` double DEFAULT NULL,
+  `SUPPLIER_LONGITUDE` double DEFAULT NULL,
+  PRIMARY KEY (`SUPPLIER_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1003 ;
+
+--
+-- Dumping data for table `m_supplier`
+--
+
+INSERT INTO `m_supplier` (`SUPPLIER_ID`, `SUPPLIER_NAME`, `SUPPLIER_ADDRESS`, `SUPPLIER_CITY`, `SUPPLIER_STATE`, `SUPPLIER_COUNTRY`, `SUPPLIER_POSTCODE`, `SUPPLIER_CONTACT_PERSON`, `SUPPLIER_PHONE`, `SUPPLIER_LATITUDE`, `SUPPLIER_LONGITUDE`) VALUES
+(1001, 'PT. Nestle Indonesia', 'Jl. TB. Simatupang Kav 55 Jakarta Selatan', 'Jakarta', 'DKI Jakarta', 'Indonesia', '12520', 'Hendri Nestle', '02178836000', -6.29257, 106.80736),
+(1002, 'PT. Ultrajaya Milk Industry', 'Jl. Raya Cimareme No. 131', 'Padalarang', 'Jawa Barat', 'Indonesia', '40552', 'Sabana Prawirawidjaya', '02286700700', -6.86177, 107.5037);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_supplier_goods`
+--
+
+CREATE TABLE IF NOT EXISTS `m_supplier_goods` (
+  `SUPPLIER_ID` bigint(20) NOT NULL,
+  `BARCODE_ID` bigint(20) NOT NULL,
+  `PRICE` float DEFAULT NULL,
+  PRIMARY KEY (`SUPPLIER_ID`,`BARCODE_ID`),
+  KEY `FK_RELATIONSHIP_33` (`BARCODE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `m_supplier_goods`
+--
+
+INSERT INTO `m_supplier_goods` (`SUPPLIER_ID`, `BARCODE_ID`, `PRICE`) VALUES
+(1001, 8991001000019, 6300),
+(1001, 8991001000026, 6400),
+(1001, 8991001000033, 6400),
+(1001, 8991001000040, 8000),
+(1001, 8991001000057, 8000),
+(1001, 8991001000064, 8000),
+(1001, 8991001000071, 3500),
+(1001, 8991001000088, 7000),
+(1001, 8991001000095, 7000),
+(1001, 8991001000101, 7000),
+(1001, 8991001000118, 3200),
+(1001, 8991001000125, 3200),
+(1001, 8991001000132, 3200),
+(1001, 8991001000149, 30000),
+(1001, 8991001000156, 29000),
+(1002, 8991002000018, 3000),
+(1002, 8991002000025, 3000),
+(1002, 8991002000032, 3000),
+(1002, 8991002000049, 1800),
+(1002, 8991002000056, 1800),
+(1002, 8991002000063, 1800);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_user`
+--
+
+CREATE TABLE IF NOT EXISTS `m_user` (
+  `USER_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ROLE_ID` int(11) DEFAULT NULL,
+  `USERNAME` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `PASSWORD` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `EMAIL` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `HANDPHONE` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
+  `DATE_OF_BIRTH` date DEFAULT NULL,
+  `ACTIVATION_STATUS` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `REGISTRATION_DATE` date DEFAULT NULL,
+  `UPDATE_DATE` date DEFAULT NULL,
+  `LAST_LOGIN_DATE` datetime DEFAULT NULL,
+  PRIMARY KEY (`USER_ID`),
+  KEY `FK_RELATIONSHIP_20` (`ROLE_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=161466210000006 ;
+
+--
+-- Dumping data for table `m_user`
+--
+
+INSERT INTO `m_user` (`USER_ID`, `ROLE_ID`, `USERNAME`, `PASSWORD`, `EMAIL`, `HANDPHONE`, `DATE_OF_BIRTH`, `ACTIVATION_STATUS`, `REGISTRATION_DATE`, `UPDATE_DATE`, `LAST_LOGIN_DATE`) VALUES
+(161466210000000, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@admin.com', '085212344321', '1990-02-02', 'active', '2014-01-01', '2014-01-01', '2014-03-10 00:00:00'),
+(161466210000001, 5, 'guest', '084e0343a0486ff05530df6c705c8bb4', 'guest@test.com', '081212341234', '1990-01-01', 'active', '2014-01-01', '2014-01-01', '2014-03-10 00:00:00'),
+(161466210000002, 2, 'ikhsan', '4e9194a3bb65ab53e41247480905c391', 'ikhsan@gmail.com', '085298765432', '1991-06-18', 'active', '2014-01-01', '2014-01-01', '2014-03-10 00:00:00'),
+(161466210000003, 3, 'eby', 'dc0945a57cb219c782069b9f0095acf0', 'eby@gmail.com', '085612563478', '1990-07-21', 'active', '2014-01-01', '2014-01-01', '2014-03-10 00:00:00'),
+(161466210000004, 3, 'dwi', '7aa2602c588c05a93baf10128861aeb9', 'dwi@gmail.com', '089912349876', '1991-06-22', 'active', '2014-01-01', '2014-01-01', '2014-03-10 00:00:00'),
+(161466210000005, 3, 'ulil', 'fc14409ac80e5d5e7cc58ea538538af4', 'albabz@gmail.com', '082198546732', '1989-06-20', 'pending', '2014-01-01', '2014-01-01', '2014-01-01 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `namedsecurableitem`
 --
 
 CREATE TABLE IF NOT EXISTS `namedsecurableitem` (
@@ -7548,7 +8307,7 @@ CREATE TABLE IF NOT EXISTS `namedsecurableitem` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `note`
+-- Table structure for table `note`
 --
 
 CREATE TABLE IF NOT EXISTS `note` (
@@ -7560,7 +8319,7 @@ CREATE TABLE IF NOT EXISTS `note` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=22 ;
 
 --
--- Dumping data untuk tabel `note`
+-- Dumping data for table `note`
 --
 
 INSERT INTO `note` (`id`, `description`, `occurredondatetime`, `activity_id`) VALUES
@@ -7589,7 +8348,7 @@ INSERT INTO `note` (`id`, `description`, `occurredondatetime`, `activity_id`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `note_read`
+-- Table structure for table `note_read`
 --
 
 CREATE TABLE IF NOT EXISTS `note_read` (
@@ -7603,7 +8362,7 @@ CREATE TABLE IF NOT EXISTS `note_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=22 ;
 
 --
--- Dumping data untuk tabel `note_read`
+-- Dumping data for table `note_read`
 --
 
 INSERT INTO `note_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -7632,7 +8391,7 @@ INSERT INTO `note_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `notification`
+-- Table structure for table `notification`
 --
 
 CREATE TABLE IF NOT EXISTS `notification` (
@@ -7646,7 +8405,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Dumping data untuk tabel `notification`
+-- Dumping data for table `notification`
 --
 
 INSERT INTO `notification` (`id`, `type`, `ownerhasreadlatest`, `item_id`, `notificationmessage_id`, `owner__user_id`) VALUES
@@ -7656,7 +8415,7 @@ INSERT INTO `notification` (`id`, `type`, `ownerhasreadlatest`, `item_id`, `noti
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `notificationmessage`
+-- Table structure for table `notificationmessage`
 --
 
 CREATE TABLE IF NOT EXISTS `notificationmessage` (
@@ -7668,7 +8427,7 @@ CREATE TABLE IF NOT EXISTS `notificationmessage` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data untuk tabel `notificationmessage`
+-- Dumping data for table `notificationmessage`
 --
 
 INSERT INTO `notificationmessage` (`id`, `htmlcontent`, `textcontent`, `item_id`) VALUES
@@ -7677,7 +8436,7 @@ INSERT INTO `notificationmessage` (`id`, `htmlcontent`, `textcontent`, `item_id`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `notificationsubscriber`
+-- Table structure for table `notificationsubscriber`
 --
 
 CREATE TABLE IF NOT EXISTS `notificationsubscriber` (
@@ -7689,7 +8448,7 @@ CREATE TABLE IF NOT EXISTS `notificationsubscriber` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=229 ;
 
 --
--- Dumping data untuk tabel `notificationsubscriber`
+-- Dumping data for table `notificationsubscriber`
 --
 
 INSERT INTO `notificationsubscriber` (`id`, `hasreadlatest`, `person_item_id`, `task_id`) VALUES
@@ -7925,7 +8684,7 @@ INSERT INTO `notificationsubscriber` (`id`, `hasreadlatest`, `person_item_id`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `opportunity`
+-- Table structure for table `opportunity`
 --
 
 CREATE TABLE IF NOT EXISTS `opportunity` (
@@ -7943,7 +8702,7 @@ CREATE TABLE IF NOT EXISTS `opportunity` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
--- Dumping data untuk tabel `opportunity`
+-- Dumping data for table `opportunity`
 --
 
 INSERT INTO `opportunity` (`id`, `closedate`, `description`, `name`, `probability`, `ownedsecurableitem_id`, `account_id`, `amount_currencyvalue_id`, `stage_customfield_id`, `source_customfield_id`) VALUES
@@ -7963,7 +8722,7 @@ INSERT INTO `opportunity` (`id`, `closedate`, `description`, `name`, `probabilit
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `opportunitystarred`
+-- Table structure for table `opportunitystarred`
 --
 
 CREATE TABLE IF NOT EXISTS `opportunitystarred` (
@@ -7977,7 +8736,7 @@ CREATE TABLE IF NOT EXISTS `opportunitystarred` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `opportunity_project`
+-- Table structure for table `opportunity_project`
 --
 
 CREATE TABLE IF NOT EXISTS `opportunity_project` (
@@ -7993,7 +8752,7 @@ CREATE TABLE IF NOT EXISTS `opportunity_project` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `opportunity_read`
+-- Table structure for table `opportunity_read`
 --
 
 CREATE TABLE IF NOT EXISTS `opportunity_read` (
@@ -8007,7 +8766,7 @@ CREATE TABLE IF NOT EXISTS `opportunity_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
--- Dumping data untuk tabel `opportunity_read`
+-- Dumping data for table `opportunity_read`
 --
 
 INSERT INTO `opportunity_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -8027,7 +8786,7 @@ INSERT INTO `opportunity_read` (`id`, `securableitem_id`, `munge_id`, `count`) V
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ownedsecurableitem`
+-- Table structure for table `ownedsecurableitem`
 --
 
 CREATE TABLE IF NOT EXISTS `ownedsecurableitem` (
@@ -8038,7 +8797,7 @@ CREATE TABLE IF NOT EXISTS `ownedsecurableitem` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=351 ;
 
 --
--- Dumping data untuk tabel `ownedsecurableitem`
+-- Dumping data for table `ownedsecurableitem`
 --
 
 INSERT INTO `ownedsecurableitem` (`id`, `securableitem_id`, `owner__user_id`) VALUES
@@ -8396,7 +9155,7 @@ INSERT INTO `ownedsecurableitem` (`id`, `securableitem_id`, `owner__user_id`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `permission`
+-- Table structure for table `permission`
 --
 
 CREATE TABLE IF NOT EXISTS `permission` (
@@ -8409,7 +9168,7 @@ CREATE TABLE IF NOT EXISTS `permission` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=179 ;
 
 --
--- Dumping data untuk tabel `permission`
+-- Dumping data for table `permission`
 --
 
 INSERT INTO `permission` (`id`, `permissions`, `type`, `permitable_id`, `securableitem_id`) VALUES
@@ -8595,7 +9354,7 @@ INSERT INTO `permission` (`id`, `permissions`, `type`, `permitable_id`, `securab
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `permitable`
+-- Table structure for table `permitable`
 --
 
 CREATE TABLE IF NOT EXISTS `permitable` (
@@ -8605,7 +9364,7 @@ CREATE TABLE IF NOT EXISTS `permitable` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
--- Dumping data untuk tabel `permitable`
+-- Dumping data for table `permitable`
 --
 
 INSERT INTO `permitable` (`id`, `item_id`) VALUES
@@ -8631,7 +9390,7 @@ INSERT INTO `permitable` (`id`, `item_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `person`
+-- Table structure for table `person`
 --
 
 CREATE TABLE IF NOT EXISTS `person` (
@@ -8651,7 +9410,7 @@ CREATE TABLE IF NOT EXISTS `person` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=39 ;
 
 --
--- Dumping data untuk tabel `person`
+-- Dumping data for table `person`
 --
 
 INSERT INTO `person` (`id`, `department`, `firstname`, `jobtitle`, `lastname`, `mobilephone`, `officephone`, `officefax`, `ownedsecurableitem_id`, `primaryaddress_address_id`, `primaryemail_email_id`, `title_customfield_id`) VALUES
@@ -8697,7 +9456,7 @@ INSERT INTO `person` (`id`, `department`, `firstname`, `jobtitle`, `lastname`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `personwhohavenotreadlatest`
+-- Table structure for table `personwhohavenotreadlatest`
 --
 
 CREATE TABLE IF NOT EXISTS `personwhohavenotreadlatest` (
@@ -8708,7 +9467,7 @@ CREATE TABLE IF NOT EXISTS `personwhohavenotreadlatest` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=41 ;
 
 --
--- Dumping data untuk tabel `personwhohavenotreadlatest`
+-- Dumping data for table `personwhohavenotreadlatest`
 --
 
 INSERT INTO `personwhohavenotreadlatest` (`id`, `person_item_id`, `mission_id`) VALUES
@@ -8756,7 +9515,7 @@ INSERT INTO `personwhohavenotreadlatest` (`id`, `person_item_id`, `mission_id`) 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `perusermetadata`
+-- Table structure for table `perusermetadata`
 --
 
 CREATE TABLE IF NOT EXISTS `perusermetadata` (
@@ -8768,7 +9527,7 @@ CREATE TABLE IF NOT EXISTS `perusermetadata` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
--- Dumping data untuk tabel `perusermetadata`
+-- Dumping data for table `perusermetadata`
 --
 
 INSERT INTO `perusermetadata` (`id`, `classname`, `serializedmetadata`, `_user_id`) VALUES
@@ -8786,7 +9545,7 @@ INSERT INTO `perusermetadata` (`id`, `classname`, `serializedmetadata`, `_user_i
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `policy`
+-- Table structure for table `policy`
 --
 
 CREATE TABLE IF NOT EXISTS `policy` (
@@ -8801,7 +9560,7 @@ CREATE TABLE IF NOT EXISTS `policy` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `portlet`
+-- Table structure for table `portlet`
 --
 
 CREATE TABLE IF NOT EXISTS `portlet` (
@@ -8817,7 +9576,7 @@ CREATE TABLE IF NOT EXISTS `portlet` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
--- Dumping data untuk tabel `portlet`
+-- Dumping data for table `portlet`
 --
 
 INSERT INTO `portlet` (`id`, `column`, `position`, `layoutid`, `viewtype`, `serializedviewdata`, `collapsed`, `_user_id`) VALUES
@@ -8831,7 +9590,7 @@ INSERT INTO `portlet` (`id`, `column`, `position`, `layoutid`, `viewtype`, `seri
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE IF NOT EXISTS `product` (
@@ -8852,7 +9611,7 @@ CREATE TABLE IF NOT EXISTS `product` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=60 ;
 
 --
--- Dumping data untuk tabel `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`id`, `name`, `description`, `quantity`, `type`, `pricefrequency`, `ownedsecurableitem_id`, `account_id`, `contact_id`, `opportunity_id`, `producttemplate_id`, `stage_customfield_id`, `sellprice_currencyvalue_id`) VALUES
@@ -8919,7 +9678,7 @@ INSERT INTO `product` (`id`, `name`, `description`, `quantity`, `type`, `pricefr
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `productcatalog`
+-- Table structure for table `productcatalog`
 --
 
 CREATE TABLE IF NOT EXISTS `productcatalog` (
@@ -8930,7 +9689,7 @@ CREATE TABLE IF NOT EXISTS `productcatalog` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data untuk tabel `productcatalog`
+-- Dumping data for table `productcatalog`
 --
 
 INSERT INTO `productcatalog` (`id`, `name`, `item_id`) VALUES
@@ -8939,7 +9698,7 @@ INSERT INTO `productcatalog` (`id`, `name`, `item_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `productcatalog_productcategory`
+-- Table structure for table `productcatalog_productcategory`
 --
 
 CREATE TABLE IF NOT EXISTS `productcatalog_productcategory` (
@@ -8953,7 +9712,7 @@ CREATE TABLE IF NOT EXISTS `productcatalog_productcategory` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Dumping data untuk tabel `productcatalog_productcategory`
+-- Dumping data for table `productcatalog_productcategory`
 --
 
 INSERT INTO `productcatalog_productcategory` (`id`, `productcatalog_id`, `productcategory_id`) VALUES
@@ -8967,7 +9726,7 @@ INSERT INTO `productcatalog_productcategory` (`id`, `productcatalog_id`, `produc
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `productcategory`
+-- Table structure for table `productcategory`
 --
 
 CREATE TABLE IF NOT EXISTS `productcategory` (
@@ -8979,7 +9738,7 @@ CREATE TABLE IF NOT EXISTS `productcategory` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Dumping data untuk tabel `productcategory`
+-- Dumping data for table `productcategory`
 --
 
 INSERT INTO `productcategory` (`id`, `name`, `item_id`, `productcategory_id`) VALUES
@@ -8993,7 +9752,7 @@ INSERT INTO `productcategory` (`id`, `name`, `item_id`, `productcategory_id`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `productcategory_producttemplate`
+-- Table structure for table `productcategory_producttemplate`
 --
 
 CREATE TABLE IF NOT EXISTS `productcategory_producttemplate` (
@@ -9007,7 +9766,7 @@ CREATE TABLE IF NOT EXISTS `productcategory_producttemplate` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=33 ;
 
 --
--- Dumping data untuk tabel `productcategory_producttemplate`
+-- Dumping data for table `productcategory_producttemplate`
 --
 
 INSERT INTO `productcategory_producttemplate` (`id`, `productcategory_id`, `producttemplate_id`) VALUES
@@ -9047,7 +9806,7 @@ INSERT INTO `productcategory_producttemplate` (`id`, `productcategory_id`, `prod
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `producttemplate`
+-- Table structure for table `producttemplate`
 --
 
 CREATE TABLE IF NOT EXISTS `producttemplate` (
@@ -9066,7 +9825,7 @@ CREATE TABLE IF NOT EXISTS `producttemplate` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=33 ;
 
 --
--- Dumping data untuk tabel `producttemplate`
+-- Dumping data for table `producttemplate`
 --
 
 INSERT INTO `producttemplate` (`id`, `name`, `description`, `status`, `type`, `pricefrequency`, `item_id`, `sellpriceformula_id`, `cost_currencyvalue_id`, `listprice_currencyvalue_id`, `sellprice_currencyvalue_id`) VALUES
@@ -9106,7 +9865,7 @@ INSERT INTO `producttemplate` (`id`, `name`, `description`, `status`, `type`, `p
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `product_productcategory`
+-- Table structure for table `product_productcategory`
 --
 
 CREATE TABLE IF NOT EXISTS `product_productcategory` (
@@ -9122,7 +9881,7 @@ CREATE TABLE IF NOT EXISTS `product_productcategory` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `product_read`
+-- Table structure for table `product_read`
 --
 
 CREATE TABLE IF NOT EXISTS `product_read` (
@@ -9136,7 +9895,7 @@ CREATE TABLE IF NOT EXISTS `product_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=53 ;
 
 --
--- Dumping data untuk tabel `product_read`
+-- Dumping data for table `product_read`
 --
 
 INSERT INTO `product_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -9196,7 +9955,7 @@ INSERT INTO `product_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `project`
+-- Table structure for table `project`
 --
 
 CREATE TABLE IF NOT EXISTS `project` (
@@ -9209,7 +9968,7 @@ CREATE TABLE IF NOT EXISTS `project` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Dumping data untuk tabel `project`
+-- Dumping data for table `project`
 --
 
 INSERT INTO `project` (`id`, `name`, `description`, `status`, `ownedsecurableitem_id`) VALUES
@@ -9223,7 +9982,7 @@ INSERT INTO `project` (`id`, `name`, `description`, `status`, `ownedsecurableite
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `projectauditevent`
+-- Table structure for table `projectauditevent`
 --
 
 CREATE TABLE IF NOT EXISTS `projectauditevent` (
@@ -9237,7 +9996,7 @@ CREATE TABLE IF NOT EXISTS `projectauditevent` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=378 ;
 
 --
--- Dumping data untuk tabel `projectauditevent`
+-- Dumping data for table `projectauditevent`
 --
 
 INSERT INTO `projectauditevent` (`id`, `datetime`, `eventname`, `serializeddata`, `_user_id`, `project_id`) VALUES
@@ -9623,7 +10382,7 @@ INSERT INTO `projectauditevent` (`id`, `datetime`, `eventname`, `serializeddata`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `project_read`
+-- Table structure for table `project_read`
 --
 
 CREATE TABLE IF NOT EXISTS `project_read` (
@@ -9637,7 +10396,7 @@ CREATE TABLE IF NOT EXISTS `project_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 
 --
--- Dumping data untuk tabel `project_read`
+-- Dumping data for table `project_read`
 --
 
 INSERT INTO `project_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -9656,7 +10415,7 @@ INSERT INTO `project_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE IF NOT EXISTS `role` (
@@ -9669,7 +10428,7 @@ CREATE TABLE IF NOT EXISTS `role` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Dumping data untuk tabel `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id`, `name`, `item_id`, `role_id`) VALUES
@@ -9680,7 +10439,7 @@ INSERT INTO `role` (`id`, `name`, `item_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `savedreport`
+-- Table structure for table `savedreport`
 --
 
 CREATE TABLE IF NOT EXISTS `savedreport` (
@@ -9695,7 +10454,7 @@ CREATE TABLE IF NOT EXISTS `savedreport` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Dumping data untuk tabel `savedreport`
+-- Dumping data for table `savedreport`
 --
 
 INSERT INTO `savedreport` (`id`, `description`, `moduleclassname`, `name`, `serializeddata`, `type`, `ownedsecurableitem_id`) VALUES
@@ -9709,7 +10468,7 @@ INSERT INTO `savedreport` (`id`, `description`, `moduleclassname`, `name`, `seri
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `savedreport_read`
+-- Table structure for table `savedreport_read`
 --
 
 CREATE TABLE IF NOT EXISTS `savedreport_read` (
@@ -9723,7 +10482,7 @@ CREATE TABLE IF NOT EXISTS `savedreport_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Dumping data untuk tabel `savedreport_read`
+-- Dumping data for table `savedreport_read`
 --
 
 INSERT INTO `savedreport_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -9737,7 +10496,7 @@ INSERT INTO `savedreport_read` (`id`, `securableitem_id`, `munge_id`, `count`) V
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `savedsearch`
+-- Table structure for table `savedsearch`
 --
 
 CREATE TABLE IF NOT EXISTS `savedsearch` (
@@ -9752,7 +10511,7 @@ CREATE TABLE IF NOT EXISTS `savedsearch` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `savedworkflow`
+-- Table structure for table `savedworkflow`
 --
 
 CREATE TABLE IF NOT EXISTS `savedworkflow` (
@@ -9772,7 +10531,7 @@ CREATE TABLE IF NOT EXISTS `savedworkflow` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `securableitem`
+-- Table structure for table `securableitem`
 --
 
 CREATE TABLE IF NOT EXISTS `securableitem` (
@@ -9782,7 +10541,7 @@ CREATE TABLE IF NOT EXISTS `securableitem` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=351 ;
 
 --
--- Dumping data untuk tabel `securableitem`
+-- Dumping data for table `securableitem`
 --
 
 INSERT INTO `securableitem` (`id`, `item_id`) VALUES
@@ -10140,7 +10899,7 @@ INSERT INTO `securableitem` (`id`, `item_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sellpriceformula`
+-- Table structure for table `sellpriceformula`
 --
 
 CREATE TABLE IF NOT EXISTS `sellpriceformula` (
@@ -10152,7 +10911,7 @@ CREATE TABLE IF NOT EXISTS `sellpriceformula` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=33 ;
 
 --
--- Dumping data untuk tabel `sellpriceformula`
+-- Dumping data for table `sellpriceformula`
 --
 
 INSERT INTO `sellpriceformula` (`id`, `type`, `discountormarkuppercentage`, `producttemplate_id`) VALUES
@@ -10192,7 +10951,7 @@ INSERT INTO `sellpriceformula` (`id`, `type`, `discountormarkuppercentage`, `pro
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `shorturl`
+-- Table structure for table `shorturl`
 --
 
 CREATE TABLE IF NOT EXISTS `shorturl` (
@@ -10206,7 +10965,7 @@ CREATE TABLE IF NOT EXISTS `shorturl` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `socialitem`
+-- Table structure for table `socialitem`
 --
 
 CREATE TABLE IF NOT EXISTS `socialitem` (
@@ -10220,7 +10979,7 @@ CREATE TABLE IF NOT EXISTS `socialitem` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
--- Dumping data untuk tabel `socialitem`
+-- Dumping data for table `socialitem`
 --
 
 INSERT INTO `socialitem` (`id`, `description`, `latestdatetime`, `ownedsecurableitem_id`, `note_id`, `touser__user_id`) VALUES
@@ -10245,7 +11004,7 @@ INSERT INTO `socialitem` (`id`, `description`, `latestdatetime`, `ownedsecurable
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `socialitem_read`
+-- Table structure for table `socialitem_read`
 --
 
 CREATE TABLE IF NOT EXISTS `socialitem_read` (
@@ -10259,7 +11018,7 @@ CREATE TABLE IF NOT EXISTS `socialitem_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
 
 --
--- Dumping data untuk tabel `socialitem_read`
+-- Dumping data for table `socialitem_read`
 --
 
 INSERT INTO `socialitem_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -10281,7 +11040,7 @@ INSERT INTO `socialitem_read` (`id`, `securableitem_id`, `munge_id`, `count`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `stuckjob`
+-- Table structure for table `stuckjob`
 --
 
 CREATE TABLE IF NOT EXISTS `stuckjob` (
@@ -10294,7 +11053,7 @@ CREATE TABLE IF NOT EXISTS `stuckjob` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `task`
+-- Table structure for table `task`
 --
 
 CREATE TABLE IF NOT EXISTS `task` (
@@ -10312,7 +11071,7 @@ CREATE TABLE IF NOT EXISTS `task` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=79 ;
 
 --
--- Dumping data untuk tabel `task`
+-- Dumping data for table `task`
 --
 
 INSERT INTO `task` (`id`, `completeddatetime`, `completed`, `duedatetime`, `description`, `name`, `status`, `activity_id`, `requestedbyuser__user_id`, `project_id`) VALUES
@@ -10398,7 +11157,7 @@ INSERT INTO `task` (`id`, `completeddatetime`, `completed`, `duedatetime`, `desc
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `taskchecklistitem`
+-- Table structure for table `taskchecklistitem`
 --
 
 CREATE TABLE IF NOT EXISTS `taskchecklistitem` (
@@ -10410,7 +11169,7 @@ CREATE TABLE IF NOT EXISTS `taskchecklistitem` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=121 ;
 
 --
--- Dumping data untuk tabel `taskchecklistitem`
+-- Dumping data for table `taskchecklistitem`
 --
 
 INSERT INTO `taskchecklistitem` (`id`, `name`, `completed`, `task_id`) VALUES
@@ -10538,7 +11297,7 @@ INSERT INTO `taskchecklistitem` (`id`, `name`, `completed`, `task_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `task_read`
+-- Table structure for table `task_read`
 --
 
 CREATE TABLE IF NOT EXISTS `task_read` (
@@ -10552,7 +11311,7 @@ CREATE TABLE IF NOT EXISTS `task_read` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=135 ;
 
 --
--- Dumping data untuk tabel `task_read`
+-- Dumping data for table `task_read`
 --
 
 INSERT INTO `task_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
@@ -10694,7 +11453,7 @@ INSERT INTO `task_read` (`id`, `securableitem_id`, `munge_id`, `count`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `task_read_subscription`
+-- Table structure for table `task_read_subscription`
 --
 
 CREATE TABLE IF NOT EXISTS `task_read_subscription` (
@@ -10710,7 +11469,7 @@ CREATE TABLE IF NOT EXISTS `task_read_subscription` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `workflowmessageinqueue`
+-- Table structure for table `workflowmessageinqueue`
 --
 
 CREATE TABLE IF NOT EXISTS `workflowmessageinqueue` (
@@ -10728,7 +11487,7 @@ CREATE TABLE IF NOT EXISTS `workflowmessageinqueue` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `_group`
+-- Table structure for table `_group`
 --
 
 CREATE TABLE IF NOT EXISTS `_group` (
@@ -10741,7 +11500,7 @@ CREATE TABLE IF NOT EXISTS `_group` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
--- Dumping data untuk tabel `_group`
+-- Dumping data for table `_group`
 --
 
 INSERT INTO `_group` (`id`, `name`, `permitable_id`, `_group_id`) VALUES
@@ -10757,7 +11516,7 @@ INSERT INTO `_group` (`id`, `name`, `permitable_id`, `_group_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `_group__user`
+-- Table structure for table `_group__user`
 --
 
 CREATE TABLE IF NOT EXISTS `_group__user` (
@@ -10771,7 +11530,7 @@ CREATE TABLE IF NOT EXISTS `_group__user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Dumping data untuk tabel `_group__user`
+-- Dumping data for table `_group__user`
 --
 
 INSERT INTO `_group__user` (`id`, `_group_id`, `_user_id`) VALUES
@@ -10781,7 +11540,7 @@ INSERT INTO `_group__user` (`id`, `_group_id`, `_user_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `_right`
+-- Table structure for table `_right`
 --
 
 CREATE TABLE IF NOT EXISTS `_right` (
@@ -10794,7 +11553,7 @@ CREATE TABLE IF NOT EXISTS `_right` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=65 ;
 
 --
--- Dumping data untuk tabel `_right`
+-- Dumping data for table `_right`
 --
 
 INSERT INTO `_right` (`id`, `modulename`, `name`, `type`, `permitable_id`) VALUES
@@ -10866,7 +11625,7 @@ INSERT INTO `_right` (`id`, `modulename`, `name`, `type`, `permitable_id`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `_user`
+-- Table structure for table `_user`
 --
 
 CREATE TABLE IF NOT EXISTS `_user` (
@@ -10893,11 +11652,11 @@ CREATE TABLE IF NOT EXISTS `_user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
--- Dumping data untuk tabel `_user`
+-- Dumping data for table `_user`
 --
 
 INSERT INTO `_user` (`id`, `hash`, `language`, `locale`, `timezone`, `username`, `serializedavatardata`, `isactive`, `isrootuser`, `hidefromselecting`, `issystemuser`, `hidefromleaderboard`, `lastlogindatetime`, `permitable_id`, `person_id`, `currency_id`, `manager__user_id`, `role_id`) VALUES
-(1, '1b3231655cebb7a1f783eddf27d254ca', NULL, NULL, 'Asia/Jakarta', 'super', 'a:2:{s:10:"avatarType";i:2;s:24:"customAvatarEmailAddress";N;}', 1, NULL, NULL, NULL, NULL, '2014-03-11 00:16:51', 1, 1, NULL, NULL, NULL),
+(1, '1b3231655cebb7a1f783eddf27d254ca', NULL, NULL, 'America/Chicago', 'super', NULL, 1, NULL, NULL, NULL, NULL, '2014-03-18 04:34:30', 1, 1, NULL, NULL, NULL),
 (2, '8f6db73b3bc3c949771cad873e740244', NULL, NULL, 'America/Chicago', 'backendjoboractionuser', NULL, 0, NULL, 1, 1, 1, NULL, 4, 2, NULL, NULL, NULL),
 (3, '21232f297a57a5a743894a0e4a801fc3', 'en', NULL, 'America/Chicago', 'admin', 'a:2:{s:10:"avatarType";i:2;s:24:"customAvatarEmailAddress";N;}', 1, NULL, NULL, NULL, NULL, '2014-03-10 18:06:20', 11, 3, 3, NULL, 1),
 (4, '5e027396789a18c37aeda616e3d7991b', 'en', NULL, 'America/Chicago', 'jim', 'a:2:{s:10:"avatarType";i:2;s:24:"customAvatarEmailAddress";N;}', 1, NULL, NULL, NULL, NULL, '2014-03-10 18:06:29', 12, 4, 3, NULL, 2),
@@ -10911,7 +11670,7 @@ INSERT INTO `_user` (`id`, `hash`, `language`, `locale`, `timezone`, `username`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `__role_children_cache`
+-- Table structure for table `__role_children_cache`
 --
 
 CREATE TABLE IF NOT EXISTS `__role_children_cache` (
@@ -10920,6 +11679,164 @@ CREATE TABLE IF NOT EXISTS `__role_children_cache` (
   PRIMARY KEY (`permitable_id`,`role_id`),
   UNIQUE KEY `permitable_id` (`permitable_id`,`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `m_costumer`
+--
+ALTER TABLE `m_costumer`
+  ADD CONSTRAINT `FK_RELATIONSHIP_2` FOREIGN KEY (`USER_ID`) REFERENCES `m_user` (`USER_ID`);
+
+--
+-- Constraints for table `m_costumer_epayment`
+--
+ALTER TABLE `m_costumer_epayment`
+  ADD CONSTRAINT `FK_RELATIONSHIP_40` FOREIGN KEY (`EPAYMENT_CODE`) REFERENCES `m_epayment` (`EPAYMENT_CODE`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_41` FOREIGN KEY (`COSTUMER_ID`) REFERENCES `m_costumer` (`COSTUMER_ID`);
+
+--
+-- Constraints for table `m_costumer_point`
+--
+ALTER TABLE `m_costumer_point`
+  ADD CONSTRAINT `FK_RELATIONSHIP_31` FOREIGN KEY (`COSTUMER_ID`) REFERENCES `m_costumer` (`COSTUMER_ID`);
+
+--
+-- Constraints for table `m_delivery_order`
+--
+ALTER TABLE `m_delivery_order`
+  ADD CONSTRAINT `FK_RELATIONSHIP_45` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `m_employee` (`EMPLOYEE_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_46` FOREIGN KEY (`ORDER_ID`) REFERENCES `m_order` (`ORDER_ID`);
+
+--
+-- Constraints for table `m_driver_status`
+--
+ALTER TABLE `m_driver_status`
+  ADD CONSTRAINT `FK_RELATIONSHIP_47` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `m_employee` (`EMPLOYEE_ID`);
+
+--
+-- Constraints for table `m_employee`
+--
+ALTER TABLE `m_employee`
+  ADD CONSTRAINT `FK_RELATIONSHIP_1` FOREIGN KEY (`EMPLOYEE_POSITION_ID`) REFERENCES `m_employee_position` (`EMPLOYEE_POSITION_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_19` FOREIGN KEY (`MINIMART_ID`) REFERENCES `m_minimart` (`MINIMART_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_28` FOREIGN KEY (`SHIFT_ID`) REFERENCES `m_employee_shift` (`SHIFT_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_3` FOREIGN KEY (`USER_ID`) REFERENCES `m_user` (`USER_ID`);
+
+--
+-- Constraints for table `m_employee_attandance`
+--
+ALTER TABLE `m_employee_attandance`
+  ADD CONSTRAINT `FK_RELATIONSHIP_29` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `m_employee` (`EMPLOYEE_ID`);
+
+--
+-- Constraints for table `m_epayment`
+--
+ALTER TABLE `m_epayment`
+  ADD CONSTRAINT `FK_RELATIONSHIP_42` FOREIGN KEY (`EPAYMENT_VALUE_ID`) REFERENCES `m_epayment_value` (`EPAYMENT_VALUE_ID`);
+
+--
+-- Constraints for table `m_expired_goods`
+--
+ALTER TABLE `m_expired_goods`
+  ADD CONSTRAINT `FK_RELATIONSHIP_37` FOREIGN KEY (`EXPIRED_ID`) REFERENCES `m_expired` (`EXPIRED_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_38` FOREIGN KEY (`BARCODE_ID`) REFERENCES `m_goods` (`BARCODE_ID`);
+
+--
+-- Constraints for table `m_goods`
+--
+ALTER TABLE `m_goods`
+  ADD CONSTRAINT `FK_RELATIONSHIP_7` FOREIGN KEY (`GOODS_CATEGORY_ID`) REFERENCES `m_goods_category` (`GOODS_CATEGORY_ID`);
+
+--
+-- Constraints for table `m_goods_order`
+--
+ALTER TABLE `m_goods_order`
+  ADD CONSTRAINT `FK_RELATIONSHIP_34` FOREIGN KEY (`BARCODE_ID`) REFERENCES `m_goods` (`BARCODE_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_35` FOREIGN KEY (`PURCHASE_ORDER_ID`, `PURCHASE_ORDER_NUMBER`) REFERENCES `m_purchase_order` (`PURCHASE_ORDER_ID`, `PURCHASE_ORDER_NUMBER`);
+
+--
+-- Constraints for table `m_goods_receive`
+--
+ALTER TABLE `m_goods_receive`
+  ADD CONSTRAINT `FK_RELATIONSHIP_17` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `m_employee` (`EMPLOYEE_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_30` FOREIGN KEY (`PURCHASE_ORDER_ID`, `PURCHASE_ORDER_NUMBER`) REFERENCES `m_purchase_order` (`PURCHASE_ORDER_ID`, `PURCHASE_ORDER_NUMBER`);
+
+--
+-- Constraints for table `m_minimart`
+--
+ALTER TABLE `m_minimart`
+  ADD CONSTRAINT `FK_RELATIONSHIP_18` FOREIGN KEY (`MINIMART_TYPE_ID`) REFERENCES `m_minimart_type` (`MINIMART_TYPE_ID`);
+
+--
+-- Constraints for table `m_minimart_goods`
+--
+ALTER TABLE `m_minimart_goods`
+  ADD CONSTRAINT `FK_RELATIONSHIP_36` FOREIGN KEY (`MINIMART_ID`) REFERENCES `m_minimart` (`MINIMART_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_39` FOREIGN KEY (`BARCODE_ID`) REFERENCES `m_goods` (`BARCODE_ID`);
+
+--
+-- Constraints for table `m_order`
+--
+ALTER TABLE `m_order`
+  ADD CONSTRAINT `FK_RELATIONSHIP_4` FOREIGN KEY (`COSTUMER_ID`) REFERENCES `m_costumer` (`COSTUMER_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_43` FOREIGN KEY (`ORDER_STATUS_ID`) REFERENCES `m_order_status` (`ORDER_STATUS_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_44` FOREIGN KEY (`ORDER_TYPE_ID`) REFERENCES `m_order_type` (`ORDER_TYPE_ID`);
+
+--
+-- Constraints for table `m_order_details`
+--
+ALTER TABLE `m_order_details`
+  ADD CONSTRAINT `FK_RELATIONSHIP_24` FOREIGN KEY (`BARCODE_ID`) REFERENCES `m_goods` (`BARCODE_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_6` FOREIGN KEY (`ORDER_ID`) REFERENCES `m_order` (`ORDER_ID`);
+
+--
+-- Constraints for table `m_promo_goods`
+--
+ALTER TABLE `m_promo_goods`
+  ADD CONSTRAINT `FK_RELATIONSHIP_25` FOREIGN KEY (`BARCODE_ID`) REFERENCES `m_goods` (`BARCODE_ID`);
+
+--
+-- Constraints for table `m_purchase_order`
+--
+ALTER TABLE `m_purchase_order`
+  ADD CONSTRAINT `FK_RELATIONSHIP_15` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `m_employee` (`EMPLOYEE_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_27` FOREIGN KEY (`SUPPLIER_ID`) REFERENCES `m_supplier` (`SUPPLIER_ID`);
+
+--
+-- Constraints for table `m_purchase_payment`
+--
+ALTER TABLE `m_purchase_payment`
+  ADD CONSTRAINT `FK_RELATIONSHIP_16` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `m_employee` (`EMPLOYEE_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_26` FOREIGN KEY (`GOOD_RECEIVE_ID`, `GOOD_RECEIVE_NUMBER`) REFERENCES `m_goods_receive` (`GOOD_RECEIVE_ID`, `GOOD_RECEIVE_NUMBER`);
+
+--
+-- Constraints for table `m_salary`
+--
+ALTER TABLE `m_salary`
+  ADD CONSTRAINT `FK_RELATIONSHIP_22` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `m_employee` (`EMPLOYEE_ID`);
+
+--
+-- Constraints for table `m_sale_transaction`
+--
+ALTER TABLE `m_sale_transaction`
+  ADD CONSTRAINT `FK_RELATIONSHIP_23` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `m_employee` (`EMPLOYEE_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_5` FOREIGN KEY (`ORDER_ID`) REFERENCES `m_order` (`ORDER_ID`);
+
+--
+-- Constraints for table `m_supplier_goods`
+--
+ALTER TABLE `m_supplier_goods`
+  ADD CONSTRAINT `FK_RELATIONSHIP_32` FOREIGN KEY (`SUPPLIER_ID`) REFERENCES `m_supplier` (`SUPPLIER_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_33` FOREIGN KEY (`BARCODE_ID`) REFERENCES `m_goods` (`BARCODE_ID`);
+
+--
+-- Constraints for table `m_user`
+--
+ALTER TABLE `m_user`
+  ADD CONSTRAINT `FK_RELATIONSHIP_20` FOREIGN KEY (`ROLE_ID`) REFERENCES `m_role` (`ROLE_ID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
