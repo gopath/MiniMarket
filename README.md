@@ -5,4 +5,4 @@ Mini Market Bussiness Apps
 
 ![Example Image][1]
 
-[1]: http://farm4.staticflickr.com/3672/12646353734_5b1fd488ff_o.png
+[1]: https://farm8.staticflickr.com/7164/13486906483_9642234c76_o.png
