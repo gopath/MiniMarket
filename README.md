@@ -11,25 +11,37 @@ This is a Android version and Web Version of Mini Market Management System. The 
 
 Setup
 ------------
-To use Mini Market :
-1. Android
-   *Import this library and source code with Eclipse*
-   Use `Existing Projects Into Workspace` instead. It works perfectly.
-2. Web
-   Create database name "db_minimart"
-   Import database sql from "minimart/database/db_minimart.sql" into your db_minimart database
-   Create user privilege "minimart" on your database
-   Copy the source code into your local server
+A. Android
+
+  1. *Import this library and source code with Eclipse*
+
+  2. Use `Existing Projects Into Workspace` instead. It works perfectly.
+
+B. Web
+
+  1. Create database name "db_minimart"
+
+  2. Import database sql from "minimart/database/db_minimart.sql" into your db_minimart database
+  
+  3. Create user privilege "minimart" and password "minimart" on your database
+  
+  4. Copy the source code into your local server
+
 
 How To Run
 ------------
-1. Android
-   Run on your android emulator / phone (4.0.0 + version) 
-2. Web
-   For client side :
-   http://localhost/minimart
-   For admin side :
-   http://localhost/minimart/admin
+A. Android
+
+  1. Run on your android emulator / phone (4.0.0 + version) 
+
+
+B. Web
+
+  1. For client side -> http://localhost/minimart
+
+  2. For admin side -> http://localhost/minimart/admin
+  
+
 
 Tests
 ------------
