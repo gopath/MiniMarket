@@ -5,6 +5,36 @@ Mini Market Bussiness Apps
 
 ![Example Image][1]
 
+Introduction
+------------
+This is a Android version and Web Version of Mini Market Management System. The Android version have 4 sub application, Costumer, Inventory Management, Purchasing and General Manager. For web version have 2 sub application, client and admin side.
+
+Setup
+------------
+To use Mini Market :
+1. Android
+   *Import this library and source code with Eclipse*
+   Use `Existing Projects Into Workspace` instead. It works perfectly.
+2. Web
+   Create database name "db_minimart"
+   Import database sql from "minimart/database/db_minimart.sql" into your db_minimart database
+   Create user privilege "minimart" on your database
+   Copy the source code into your local server
+
+How To Run
+------------
+1. Android
+   Run on your android emulator / phone (4.0.0 + version) 
+2. Web
+   For client side :
+   http://localhost/minimart
+   For admin side :
+   http://localhost/minimart/admin
+
+Tests
+------------
+No tests have been written however. I have tested this manually with 4.0.0 + devices. Please report any issues.
+
 Contributing
 ------------
 Any kinds of helps (bug report / suggestions) are welcomed.
