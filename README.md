@@ -43,7 +43,7 @@ B. Web
   
 
 
-Tests
+Test
 ------------
 No tests have been written however. I have tested this manually with 4.0.0 + devices. Please report any issues.
 
